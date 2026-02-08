@@ -1,0 +1,14 @@
+# Virtual Environments
+htdet_env/
+venv/
+.env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Build / temp
+build/
+dist/
+*.log
+
