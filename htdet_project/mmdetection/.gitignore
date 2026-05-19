@@ -122,3 +122,28 @@ work_dirs/
 *.pth
 *.py~
 *.sh~
+
+# HTDet - data, results, and binary outputs (root-anchored to avoid matching configs/)
+/backup/
+/data1/
+/data_backup/
+/datasets/
+/debug_vis/
+/preds/
+/preds_vis/
+/pretrained/
+/ptq_results/
+/ptq_results_test/
+/qat/
+/results/
+/vis_results/
+/w8a8/
+/w8a32/
+/weights/
+*.tar.gz
+
+# FPGA C-sim binary outputs
+csim_validation/*.bin
+csim_validation/csim_detections.txt
+csim_validation/__pycache__/
+csim_validation/dump_features/

@@ -167,15 +167,23 @@ data = dict(
 # Optimizer
 # -----------------------------
 optimizer = dict(
-    type='SGD',
-    lr=0.1,
-    momentum=0.9,
+    _delete_=True,     # <-- IMPORTANT
+    type='AdamW',
+    lr=1e-4,
     weight_decay=1e-4
 )
 
 
 
-optimizer_config = dict(grad_clip=None)
+
+
+optimizer_config = dict(
+    _delete_=True,
+    grad_clip=dict(max_norm=5, norm_type=2)
+)
+
+
+
 
 
 # -----------------------------
@@ -204,9 +212,10 @@ checkpoint_config = dict(interval=1)
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=2500,
-    warmup_ratio=0.000666,
-    step=[16, 22]
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[16, 22]   # standard MMDet
 )
+
 
 
