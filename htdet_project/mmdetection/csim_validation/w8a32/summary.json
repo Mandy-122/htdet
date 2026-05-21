@@ -1,0 +1,44 @@
+{
+  "description": "W8A32 PTQ C-simulation results vs FP32 Python reference",
+  "mode": "W8A32",
+  "weights": "weights_ptq/ (conv weights rounded to INT8 representable values, stored as FP32)",
+  "activation_type": "FP32 (act_t = float)",
+  "weight_type": "FP32-stored INT8 (per-channel symmetric, scale=max|W|/127)",
+  "images_validated": 3,
+  "note": "Same 3 images run with PTQ weights; FP32 reference uses original weights/",
+  "images": [
+    {
+      "image": "YDXJ0001_10003.jpg",
+      "mode": "W8A32",
+      "weights": "weights_ptq (INT8 PTQ)",
+      "python_count": 7,
+      "csim_count": 7,
+      "matched": 7,
+      "python_only": 0,
+      "csim_only": 0,
+      "match_pct": 100.0
+    },
+    {
+      "image": "GOPR0293_10229.jpg",
+      "mode": "W8A32",
+      "weights": "weights_ptq (INT8 PTQ)",
+      "python_count": 19,
+      "csim_count": 19,
+      "matched": 18,
+      "python_only": 1,
+      "csim_only": 1,
+      "match_pct": 94.7
+    },
+    {
+      "image": "CHN083846_0291.jpg",
+      "mode": "W8A32",
+      "weights": "weights_ptq (INT8 PTQ)",
+      "python_count": 37,
+      "csim_count": 37,
+      "matched": 37,
+      "python_only": 0,
+      "csim_only": 0,
+      "match_pct": 100.0
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+HTDet Python mAP Comparison (URPC val2018, 800 images)
+Evaluated with: tools/test.py  |  Backbone: CSPDarknet + FPN + RetinaHead
+Dataset: URPC val2018 — classes: holothurian, echinus, scallop, starfish
+======================================================================
+
+Metric              Float32    W8A32      W8A8
+                    (baseline) (wt INT8)  (wt+act INT8)
+--------------------  -------    -----      ----
+mAP@50              0.755      0.753      0.753
+mAP(0.50:0.95)      0.408      0.407      0.407
+mAP@75              0.398      0.395      0.396
+mAP (small)         0.242      0.239      0.239
+mAP (medium)        0.417      0.416      0.416
+mAP (large)         0.515      0.513      0.513
+
+----------------------------------------------------------------------
+Drop vs Float32 baseline:
+  W8A32:  mAP@50 −0.002  |  mAP(0.50:0.95) −0.001
+  W8A8:   mAP@50 −0.002  |  mAP(0.50:0.95) −0.001
+
+Notes:
+  - All values are PyTorch-evaluated (Python inference), not C-sim.
+  - W8A32: INT8 weights, FP32 activations (per-channel scale/zero-point).
+  - W8A8:  INT8 weights + fake-quantized INT8 activations (per-layer).
+  - Quantization scheme: symmetric INT8, per-channel for weights.
+  - W8A8 accuracy drop vs Float32 is <0.3% — negligible.

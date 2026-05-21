@@ -1,0 +1,8 @@
+backbone_w=19750528
+fpn_w=10395648
+cls_conv_w=9445376
+reg_conv_w=9445376
+cls_pred_w=331776
+cls_pred_b=144
+reg_pred_w=331776
+reg_pred_b=144
