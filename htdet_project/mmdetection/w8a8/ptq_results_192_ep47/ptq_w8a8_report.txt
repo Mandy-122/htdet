@@ -1,0 +1,130 @@
+==============================================================================================================
+  HTDet PTQ Report  —  W8A8 Simulation (INT8 weights + INT8 activations, 2 DW layers FP32 act)
+==============================================================================================================
+
+  Layer                                                             Shape                     SQNR   CosSim    ActMax   ActScale   ActMode  BN
+  ------------------------------------------------------------------------------------------------------------
+  backbone.model.stem.conv                                          [16, 3, 3, 3]             44.4   1.0000     11.91    0.09377  INT8-act  Y
+  backbone.model.stages_0.0.conv1_1x1.conv                          [64, 16, 1, 1]            43.6   1.0000     18.86    0.14850  INT8-act  Y
+  backbone.model.stages_0.0.conv2_kxk.conv                          [64, 1, 3, 3]             48.3   1.0000    229.18    1.80454  FP32-act  Y
+  backbone.model.stages_0.0.conv3_1x1.conv                          [32, 64, 1, 1]            43.4   1.0000     48.04    0.37827  INT8-act  Y
+  backbone.model.stages_1.0.conv1_1x1.conv                          [128, 32, 1, 1]           44.7   1.0000     25.03    0.19706  INT8-act  Y
+  backbone.model.stages_1.0.conv2_kxk.conv                          [128, 1, 3, 3]            47.5   1.0000    184.32    1.45132  FP32-act  Y
+  backbone.model.stages_1.0.conv3_1x1.conv                          [64, 128, 1, 1]           42.8   1.0000     13.85    0.10909  INT8-act  Y
+  backbone.model.stages_1.1.conv1_1x1.conv                          [256, 64, 1, 1]           44.1   1.0000     11.57    0.09113  INT8-act  Y
+  backbone.model.stages_1.1.conv2_kxk.conv                          [256, 1, 3, 3]            46.7   1.0000     30.19    0.23770  INT8-act  Y
+  backbone.model.stages_1.1.conv3_1x1.conv                          [64, 256, 1, 1]           42.8   1.0000     18.73    0.14750  INT8-act  Y
+  backbone.model.stages_1.2.conv1_1x1.conv                          [256, 64, 1, 1]           44.3   1.0000     12.01    0.09459  INT8-act  Y
+  backbone.model.stages_1.2.conv2_kxk.conv                          [256, 1, 3, 3]            47.6   1.0000     21.20    0.16694  INT8-act  Y
+  backbone.model.stages_1.2.conv3_1x1.conv                          [64, 256, 1, 1]           43.1   1.0000      9.60    0.07556  INT8-act  Y
+  backbone.model.stages_2.0.conv1_1x1.conv                          [256, 64, 1, 1]           44.0   1.0000     19.11    0.15046  INT8-act  Y
+  backbone.model.stages_2.0.conv2_kxk.conv                          [256, 1, 3, 3]            49.2   1.0000     11.58    0.09117  INT8-act  Y
+  backbone.model.stages_2.0.conv3_1x1.conv                          [96, 256, 1, 1]           42.7   1.0000      7.85    0.06185  INT8-act  Y
+  backbone.model.stages_2.1.conv_kxk.conv                           [96, 96, 3, 3]            36.8   0.9999     19.30    0.15200  INT8-act  Y
+  backbone.model.stages_2.1.conv_1x1                                [144, 96, 1, 1]           43.8   1.0000     10.02    0.07892  INT8-act   
+  backbone.model.stages_2.1.conv_proj.conv                          [96, 144, 1, 1]           43.2   1.0000      2.73    0.02151  INT8-act  Y
+  backbone.model.stages_2.1.conv_fusion.conv                        [96, 192, 3, 3]           36.8   0.9999     25.58    0.20142  INT8-act  Y
+  backbone.model.stages_3.0.conv1_1x1.conv                          [384, 96, 1, 1]           41.0   1.0000      5.37    0.04227  INT8-act  Y
+  backbone.model.stages_3.0.conv2_kxk.conv                          [384, 1, 3, 3]            49.0   1.0000      8.03    0.06323  INT8-act  Y
+  backbone.model.stages_3.0.conv3_1x1.conv                          [128, 384, 1, 1]          42.6   1.0000     10.28    0.08095  INT8-act  Y
+  backbone.model.stages_3.1.conv_kxk.conv                           [128, 128, 3, 3]          38.4   0.9999     19.47    0.15332  INT8-act  Y
+  backbone.model.stages_3.1.conv_1x1                                [192, 128, 1, 1]          43.8   1.0000      9.29    0.07318  INT8-act   
+  backbone.model.stages_3.1.conv_proj.conv                          [128, 192, 1, 1]          43.3   1.0000      3.27    0.02572  INT8-act  Y
+  backbone.model.stages_3.1.conv_fusion.conv                        [128, 256, 3, 3]          36.9   0.9999     26.17    0.20603  INT8-act  Y
+  backbone.model.stages_4.0.conv1_1x1.conv                          [512, 128, 1, 1]          42.7   1.0000      6.96    0.05480  INT8-act  Y
+  backbone.model.stages_4.0.conv2_kxk.conv                          [512, 1, 3, 3]            48.3   1.0000      6.29    0.04950  INT8-act  Y
+  backbone.model.stages_4.0.conv3_1x1.conv                          [160, 512, 1, 1]          42.6   1.0000      7.78    0.06125  INT8-act  Y
+  backbone.model.stages_4.1.conv_kxk.conv                           [160, 160, 3, 3]          39.0   0.9999     20.69    0.16293  INT8-act  Y
+  backbone.model.stages_4.1.conv_1x1                                [240, 160, 1, 1]          43.1   1.0000     12.54    0.09873  INT8-act   
+  backbone.model.stages_4.1.conv_proj.conv                          [160, 240, 1, 1]          43.0   1.0000      3.89    0.03067  INT8-act  Y
+  backbone.model.stages_4.1.conv_fusion.conv                        [160, 320, 3, 3]          38.0   0.9999     19.42    0.15294  INT8-act  Y
+  backbone.model.final_conv.conv                                    [640, 160, 1, 1]          42.1   1.0000      3.35    0.02636  INT8-act  Y
+  neck.lateral_convs.0.conv                                         [192, 64, 1, 1]           48.2   1.0000      9.01    0.07094  INT8-act   
+  neck.lateral_convs.1.conv                                         [192, 96, 1, 1]           48.1   1.0000      2.11    0.01660  INT8-act   
+  neck.lateral_convs.2.conv                                         [192, 128, 1, 1]          47.9   1.0000      3.12    0.02459  INT8-act   
+  neck.lateral_convs.3.conv                                         [192, 640, 1, 1]          47.2   1.0000      5.19    0.04083  INT8-act   
+  neck.fpn_convs.0.conv                                             [192, 192, 3, 3]          47.2   1.0000      7.66    0.06033  INT8-act   
+  neck.fpn_convs.1.conv                                             [192, 192, 3, 3]          47.2   1.0000      6.42    0.05052  INT8-act   
+  neck.fpn_convs.2.conv                                             [192, 192, 3, 3]          47.3   1.0000      5.85    0.04607  INT8-act   
+  neck.fpn_convs.3.conv                                             [192, 192, 3, 3]           inf   1.0000      4.53    0.03568  INT8-act   
+  bbox_head.cls_convs.0.conv                                        [192, 192, 3, 3]           inf   1.0000      8.04    0.06333  INT8-act   
+  bbox_head.cls_convs.1.conv                                        [192, 192, 3, 3]           inf   1.0000      6.66    0.05242  INT8-act   
+  bbox_head.cls_convs.2.conv                                        [192, 192, 3, 3]           inf   1.0000      9.77    0.07692  INT8-act   
+  bbox_head.cls_convs.3.conv                                        [192, 192, 3, 3]           inf   1.0000     11.92    0.09387  INT8-act   
+  bbox_head.reg_convs.0.conv                                        [192, 192, 3, 3]           inf   1.0000      5.90    0.04649  INT8-act   
+  bbox_head.reg_convs.1.conv                                        [192, 192, 3, 3]           inf   1.0000      3.84    0.03025  INT8-act   
+  bbox_head.reg_convs.2.conv                                        [192, 192, 3, 3]           inf   1.0000      2.38    0.01873  INT8-act   
+  bbox_head.reg_convs.3.conv                                        [192, 192, 3, 3]           inf   1.0000      1.10    0.00866  INT8-act   
+  bbox_head.retina_cls                                              [36, 192, 3, 3]           40.6   1.0000     17.83    0.14039  INT8-act   
+  bbox_head.retina_reg                                              [36, 192, 3, 3]           40.9   1.0000      0.93    0.00730  INT8-act   
+
+==============================================================================================================
+  Detection comparison  (score >= 0.20)
+==============================================================================================================
+  #      Float32     W8A32      W8A8    ΔW8A32     ΔW8A8
+  ------------------------------------------------
+  0           13        11         6        -2        -7
+  1           11        11        10        +0        -1
+  2            8         8         5        +0        -3
+  3            5        30         3       +25        -2
+  4           13        13         9        +0        -4
+  5            6         7        11        +1        +5
+  6            7         7        10        +0        +3
+  7           20        20        20        +0        +0
+  8           21        21        11        +0       -10
+  9            5         8         0        +3        -5
+  10          18        18        13        +0        -5
+  11           1         1         7        +0        +6
+  12           4         4         2        +0        -2
+  13          14        15        14        +1        +0
+  14          88        92        44        +4       -44
+  15          19        20         9        +1       -10
+  16           7         8         0        +1        -7
+  17          37        39        15        +2       -22
+  18           6         6         4        +0        -2
+  19          25        28         4        +3       -21
+  20          13        12         7        -1        -6
+  21          38        71         4       +33       -34
+  22         100       100         7        +0       -93
+  23           7         8         1        +1        -6
+  24          14        16        11        +2        -3
+  25          18        19        10        +1        -8
+  26          21        21        15        +0        -6
+  27          14        14        11        +0        -3
+  28          14        14         9        +0        -5
+  29          20        21         6        +1       -14
+  30           8         8         7        +0        -1
+  31          21        24         5        +3       -16
+  32           5         5         4        +0        -1
+  33           6         5         9        -1        +3
+  34          28       100        16       +72       -12
+  35          15        16        11        +1        -4
+  36          17        18        12        +1        -5
+  37          11        12         8        +1        -3
+  38          12        72         3       +60        -9
+  39           4         4         9        +0        +5
+  40          16        16         5        +0       -11
+  41          15        18         8        +3        -7
+  42           6         6         4        +0        -2
+  43           8         9        11        +1        +3
+  44           9         9        11        +0        +2
+  45           6         6         7        +0        +1
+  46          56        54        59        -2        +3
+  47          48        47        52        -1        +4
+  48          21        22        10        +1       -11
+  49          19        18        10        -1        -9
+  ------------------------------------------------
+  TOT        918      1132       539      +214      -379
+
+  W8A32 detection delta: +23.3%
+  W8A8  detection delta: -41.3%
+
+  Weight quantization summary (53 Conv2d layers):
+    SQNR  min:  36.8  mean:  43.8  max:  49.2 dB
+    CoSim min:0.9999  mean:1.0000  max:1.0000
+
+  Activation quantization:
+    INT8-act layers : 51
+    FP32-act layers : 2  (outlier DW convs with ActMax>196)
+
+==============================================================================================================

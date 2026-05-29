@@ -1,0 +1,80 @@
+=========================================================================================================
+  HTDet PTQ Report  —  W8A32 Simulation (INT8 weights, FP32 activations)
+=========================================================================================================
+
+  Layer                                                             Shape                   SQNR(dB)   CosSim    ActMin    ActMax   ActScale  BN
+  -----------------------------------------------------------------------------------------------------
+  backbone.model.stem.conv                                          [16, 3, 3, 3]              44.8   1.0000    -11.63     11.90    0.09370  Y
+  backbone.model.stages_0.0.conv1_1x1.conv                          [64, 16, 1, 1]             43.8   1.0000    -18.95     15.54    0.14921  Y
+  backbone.model.stages_0.0.conv2_kxk.conv                          [64, 1, 3, 3]              47.9   1.0000   -229.18    159.51    1.80460  Y
+  backbone.model.stages_0.0.conv3_1x1.conv                          [32, 64, 1, 1]             43.3   1.0000    -47.35     37.23    0.37287  Y
+  backbone.model.stages_1.0.conv1_1x1.conv                          [128, 32, 1, 1]            44.6   1.0000    -24.49     15.49    0.19287  Y
+  backbone.model.stages_1.0.conv2_kxk.conv                          [128, 1, 3, 3]             48.2   1.0000   -106.49    182.87    1.43988  Y
+  backbone.model.stages_1.0.conv3_1x1.conv                          [64, 128, 1, 1]            42.8   1.0000    -13.77     12.10    0.10840  Y
+  backbone.model.stages_1.1.conv1_1x1.conv                          [256, 64, 1, 1]            44.1   1.0000    -11.11      9.39    0.08746  Y
+  backbone.model.stages_1.1.conv2_kxk.conv                          [256, 1, 3, 3]             46.7   1.0000    -32.57     19.40    0.25647  Y
+  backbone.model.stages_1.1.conv3_1x1.conv                          [64, 256, 1, 1]            42.9   1.0000    -17.18     12.58    0.13524  Y
+  backbone.model.stages_1.2.conv1_1x1.conv                          [256, 64, 1, 1]            44.3   1.0000    -11.64      9.41    0.09165  Y
+  backbone.model.stages_1.2.conv2_kxk.conv                          [256, 1, 3, 3]             47.6   1.0000     -7.83     21.44    0.16884  Y
+  backbone.model.stages_1.2.conv3_1x1.conv                          [64, 256, 1, 1]            43.1   1.0000     -7.62      8.60    0.06772  Y
+  backbone.model.stages_2.0.conv1_1x1.conv                          [256, 64, 1, 1]            44.0   1.0000    -17.47     14.56    0.13759  Y
+  backbone.model.stages_2.0.conv2_kxk.conv                          [256, 1, 3, 3]             49.2   1.0000    -10.40      7.74    0.08189  Y
+  backbone.model.stages_2.0.conv3_1x1.conv                          [96, 256, 1, 1]            42.6   1.0000     -7.39      6.41    0.05820  Y
+  backbone.model.stages_2.1.conv_kxk.conv                           [96, 96, 3, 3]             36.8   0.9999    -18.70     14.73    0.14728  Y
+  backbone.model.stages_2.1.conv_1x1                                [144, 96, 1, 1]            43.8   1.0000     -9.77      9.18    0.07692   
+  backbone.model.stages_2.1.conv_proj.conv                          [96, 144, 1, 1]            43.2   1.0000     -2.57      2.68    0.02110  Y
+  backbone.model.stages_2.1.conv_fusion.conv                        [96, 192, 3, 3]            36.8   0.9999    -24.86     15.92    0.19572  Y
+  backbone.model.stages_3.0.conv1_1x1.conv                          [384, 96, 1, 1]            40.9   1.0000     -5.22      5.36    0.04223  Y
+  backbone.model.stages_3.0.conv2_kxk.conv                          [384, 1, 3, 3]             49.0   1.0000     -8.11      3.72    0.06388  Y
+  backbone.model.stages_3.0.conv3_1x1.conv                          [128, 384, 1, 1]           42.6   1.0000    -10.15      7.44    0.07988  Y
+  backbone.model.stages_3.1.conv_kxk.conv                           [128, 128, 3, 3]           38.4   0.9999    -19.13     18.32    0.15061  Y
+  backbone.model.stages_3.1.conv_1x1                                [192, 128, 1, 1]           43.8   1.0000     -7.75      9.14    0.07198   
+  backbone.model.stages_3.1.conv_proj.conv                          [128, 192, 1, 1]           43.3   1.0000     -3.25      2.95    0.02557  Y
+  backbone.model.stages_3.1.conv_fusion.conv                        [128, 256, 3, 3]           36.9   0.9999    -26.00     17.82    0.20476  Y
+  backbone.model.stages_4.0.conv1_1x1.conv                          [512, 128, 1, 1]           42.7   1.0000     -6.82      6.80    0.05371  Y
+  backbone.model.stages_4.0.conv2_kxk.conv                          [512, 1, 3, 3]             48.4   1.0000     -5.70      2.21    0.04489  Y
+  backbone.model.stages_4.0.conv3_1x1.conv                          [160, 512, 1, 1]           42.6   1.0000     -6.45      7.62    0.06001  Y
+  backbone.model.stages_4.1.conv_kxk.conv                           [160, 160, 3, 3]           39.0   0.9999    -18.51     18.96    0.14933  Y
+  backbone.model.stages_4.1.conv_1x1                                [240, 160, 1, 1]           43.1   1.0000    -10.80     12.39    0.09754   
+  backbone.model.stages_4.1.conv_proj.conv                          [160, 240, 1, 1]           43.0   1.0000     -3.89      3.05    0.03067  Y
+  backbone.model.stages_4.1.conv_fusion.conv                        [160, 320, 3, 3]           38.0   0.9999    -19.37     17.95    0.15251  Y
+  backbone.model.final_conv.conv                                    [640, 160, 1, 1]           42.1   1.0000     -3.33      2.69    0.02619  Y
+  neck.lateral_convs.0.conv                                         [192, 64, 1, 1]            48.2   1.0000     -6.45      8.36    0.06585   
+  neck.lateral_convs.1.conv                                         [192, 96, 1, 1]            48.1   1.0000     -2.05      2.05    0.01616   
+  neck.lateral_convs.2.conv                                         [192, 128, 1, 1]           47.8   1.0000     -2.80      3.13    0.02468   
+  neck.lateral_convs.3.conv                                         [192, 640, 1, 1]           47.2   1.0000     -5.21      5.06    0.04103   
+  neck.fpn_convs.0.conv                                             [192, 192, 3, 3]           47.2   1.0000     -7.20      7.45    0.05864   
+  neck.fpn_convs.1.conv                                             [192, 192, 3, 3]           47.2   1.0000     -6.97      5.78    0.05491   
+  neck.fpn_convs.2.conv                                             [192, 192, 3, 3]           47.3   1.0000     -5.68      5.87    0.04623   
+  neck.fpn_convs.3.conv                                             [192, 192, 3, 3]            inf   1.0000     -4.99      4.20    0.03930   
+  bbox_head.cls_convs.0.conv                                        [192, 192, 3, 3]            inf   1.0000     -5.68      8.41    0.06619   
+  bbox_head.cls_convs.1.conv                                        [192, 192, 3, 3]            inf   1.0000     -4.50      6.96    0.05480   
+  bbox_head.cls_convs.2.conv                                        [192, 192, 3, 3]            inf   1.0000     -5.07      9.78    0.07700   
+  bbox_head.cls_convs.3.conv                                        [192, 192, 3, 3]            inf   1.0000    -10.51     12.83    0.10106   
+  bbox_head.reg_convs.0.conv                                        [192, 192, 3, 3]            inf   1.0000     -4.40      6.40    0.05039   
+  bbox_head.reg_convs.1.conv                                        [192, 192, 3, 3]            inf   1.0000     -2.30      4.10    0.03226   
+  bbox_head.reg_convs.2.conv                                        [192, 192, 3, 3]            inf   1.0000     -1.79      2.55    0.02009   
+  bbox_head.reg_convs.3.conv                                        [192, 192, 3, 3]            inf   1.0000     -1.09      0.85    0.00860   
+  bbox_head.retina_cls                                              [36, 192, 3, 3]            40.6   1.0000    -18.15      4.74    0.14293   
+  bbox_head.retina_reg                                              [36, 192, 3, 3]            40.9   1.0000     -0.87      0.92    0.00724   
+
+=========================================================================================================
+  Detection comparison  (score >= 0.20)
+=========================================================================================================
+  #      Float32     W8A32    Diff
+  ------------------------------
+  0           12        13      +1
+  1           10        10      +0
+  2            6         8      +2
+  3            4         5      +1
+  4           13        13      +0
+  ------------------------------
+  TOT         45        49      +4
+
+  Overall detection delta: +8.9%
+
+  Weight quantization summary (53 Conv2d layers):
+    SQNR  — min:   36.8 dB   mean:   43.8 dB   max:   49.2 dB
+    CoSim — min: 0.9999   mean: 1.0000   max: 1.0000
+
+=========================================================================================================

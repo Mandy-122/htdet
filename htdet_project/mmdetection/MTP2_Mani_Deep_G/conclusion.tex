@@ -1,0 +1,45 @@
+\chapter{Conclusion and Future Work}
+
+\section{Conclusion}
+
+This thesis presented \textbf{HTDet}, a complete end-to-end system for underwater object detection on the URPC benchmark, designed with FPGA deployment as a primary goal alongside detection accuracy.
+
+The work demonstrated an \textbf{architecture-to-hardware co-design} approach spanning four stages:
+
+\begin{enumerate}
+    \item \textbf{Baseline Detection:} A MobileViT-S + FPN + RetinaNet detector achieves a strong baseline mAP$_{50}$ of \textbf{75.5\%} on the URPC validation set, confirming that hybrid CNN-Transformer backbones are well-suited to the visually challenging underwater detection task.
+
+    \item \textbf{Frequency-Aware FPN:} The proposed FA-FPN neck — motivated by the frequency-selective degradation properties of underwater imaging — improves mAP$_{50}$ to \textbf{77.6\%} with only $\approx$0.5M additional parameters. The improvement in mAP$_{75}$ (+3.6\%) suggests that frequency-aware feature processing helps with both recall and localisation quality.
+
+    \item \textbf{Model Compression:} Structured channel pruning (30\% filter removal) reduces model parameters by 52\% with less than 0.3\% mAP$_{50}$ loss (75.3\%). Knowledge distillation from the full model recovers the compact 192$\times$192 deployment model to \textbf{71.8\% mAP$_{50}$} — a 4.2\% recovery over the no-distillation baseline.
+
+    \item \textbf{FPGA-Ready Deployment:} W8A32 post-training quantization produces an average SQNR of 43.8 dB with cosine similarity of 1.000 across all 53 layers, validating near-lossless quantization. A complete C/HLS implementation covering the backbone, FPN neck, and detection head is validated by C-Simulation, with CSIM detections matching the PyTorch float32 reference on all test images.
+\end{enumerate}
+
+Together, these results demonstrate that high-quality underwater object detection is achievable at a GFLOPs budget suitable for FPGA deployment (59.9 GFLOPs, $192\times192$), with a detection accuracy drop of only 3.7\% mAP$_{50}$ relative to the full-resolution baseline.
+
+\section{Future Work}
+
+Several directions remain open for further investigation:
+
+\begin{itemize}
+
+    \item \textbf{Physical FPGA Synthesis and Measurement:}
+    The current work validates functional correctness through C-Simulation. The next critical step is synthesising the design through Vitis HLS to generate RTL, implementing it on a physical FPGA board (e.g., Xilinx Alveo U50 or ZCU102), and measuring on-board latency, resource utilisation (BRAM, DSP, LUT, FF), and power consumption. This will reveal any timing closure issues and allow direct hardware profiling.
+
+    \item \textbf{INT8 Activations (W8A8 Quantization):}
+    The current PTQ uses W8A32 (INT8 weights, FP32 activations). Moving to W8A8 (quantizing activations as well) would allow fully integer-arithmetic convolutional layers, significantly reducing FPGA DSP usage and enabling higher throughput. Quantization-aware training (QAT) would be needed to maintain accuracy at INT8 activations.
+
+    \item \textbf{FA-FPN FPGA Implementation:}
+    The FA-FPN neck modules (FCG and FBD) rely on 2D FFT computations per level. While conceptually straightforward, efficient FFT hardware in HLS requires careful pipeline design. Implementing FA-FPN on FPGA and measuring whether the +2.1\% mAP$_{50}$ gain justifies the additional hardware cost is an important open question.
+
+    \item \textbf{Knowledge Distillation for Pruned Models:}
+    The current pipeline applies KD only to the low-resolution model. Applying KD also to the pruned model (using the full unpruned model as teacher) could close the remaining 0.3\% accuracy gap at 640$\times$640 resolution and potentially yield a higher-quality starting point for the 192$\times$192 compact model.
+
+    \item \textbf{Domain-Adaptive Pre-Training:}
+    The backbone is currently pretrained on ImageNet. Pre-training on an underwater image dataset (e.g., via masked autoencoders or contrastive self-supervised methods) could produce features better attuned to underwater colour distributions and texture patterns, potentially closing the gap between MobileViTv2-150 (trained from scratch, 76.1\%) and the baseline (pretrained MobileViT-S, 75.5\%) while using a smaller model.
+
+    \item \textbf{Adversarial Robustness of the Deployment Pipeline:}
+    The detection pipeline is designed for cooperative environments (calibration images from the same domain). Future work should study adversarial attacks on the compressed/quantized model — specifically whether the quantization or pruning steps introduce new vulnerability surfaces that are absent in the full-precision model.
+
+\end{itemize}

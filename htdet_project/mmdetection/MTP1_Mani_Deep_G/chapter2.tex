@@ -1,0 +1,47 @@
+\chapter{Review of Prior Works}
+
+As discussed in the previous chapter, the Vision Transformer (ViT) is a powerful architecture but suffers from a major computational bottleneck due to the $O(N^2)$ cost of its self-attention mechanism \cite{ref2}. When the number of image patches (tokens) increases, both computation and memory usage grow quadratically, making real-time deployment on edge devices and FPGAs extremely challenging \cite{ref3}.
+
+This chapter reviews the main strategies proposed in the literature to address these limitations. Existing work can be broadly grouped into two categories: 
+(1) algorithmic methods that reduce the model’s computation, and 
+(2) hardware acceleration techniques that design efficient custom architectures for ViTs. 
+Recent research shows that the most effective solutions combine these two ideas through \textbf{algorithm–hardware codesign} \cite{ref4}.
+
+\section{Algorithmic Optimization: Dynamic Token Pruning}
+
+A natural way to reduce the $O(N^2)$ cost is to reduce the sequence length $N$ itself. Dynamic token pruning aims to identify and remove tokens that do not contribute much to the final prediction, such as background image patches \cite{ref6, ref9}. By keeping only the most informative tokens, the sequence length becomes $N' < N$, and the self-attention cost drops to $O((N')^2)$.
+
+\subsection{Pruning Mechanism}
+
+The key idea is that not all tokens are equally important \cite{ref13}. Many patches carry little meaningful information for classification. Studies have shown that removing 30–40\% of tokens often results in less than 1\% accuracy loss \cite{ref3}. Other works report even more aggressive results, such as a 47\% reduction in computation with only a 0.86\% accuracy drop on CIFAR-10, or 40\% pruning with an average accuracy loss of 0.3\% \cite{ref15}.
+
+\subsection{DynamicViT: A Differentiable Pruning Framework}
+
+One of the main difficulties in token pruning is making the pruning decision differentiable so the model can learn it during training. DynamicViT addresses this by inserting small “prediction modules” at different layers of the ViT \cite{ref3}. These modules assign importance scores to tokens using both local features and global context.
+
+To maintain end-to-end training, DynamicViT uses a differentiable masking strategy:  
+instead of removing tokens physically during training, their connections in the attention matrix are masked. This preserves gradient flow while simulating the effect of pruning. During inference, the least important tokens are physically removed, providing real computational savings \cite{ref3}.
+
+\section{Hardware Acceleration and Algorithm–Hardware Codesign}
+
+Algorithmic pruning reduces the number of operations, but it introduces a new problem: \textbf{irregular computation patterns} \cite{ref3}. When tokens are dynamically removed, the sequence length becomes input-dependent. This irregularity breaks the dense, regular matrix operations that GPUs and CPUs are optimized for \cite{ref4}.
+
+\subsection{The Challenge of Irregularity}
+After pruning, the model must compact the remaining tokens into a smaller matrix. This requires dynamic sorting, indexing, and data shuffling. Such operations map poorly to conventional processors, which prefer fixed-size, dense compute patterns. As a result, the theoretical savings from pruning often do not translate into real hardware speedups on CPUs/GPUs \cite{ref5}.
+
+\subsection{The FPGA Advantage}
+FPGAs, however, are reconfigurable and can be tailored to these irregular patterns \cite{ref12}. This has led to an algorithm–hardware codesign trend, where pruning algorithms are developed alongside specialized FPGA architectures. A representative example is \textbf{HeatViT}, which introduces a hardware-friendly token pruning framework tailored for FPGAs \cite{ref4}. It uses a lightweight token selector with minimal control logic, integrates quantization, and applies approximations to reduce hardware complexity. On Xilinx ZCU102, this approach achieves a 3.46×–4.89× speedup compared to the baseline \cite{ref4}. This demonstrates that combining algorithmic pruning with hardware-aware design is essential for real improvements.
+
+\section{Conclusion}
+
+This chapter summarized the major directions in reducing the computational cost of Vision Transformers. While dynamic token pruning significantly lowers theoretical FLOPs \cite{ref2}, it produces irregular computation patterns that general-purpose processors cannot efficiently exploit \cite{ref3}.
+
+The most effective solutions adopt an \textbf{algorithm–hardware codesign} philosophy \cite{ref11}. They integrate a dynamic pruning method with a custom FPGA accelerator, including specialized components such as a \textit{Token Dropping Module} (TDM) and efficient load-balancing mechanisms \cite{ref3, ref4}. These systems are capable of handling token-level irregularity and translating algorithmic savings into actual speedups.
+
+Following this line of work, the next chapters present our approach. 
+\begin{itemize}
+    \item \textbf{Algorithm~I} describes the high-level C++ implementation of our distributed pruning strategy.
+    \item \textbf{Algorithm~II} introduces the HLS-based FPGA accelerator designed to execute this algorithm efficiently.
+\end{itemize}
+
+Together, these chapters lay the foundation for a complete algorithm–hardware solution for accelerating Vision Transformers.

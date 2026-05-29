@@ -1,0 +1,153 @@
+\chapter{Introduction and Background}
+
+This chapter introduces the problem of underwater object detection, motivates FPGA deployment for autonomous marine robotics, presents the HTDet system, and provides the technical background needed to understand all subsequent chapters.
+
+% ─────────────────────────────────────────────────────────────
+\section{Motivation}
+
+The URPC (Underwater Robot Picking Contest) benchmark is a representative testbed for underwater object detection. It contains images of four target species commonly found in the Yellow Sea and Bohai Sea: \textbf{holothurian} (sea cucumber), \textbf{echinus} (sea urchin), \textbf{scallop}, and \textbf{starfish}. These classes present several challenges that distinguish the problem from standard detection benchmarks:
+
+\begin{enumerate}
+    \item \textbf{Color Degradation:} Water absorbs red wavelengths selectively with depth, shifting the color balance and reducing contrast. The resulting blue-green cast masks the natural color cues that detectors typically exploit.
+    \item \textbf{Turbidity and Blur:} Suspended particles scatter light, reducing high-frequency edge detail and decreasing scene clarity — especially harmful for small objects such as echinus clusters.
+    \item \textbf{Camouflage and Clutter:} Many target organisms blend into sandy or rocky seabed textures, making feature-level separation from background difficult.
+    \item \textbf{Scale Variation:} Objects appear at vastly different scales depending on camera distance, requiring multi-scale feature representations.
+\end{enumerate}
+
+Beyond accuracy, a practical underwater robot requires \textbf{real-time inference at low power}. Submersible platforms have strict size and power budgets, making cloud offloading impractical and high-end GPUs impossible to deploy. Field-Programmable Gate Arrays (FPGAs) offer a compelling alternative: deterministic, low-latency inference with high energy efficiency, deployable on battery-powered underwater vehicles. However, running a modern deep neural network on an FPGA requires careful co-design of the model architecture, compression pipeline, and hardware implementation.
+
+\section{Project Overview}
+
+This thesis presents \textbf{HTDet}, an end-to-end system for underwater object detection designed with FPGA deployment as a first-class goal. The system is built around the \textbf{MobileViT-S} backbone — a hybrid CNN-Transformer architecture combining local convolutional features with global self-attention — integrated with a Feature Pyramid Network (FPN) neck and a RetinaNet detection head for multi-scale detection.
+
+For FPGA deployment, we apply a systematic compression pipeline: structured channel reduction reduces computational cost, and Post-Training Quantization (PTQ) with INT8 weights validates near-lossless quantization. A complete C/HLS implementation is validated through C-Simulation (CSIM) against the PyTorch reference.
+
+\section{Contributions}
+
+\begin{enumerate}
+    \item \textbf{HTDet Baseline:} A complete MobileViT-S + FPN + RetinaNet detector trained on URPC, achieving a baseline mAP$_{50}$ of 76.34\%, establishing a strong reference for FPGA-targeted underwater detection.
+
+    \item \textbf{Structured Compression Study:} A systematic evaluation of three channel reduction variants (224ch, 192ch, 128ch) alongside unstructured weight pruning, identifying the 192-channel model as the best accuracy-efficiency trade-off (40.6\% GFLOPs reduction, 4.5\% mAP$_{50}$ drop).
+
+    \item \textbf{Near-Lossless PTQ:} W8A32 and W8A8 post-training quantization on the 192-channel model, both achieving mAP$_{50}$ = 72.80\% — a $<$0.1\% drop from float32, with mean SQNR = 43.8\,dB.
+
+    \item \textbf{C/HLS Implementation and CSIM Validation:} A complete C/HLS implementation covering the backbone, FPN neck, and RetinaNet head, validated by C-Simulation with 100\% detection match on the reference image and 94.3\% overall across 5 validation images.
+\end{enumerate}
+
+\section{Organisation of the Report}
+
+\textbf{Chapter 2} presents the full HTDet system architecture: MobileViT-S backbone, FPN neck, and RetinaNet head.
+
+\textbf{Chapter 3} (to be completed) will present experimental results on URPC covering the full compression study and quantization analysis.
+
+\textbf{Chapter 4} describes the FPGA deployment pipeline: C/HLS implementation, challenges in converting PyTorch to C, bug fixes, and CSIM validation results.
+
+\textbf{Chapter 5} concludes the thesis and discusses future directions.
+
+% ─────────────────────────────────────────────────────────────
+\section{Anchor-Based Object Detection}
+
+\subsection{RetinaNet and Focal Loss}
+
+\textbf{RetinaNet} \cite{ref1} is a single-stage detector that solved the extreme class-imbalance problem inherent in dense one-stage detection. In a dense anchor grid, the vast majority of anchor positions correspond to background — making training dominated by easy negative examples that contribute little gradient but accumulate large loss.
+
+RetinaNet addresses this with \textbf{Focal Loss}:
+\[
+\text{FL}(p_t) = -\alpha_t (1 - p_t)^\gamma \log(p_t)
+\]
+where $p_t$ is the model's estimated probability for the correct class, $\gamma > 0$ is a focusing parameter, and $\alpha_t$ is a class-balancing weight. When the model is confident ($p_t \rightarrow 1$), the factor $(1-p_t)^\gamma$ reduces the loss contribution of easy examples, allowing training to focus on hard misclassified examples.
+
+The RetinaNet head consists of two parallel subnetworks attached to each pyramid level: a \textit{classification subnet} predicts $K$ class scores per anchor, and a \textit{regression subnet} predicts 4 box-delta offsets. Both use 4 stacked $3\times3$ convolutions with shared weights across levels.
+
+\subsection{COCO Evaluation Metrics}
+
+Detection performance is measured using the COCO-style Average Precision (AP) metric:
+
+\begin{itemize}
+    \item \textbf{mAP} (or $\text{AP}^{50:95}$): mean AP averaged over IoU thresholds from 0.50 to 0.95 in steps of 0.05.
+    \item \textbf{mAP$_{50}$}: AP at IoU = 0.50. This is the primary metric used throughout this thesis — appropriate for biologically irregular shapes where tight bounding boxes are difficult even for human annotators.
+    \item \textbf{mAP$_{75}$}: AP at IoU = 0.75, measuring stricter localisation quality.
+\end{itemize}
+
+\section{MobileViT: A Hybrid CNN-Transformer}
+
+\subsection{Why Hybrid Architectures?}
+
+Convolutional Neural Networks (CNNs) excel at capturing \textit{local} spatial patterns through shared-weight filters, and are highly data-efficient due to their strong inductive biases (locality and translation invariance). Vision Transformers (ViTs) \cite{ref2} capture \textit{global} context through self-attention, but require large amounts of training data and have high computational cost ($O(N^2)$ in sequence length).
+
+\textbf{MobileViT} \cite{ref3} is a hybrid architecture by Apple Research that combines the best of both: MBConv blocks for efficient local feature extraction and lightweight Transformer blocks for global context modelling.
+
+\subsection{MobileViT-S Architecture}
+
+MobileViT-S processes an input image through 5 progressive downsampling stages:
+
+\begin{table}[h!]
+\centering
+\caption{MobileViT-S Stage-wise Architecture}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Stage} & \textbf{Output Resolution} & \textbf{Channels} & \textbf{Block Type} \\
+\hline
+Stem + Stage 0 & $H/2 \times W/2$ & 16 & Conv $3\times3$ \\
+Stage 1        & $H/4 \times W/4$ & 32 & MBConv $\times$1 \\
+Stage 2        & $H/8 \times W/8$ & 64 & MBConv $\times$3 \\
+Stage 3        & $H/16 \times W/16$ & 96/128 & MBConv + MobileViT block \\
+Stage 4        & $H/32 \times W/32$ & 128/160 & MBConv + MobileViT block \\
+Stage 5        & $H/32 \times W/32$ & 640 & MBConv + MobileViT block + 1$\times$1 \\
+\hline
+\end{tabular}
+\label{table:mobilevit_stages}
+\end{table}
+
+The four exported feature maps (from Stages 2--5) are fed into the FPN neck for multi-scale detection.
+
+\subsection{MobileViT Block}
+
+The MobileViT block is the core innovation. Given a feature map $X \in \mathbb{R}^{H \times W \times C}$:
+\begin{enumerate}
+    \item A $3\times3$ convolution and $1\times1$ projection produce local features.
+    \item The spatial dimensions are \textit{unfolded} into non-overlapping $P \times P$ patches.
+    \item Pixels at the same relative position across all patches form a sequence, processed by a standard Transformer encoder.
+    \item The output is \textit{folded} back and fused with local features via a $1\times1$ convolution.
+\end{enumerate}
+
+This ``unfold-attend-fold'' design gives the Transformer block a global receptive field while retaining spatial structure.
+
+\subsection{MBConv Block}
+
+Between MobileViT blocks, MobileViT uses \textbf{MBConv} (Mobile Inverted Bottleneck Convolution) blocks. Each MBConv block has three layers:
+\begin{enumerate}
+    \item $1\times1$ pointwise expansion (expand channels by factor 4)
+    \item $3\times3$ depthwise separable convolution (one filter per channel)
+    \item $1\times1$ pointwise projection (reduce channels back)
+\end{enumerate}
+Depthwise separable convolutions reduce FLOPs by a factor of $k^2$ compared to full convolutions, making them efficient for hardware deployment.
+
+\section{Feature Pyramid Networks}
+
+\textbf{Feature Pyramid Networks (FPN)} \cite{ref4} address multi-scale object detection by building a top-down feature hierarchy. Objects at different scales are best detected at different resolutions, but late-stage features carry richer semantic content. FPN fuses both:
+
+\begin{enumerate}
+    \item \textbf{Bottom-up pathway:} The backbone produces $\{C_1, C_2, C_3, C_4\}$ at progressively halved resolutions.
+    \item \textbf{Top-down pathway:} The smallest, most semantic feature map is upsampled and added to lower-level features via lateral $1\times1$ convolutions.
+    \item \textbf{Output:} Feature maps $\{P_2, P_3, P_4, P_5, P_6\}$ of equal channel depth — each with both local detail and semantic context.
+\end{enumerate}
+
+Equal channel depth means the same detection head applies at every level with shared weights.
+
+\section{Post-Training Quantization}
+
+\textbf{Post-Training Quantization (PTQ)} converts a trained floating-point model to a lower-precision representation without retraining. For FPGA deployment, we target:
+
+\begin{itemize}
+    \item \textbf{W8A32}: Weights quantized to INT8, activations in FP32. Reduces weight memory bandwidth by 4$\times$ with near-zero accuracy loss.
+    \item \textbf{W8A8}: Both weights and activations in INT8. Enables full integer MAC operations on FPGA.
+\end{itemize}
+
+PTQ quality is measured by:
+\begin{itemize}
+    \item \textbf{SQNR} (Signal-to-Quantization-Noise Ratio): values above 40\,dB indicate near-lossless quantization.
+    \item \textbf{Cosine Similarity (CosSim)}: cosine similarity between float32 and quantized weight tensors; 1.000 means weight directions are perfectly preserved.
+\end{itemize}
+
+Per-layer quantization scales are determined by a min-max calibration pass over a small set of validation images.

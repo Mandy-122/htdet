@@ -1,0 +1,30 @@
+\chapter{Conclusion and Future Work}
+
+\section{Conclusion}
+This project has successfully demonstrates an \textbf{algorithm-hardware codesign} for accelerating Vision Transformer (ViT) inference on FPGAs. Upon Addressing the core bottleneck—the: $O(N^2)$ cost of self-attention, we implemented an attention-based token pruning algorithm that dynamically removes low-importance tokens during inference.
+Using Vitis HLS, we translated this idea into an efficient hardware architecture, achieving:
+\begin{itemize}
+    \item \textbf{Efficient Pruning Mechanism} using Attention scores
+    \item \textbf{HLS-Friendly ``Skipping''} mechanisms for reduce computations
+    \item \textbf{Performance Trade-off} for achieving better latency with minmal accuracy drop
+\end{itemize}
+Overall, this project provides a practical blueprint for deploying ViT models on resource-constrained FPGA platforms, showing that combining algorithmic optimization with custom hardware design is the key in overcoming high inference time for Vision Transformers.
+
+\section{Future Work}
+Future research directions upon this work could be:
+
+\begin{itemize}
+    % \item \textbf{Implementing a Hybrid Token Selector (HTS):} Our current work uses an Attention-based Token Selection (ATS) strategy. However, research shows that ATS can suffer from "immature or noisy attention scores" in the early layers. A key future enhancement would be to implement a \textbf{Keypoint-based Token Selection (KTS)} module. This mechanism would use a hardware-friendly algorithm like FAST keypoint detection on the raw image content to select tokens for the early layers. This would create a \textbf{Hybrid Token Selector (HTS)}, using KTS for the early layers and our existing ATS for the later layers, likely improving accuracy while still maintaining high GFLOPs savings.
+
+   
+
+    % \item \textbf{Introduce Convolutions (Hybrid ViT):} A primary weakness of ViTs is their lack of \textbf{"local inductive bias,"} which makes them data-hungry. Future work can be exploring a \textbf{Hybrid ViT architecture} by integrating \textbf{\textit{Convolutional operations}} into the transformer pipeline. These convolutions which can be added within or before the Transformer blocks enables the model to capture local spatial patterns in a much better way, where ViTs typically struggle with. This would also involve designing HLS-friendly "Convolutional Token Embedding" and "Convolutional Projection" modules, which can combine the local feature extraction of CNNs with the global context modeling of ViT Attention.
+    \item \textbf{Deploying the Design on a Physical FPGA Board:}  
+While this project presents a complete HLS-based architecture, running the design on an actual FPGA platform (such as the Xilinx Alveo or ZCU series boards) remains an important next step. A real hardware deployment would allow for precise measurement of on-board latency, resource utilization, and thermal behavior. Further optimizations such as custom memory hierarchies, pipelined attention blocks, and improved dataflow scheduling can then be explored to reduce latency even further.
+
+\item \textbf{Adversarial attacks of Token Pruning:}  
+Token pruning reduces computation by selectively removing less-important tokens—but it may also introduce new vulnerabilities. Future work could include a detailed study of \textbf{adversarial attacks on token pruning strategies}, exploring whether carefully perturbed inputs can mislead the pruning module into removing critical tokens. Studying these vulnerabilities and proposing adversarially robust pruning mechanisms (e.g., noise-resistant scoring functions, defense-aware pruning thresholds) would strengthen the reliability of ViT accelerators in security-sensitive applications.
+
+ \item \textbf{Implement Token Merging (ToMe):} While the current project implements \textit{token pruning} which permanently removes a subset of tokens and can therefore lead to information loss, an alternative would be \textbf{Token Merging}. This maintains the original semantic content while still reducing the effective sequence length $N$ as computation progresses through the network. Since no token is completely removed, ToMe usually preserves accuracy significantly better than hard pruning.
+
+\end{itemize}

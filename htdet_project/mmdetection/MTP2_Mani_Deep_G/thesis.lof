@@ -1,0 +1,21 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces HTDet system overview: MobileViT-S backbone, FPN neck, and RetinaNet head.}}{10}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces MobileViT-S backbone: stage-wise architecture with output feature map dimensions.}}{11}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces FPN neck: lateral convolutions, top-down fusion, and output pyramid levels.}}{12}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces RetinaNet detection head: parallel classification and regression subnets applied at each FPN level.}}{13}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Training loss curve --- MobileViT-S + FPN baseline (60 epochs).}}{17}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Validation mAP$_{50}$ curve --- MobileViT-S + FPN baseline (60 epochs, 640$\times $640).}}{17}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces mAP$_{50}$ recovery during fine-tuning after 30\% unstructured weight pruning. The pruned model converges within a few epochs and matches baseline accuracy.}}{19}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Per-class AP (IoU 0.50:0.95) across channel reduction variants. Scallop is the most compression-sensitive class; echinus and starfish retain accuracy well.}}{21}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Per-layer weight SQNR for W8A32 PTQ on the 192-channel model. FPN and head layers (orange/green) show $\infty $\tmspace +\thinmuskip {.1667em}dB SQNR where quantization is lossless. All backbone layers exceed 35\tmspace +\thinmuskip {.1667em}dB.}}{22}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces W8A32 vs W8A8 on the 192-channel model: SQNR distribution (left), formal mAP$_{50}$ comparison (centre), detection count at score $\geq 0.20$ (right).}}{24}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Qualitative detection results on URPC validation images (score $\geq $ 0.50, baseline model). Bounding boxes colour-coded by class: \leavevmode {\color {red}holothurian}, \leavevmode {\color {blue}echinus}, \leavevmode {\color {green}scallop}, \leavevmode {\color {orange}starfish}. All six images show clean, well-separated detections across diverse underwater scenes.}}{25}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Compression study: mAP$_{50}$ vs GFLOPs scatter (left) and per-variant bar chart (right).}}{26}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Python float32 (left) vs Python W8A32 PTQ (right) on GOPR0293\_10229 (192-channel model, score $\geq $ 0.20). Detection count and bounding boxes are identical; score differences $< 0.003$.}}{37}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Score delta distribution between Python and C-Simulation across 148 matched detections (5 images). Left: histogram by $|\Delta \text {score}|$ range. Right: CDF — 94\% of detections have $|\Delta \text {score}| < 5 \times 10^{-3}$.}}{39}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Qualitative detection results from the 192-channel model (score $\geq $ 0.50). The model maintains clean, well-separated detections across all four classes despite the 40.6\% GFLOPs reduction from the baseline.}}{40}%
+\addvspace {10\p@ }

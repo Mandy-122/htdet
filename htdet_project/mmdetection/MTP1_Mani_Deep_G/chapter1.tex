@@ -1,0 +1,74 @@
+\chapter{Introduction}
+
+Vision Transformers (ViTs) have become the preferred architecture in computer vision tasks, due to their ability to capture Long-Range dependencies.[2] While ViTs achieve state-of-the-art accuracy, their computation and memory requirements remain significantly higher than traditional \textbf{Convolutional Neural Networks[CNNs].} The primary reason is the self-attention mechanism, whose complexity scales quadratically ($O(n^2)$) with the number of image patches (tokens). As Image resolution increases, the number of patches also increases proportionally, resulting in \textbf{high Latency and Resource usage}. This makes real time deployment on resource constrained environments like FPGAs a big challenge.
+
+\section{Background}
+
+The transition from Convolutional Neural Networks (CNNs) to Vision Transformers (ViTs) has marked a new era in computer vision [4] enabling superior representation learning and improved accuracy across classification, object detection, and segmentation tasks. However, this advancement comes with substantial computational overhead. For vision applications targeting embedded or hardware-accelerated platforms, such as Field-Programmable Gate Arrays (FPGAs), the unoptimized ViT architecture poses a major bottleneck.
+
+
+\section{Motivation}
+
+Although Vision Transformers offer substantial advantages over CNNs, their computational inefficiency limits their applicability in edge computing and FPGA-based accelerators. The core motivations of this work are summarized below:
+
+\begin{enumerate}
+
+    \item \textbf{Addressing ViT’s Computational Bottleneck:}
+    The self-attention mechanism scales quadratically with the number of tokens. As image resolutions increase, this computation becomes prohibitively expensive for real-time or embedded applications without architectural optimization.
+
+    \item \textbf{Need for Efficient Token Reduction:}
+    Many tokens—especially those belonging to low-information background regions—contribute minimally to the final prediction. Removing such tokens can significantly reduce compute and memory requirements without degrading accuracy.
+
+
+    \item \textbf{Direct C-to-RTL Conversion Using HLS:}
+    High-Level Synthesis (HLS) enables direct translation of C/C++ code into synthesizable RTL, eliminating the need for manually writing complex Verilog/VHDL descriptions. This drastically reduces design time and allows rapid exploration of architectural optimizations such as pipelining, array partitioning, and loop unrolling.
+
+    \item \textbf{Bridging the Algorithm–Hardware Gap:}
+    Existing token pruning techniques are largely optimized for GPUs. There is limited work on adapting these methods for hardware-aware design flows. Integrating pruning directly into the HLS-based ViT pipeline enables efficient deployment on resource-constrained accelerators.
+
+\end{enumerate}
+
+These motivations drive an \textbf{algorithm–hardware co-design} approach where token pruning and hardware optimization work together to enable efficient, real-time ViT inference on FPGA platforms.
+
+
+
+\section{Project Objectives}
+
+The primary objective of this project is to design, implement, and validate a hardware accelerator for the Vision Transformer (ViT) model using C based High-Level Synthesis (HLS).
+
+The specific objectives are as follows:
+\begin{enumerate}
+    \item \textbf{Develop a Parameterized ViT Core in HLS:}  Develop modular and reusable HLS implementations of the fundamental ViT components—including patch embedding, Layer Normalization, Multi-Head Self-Attention (MHSA), and the MLP block.
+    \item \textbf{Integrate Dynamic Token Pruning:} Implement an Attention-based Token Selection (ATS) to prune less important tokens/patches dynamically based on their attention scores.
+    \item \textbf{Validate Accelerator Performance and Accuracy:} Evaluate the HLS based token pruned ViT accelerator against base line ViT-Tiny, ViT-Small, and ViT-Base models  to compare their accuracies, througput and resource usage .
+    \item \textbf{Analyze HLS Optimization Strategies:} To apply and analyze the key HLS pragmas (\texttt{PIPELINE}, \texttt{ARRAY\_PARTITION}, \texttt{UNROLL}) required to transform the algorithmic C or C++ code into a parallel, high-throughput architecture.
+\end{enumerate}
+
+\section{Contributions}
+
+This thesis makes the following key contributions:
+
+\begin{enumerate}
+    \item \textbf{HLS-Based Vision Transformer Architecture:}
+    A complete and parameterized ViT-Tiny architecture is implemented in C/C++ using High-Level Synthesis. The design includes patch embedding, LayerNorm, Multi-Head Self-Attention (MHSA), MLP layers, and residual connections.
+
+    \item \textbf{Hardware-Friendly Token Pruning Module:}
+    An Attention-based Token Selection (ATS) mechanism is integrated within the ViT pipeline, enabling dynamic reduction of tokens across layers while preserving classification accuracy.
+
+    \item \textbf{Optimized Self-Attention Engine for FPGA:}
+    A fully pipelined and parallelized MHSA engine is developed using HLS pragmas such as \texttt{PIPELINE}, \texttt{UNROLL}, and \texttt{ARRAY\_PARTITION}, resulting in significant reductions in latency.
+
+    \item \textbf{Comprehensive Experimental Evaluation:}
+    The proposed accelerator is validated against baseline ViT-Tiny, ViT-Small, and ViT-Base models. Comparisons include accuracy, throughput, and FPGA resource utilization, demonstrating the benefits of token pruning for ViT acceleration.
+\end{enumerate}
+
+\section{Organization of The Report}
+
+This chapter provided a background for the topics covered in this report, describing the computational challenges of Vision Transformers and the motivation for FPGA acceleration. The rest of the chapters are organized as follows:
+
+\textbf{Chapter 2} provides a fundamental introduction to Vision Transformers, and how they differ from CNNs.
+\textbf{Chapter 3} provides a review of prior works, specifically focusing on existing token pruning strategies and hardware accelerators.
+\textbf{Chapter 4} explains the Attention mechanism, along with the mathematics behind the $O(n^2)$ bottleneck and how attention scores can be used for pruning thus reducing number of tokens layer by layer.
+\textbf{Chapter 5} discusses the HLS implementation, explaining pragmas and mathematical approximations for creating hardware circuit.
+\textbf{Chapter 6} presents the Experimental Results, including Accuracy, latency and resource utilization.
+Finally, \textbf{Chapter 7} concludes the report and discusses future scope of this project.

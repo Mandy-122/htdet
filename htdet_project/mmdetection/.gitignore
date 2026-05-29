@@ -123,27 +123,44 @@ work_dirs/
 *.py~
 *.sh~
 
-# HTDet - data, results, and binary outputs (root-anchored to avoid matching configs/)
-/backup/
+# HTDet - ignore only large binaries/weights/run outputs, NOT source code
+
+# Model weight binaries (large)
+**/weights/
+**/ptq_int8_weights/
+/pretrained/
+*.tar.gz
+
+# Training/eval run outputs (large image/result dirs)
+/work_dirs/
+/results/
+/debug_vis/
+/vis_results/
+/preds/
+/preds_vis/
+/qat/
+
+# Dataset image directories (large)
+/data/
 /data1/
 /data_backup/
 /datasets/
-/debug_vis/
-/preds/
-/preds_vis/
-/pretrained/
-/ptq_results/
-/ptq_results_test/
-/qat/
-/results/
-/vis_results/
-/w8a8/
-/w8a32/
-/weights/
-*.tar.gz
 
-# FPGA C-sim binary outputs
-csim_validation/*.bin
-csim_validation/csim_detections.txt
-csim_validation/__pycache__/
-csim_validation/dump_features/
+# Binary feature dumps from C-sim
+*.bin
+
+# Compiled C++ executables (no extension, FPGA build outputs)
+testbench_csim
+testbench_csim_new
+testbench_debug
+testbench_w8a8
+testbench_w8a32
+testbench_mbconv40
+testbench_mbconv80
+dump_features
+htdet_cpp
+/weights_192/
+
+# Build/install artifacts
+mmdet.egg-info/
+*.out

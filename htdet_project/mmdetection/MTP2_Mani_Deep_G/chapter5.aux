@@ -1,0 +1,78 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}FPGA Deployment: C/HLS Implementation}{29}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Why C/C++ is Required for FPGA Deployment}{29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces HTDet C/HLS Module Structure}}{30}\protected@file@percent }
+\newlabel{table:hls_modules}{{5.1}{30}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Challenges in C Conversion}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Batch Normalisation Fusion}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Non-Synthesisable Activation Functions}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Layer Normalisation in Transformer Blocks}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Patch Unfolding / Folding for MobileViT}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Non-Maximum Suppression (NMS)}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.6}Weight Binary Export Format}{32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Weight Binary Files and Sizes (192-Channel Model, Float32)}}{33}\protected@file@percent }
+\newlabel{table:weight_bins}{{5.2}{33}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Data Types}{33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces Data Types: CSIM (float32) vs Planned Synthesis (ap\_fixed)}}{34}\protected@file@percent }
+\newlabel{table:data_types}{{5.3}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Initial Results: Two Critical Bugs}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Bug 1: LayerNorm Weight Order in Binary Export (0\% Backbone Match)}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Bug 2: Per-Level NMS vs Global NMS (73\% $\rightarrow $ 87\% Match)}{35}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces Detection Match Rate: Progression Through Bug Fixes}}{35}\protected@file@percent }
+\newlabel{table:bug_progression}{{5.4}{35}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces Intermediate Feature Cosine Similarity — Python vs C-Simulation (Post Bug Fixes)}}{36}\protected@file@percent }
+\newlabel{table:feature_cossim}{{5.5}{36}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}CSIM Validation Results}{36}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}W8A32 PTQ: Python vs C-Simulation}{36}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Python float32 (left) vs Python W8A32 PTQ (right) on GOPR0293\_10229 (192-channel model, score $\geq $ 0.20). Detection count and bounding boxes are identical; score differences $< 0.003$.}}{37}\protected@file@percent }
+\newlabel{fig:csim_w8a32}{{5.1}{37}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces CSIM vs Python Float32 — Top-10 Detections (GOPR0293\_10229, score $\geq $ 0.20)}}{37}\protected@file@percent }
+\newlabel{table:csim_results}{{5.6}{37}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Multi-Image Validation}{38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Float32 CSIM Match Rate across 5 Validation Images}}{38}\protected@file@percent }
+\newlabel{table:multi_image_results}{{5.7}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Score delta distribution between Python and C-Simulation across 148 matched detections (5 images). Left: histogram by $|\Delta \text  {score}|$ range. Right: CDF — 94\% of detections have $|\Delta \text  {score}| < 5 \times 10^{-3}$.}}{39}\protected@file@percent }
+\newlabel{fig:score_delta}{{5.2}{39}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.3}Qualitative Results: 192-Channel Model}{39}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Qualitative detection results from the 192-channel model (score $\geq $ 0.50). The model maintains clean, well-separated detections across all four classes despite the 40.6\% GFLOPs reduction from the baseline.}}{40}\protected@file@percent }
+\newlabel{fig:csim_final_grid}{{5.3}{40}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Channel Reduction and Quantization for FPGA}{40}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.1}Motivation: Memory and Compute Budget}{40}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces Intermediate Feature Map Sizes — 256ch (Baseline) vs 192ch (FPGA Model)}}{41}\protected@file@percent }
+\newlabel{table:mem_analysis}{{5.8}{41}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.2}Why 192 Channels?}{41}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.9}{\ignorespaces Channel Reduction Trade-offs — Basis for 192ch Selection}}{42}\protected@file@percent }
+\newlabel{table:ch_selection}{{5.9}{42}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.3}Why W8A32 Quantization?}{42}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}Summary}{43}\protected@file@percent }
+\@setckpt{chapter5}{
+\setcounter{page}{44}
+\setcounter{equation}{0}
+\setcounter{enumi}{3}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{5}
+\setcounter{section}{7}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{3}
+\setcounter{table}{9}
+\setcounter{theorem}{0}
+\setcounter{invar}{0}
+\setcounter{obs}{0}
+\setcounter{conj}{0}
+\setcounter{parentequation}{0}
+\setcounter{subfigure}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{lotdepth}{1}
+\setcounter{float@type}{4}
+}

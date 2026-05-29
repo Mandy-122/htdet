@@ -1,0 +1,26 @@
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces MobileViT-S Stage-wise Architecture}}{5}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces HTDet Full Model Parameter Count}}{10}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces MobileViT-S Feature Map Outputs (for $640\times 640$ input)}}{12}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Standard Training Hyperparameters}}{16}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Baseline Model Performance (MobileViT-S + FPN, 640$\times $640, epoch 47)}}{17}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Effect of 30\% Unstructured Weight Pruning}}{19}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Structured Channel Reduction: Accuracy vs. GFLOPs Trade-off}}{20}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces W8A32 Weight Quantization Quality --- 192-Channel Model (53 Conv2d Layers)}}{22}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces Formal COCO mAP --- 192-Channel Model: Float32 vs Quantized (Full Validation Set)}}{23}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces Detection Count at Score $\geq 0.20$ --- 192-Channel Model (50 validation images)}}{23}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces Complete HTDet Results Summary}}{26}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces HTDet C/HLS Module Structure}}{30}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Weight Binary Files and Sizes (192-Channel Model, Float32)}}{33}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Data Types: CSIM (float32) vs Planned Synthesis (ap\_fixed)}}{34}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Detection Match Rate: Progression Through Bug Fixes}}{35}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Intermediate Feature Cosine Similarity — Python vs C-Simulation (Post Bug Fixes)}}{36}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces CSIM vs Python Float32 — Top-10 Detections (GOPR0293\_10229, score $\geq $ 0.20)}}{37}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Float32 CSIM Match Rate across 5 Validation Images}}{38}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces Intermediate Feature Map Sizes — 256ch (Baseline) vs 192ch (FPGA Model)}}{41}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Channel Reduction Trade-offs — Basis for 192ch Selection}}{42}%
+\addvspace {10\p@ }

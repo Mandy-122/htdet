@@ -1,0 +1,96 @@
+\documentclass{CSEThesis}
+
+%==========================
+% Standard Packages
+%==========================
+\usepackage{amsmath}        % Extra math definitions
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{graphics}       % For PostScript figures
+\usepackage{setspace}       % For line spacing (e.g., 1.5 spacing)
+\usepackage{multicol}       % For multi-column layouts
+\usepackage{subfigure}      % For subfigures
+\usepackage{epsfig, color}  % For figures and color support
+\usepackage{float}
+
+%==========================
+% Project Information
+%==========================
+\btptitle = {Title of Your BTP}     % Title of the project
+\name     = {Student Name}          % Your name
+\rollno   = {03010104}              % Your roll number
+\email    = {id@iitg.ernet.in}      % Use your correct email ID
+\guide    = {Your Guide Name}       % Name of your project guide
+
+%==========================
+% Document Begins
+%==========================
+\begin{document}
+
+%---------- Front Matter ----------
+\include{title}
+\cleardoublepage
+
+\include{certificate}
+\cleardoublepage
+
+\include{abstract}
+
+\tableofcontents
+\cleardoublepage
+
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\cleardoublepage
+
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\cleardoublepage
+
+%---------- Main Content ----------
+\pagenumbering{arabic}
+\def\headrulehook{\color{black}}      % Ensures black header rule color
+
+
+
+% Chapters
+\typeout{}
+\include{chapter1}
+\cleardoublepage
+
+\typeout{}
+\include{chapter2}
+\cleardoublepage
+
+\typeout{}
+\include{chapter3}
+\cleardoublepage
+
+\typeout{}
+\include{chapter4}
+\cleardoublepage
+
+\typeout{}
+\include{chapter5}
+\cleardoublepage
+
+
+\typeout{}
+\include{results}
+\cleardoublepage
+
+\typeout{}
+\include{conclusion}
+\cleardoublepage
+\typeout{}
+\include{references}
+\cleardoublepage
+
+% %---------- References ----------
+% \bibliographystyle{alpha}
+% \bibliography{btp}
+
+%==========================
+\end{document}

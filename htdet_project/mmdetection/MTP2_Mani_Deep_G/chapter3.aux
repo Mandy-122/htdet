@@ -1,0 +1,79 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Experiments and Results}{15}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Experimental Setup}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Dataset}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Training Configuration}{16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Standard Training Hyperparameters}}{16}\protected@file@percent }
+\newlabel{table:train_config}{{3.1}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Evaluation}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Baseline: MobileViT-S + Standard FPN}{16}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Training loss curve --- MobileViT-S + FPN baseline (60 epochs).}}{17}\protected@file@percent }
+\newlabel{fig:train_loss}{{3.1}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Validation mAP$_{50}$ curve --- MobileViT-S + FPN baseline (60 epochs, 640$\times $640).}}{17}\protected@file@percent }
+\newlabel{fig:baseline_curve}{{3.2}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Baseline Model Performance (MobileViT-S + FPN, 640$\times $640, epoch 47)}}{17}\protected@file@percent }
+\newlabel{table:baseline}{{3.2}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Model Compression Study}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Unstructured Weight Pruning (30\%)}{18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces mAP$_{50}$ recovery during fine-tuning after 30\% unstructured weight pruning. The pruned model converges within a few epochs and matches baseline accuracy.}}{19}\protected@file@percent }
+\newlabel{fig:ch4_pruning_recovery}{{3.3}{19}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Effect of 30\% Unstructured Weight Pruning}}{19}\protected@file@percent }
+\newlabel{table:weight_pruning}{{3.3}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Structured Channel Reduction}{19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Structured Channel Reduction: Accuracy vs. GFLOPs Trade-off}}{20}\protected@file@percent }
+\newlabel{table:channel_reduction}{{3.4}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Per-class AP (IoU 0.50:0.95) across channel reduction variants. Scallop is the most compression-sensitive class; echinus and starfish retain accuracy well.}}{21}\protected@file@percent }
+\newlabel{fig:perclass_ap}{{3.4}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Post-Training Quantization: W8A32 vs W8A8}{21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Weight Quantization Quality (W8A32)}{22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces W8A32 Weight Quantization Quality --- 192-Channel Model (53 Conv2d Layers)}}{22}\protected@file@percent }
+\newlabel{table:ptq_quality}{{3.5}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Per-layer weight SQNR for W8A32 PTQ on the 192-channel model. FPN and head layers (orange/green) show $\infty $\tmspace  +\thinmuskip {.1667em}dB SQNR where quantization is lossless. All backbone layers exceed 35\tmspace  +\thinmuskip {.1667em}dB.}}{22}\protected@file@percent }
+\newlabel{fig:sqnr_layers}{{3.5}{22}}
+\@writefile{toc}{\contentsline {subsubsection}{mAP Evaluation: W8A32 vs W8A8}{23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Formal COCO mAP --- 192-Channel Model: Float32 vs Quantized (Full Validation Set)}}{23}\protected@file@percent }
+\newlabel{table:ptq_map}{{3.6}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{Single-Threshold Detection Count Analysis}{23}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.7}{\ignorespaces Detection Count at Score $\geq 0.20$ --- 192-Channel Model (50 validation images)}}{23}\protected@file@percent }
+\newlabel{table:ch4_ptq_detection}{{3.7}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces W8A32 vs W8A8 on the 192-channel model: SQNR distribution (left), formal mAP$_{50}$ comparison (centre), detection count at score $\geq 0.20$ (right).}}{24}\protected@file@percent }
+\newlabel{fig:quant_comparison}{{3.6}{24}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Qualitative Detection Results}{24}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Qualitative detection results on URPC validation images (score $\geq $ 0.50, baseline model). Bounding boxes colour-coded by class: \leavevmode {\color  {red}holothurian}, \leavevmode {\color  {blue}echinus}, \leavevmode {\color  {green}scallop}, \leavevmode {\color  {orange}starfish}. All six images show clean, well-separated detections across diverse underwater scenes.}}{25}\protected@file@percent }
+\newlabel{fig:qualitative}{{3.7}{25}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Summary}{26}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Compression study: mAP$_{50}$ vs GFLOPs scatter (left) and per-variant bar chart (right).}}{26}\protected@file@percent }
+\newlabel{fig:compression_study}{{3.8}{26}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.8}{\ignorespaces Complete HTDet Results Summary}}{26}\protected@file@percent }
+\newlabel{table:full_summary}{{3.8}{26}}
+\@setckpt{chapter3}{
+\setcounter{page}{27}
+\setcounter{equation}{0}
+\setcounter{enumi}{2}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{3}
+\setcounter{section}{5}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{8}
+\setcounter{table}{8}
+\setcounter{theorem}{0}
+\setcounter{invar}{0}
+\setcounter{obs}{0}
+\setcounter{conj}{0}
+\setcounter{parentequation}{0}
+\setcounter{subfigure}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{lotdepth}{1}
+\setcounter{float@type}{4}
+}
