@@ -1,0 +1,171 @@
+
+
+================================================================
+== Vitis HLS Report for 'mhsa_Pipeline_SM_MAX'
+================================================================
+* Date:           Wed Jun  3 12:05:15 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        s2_transformer_block
+* Solution:       without_pragmas (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu28dr-ffvg1517-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.518 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      802|      802|  4.010 us|  4.010 us|  802|  802|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- SM_MAX  |      800|      800|         5|          2|          1|   399|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     148|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       -|      95|    -|
+|Register         |        -|     -|     145|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|     145|     243|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2160|  4272|  850560|  425280|   80|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------+----------+----+---+----+------------+------------+
+    |add_ln200_fu_126_p2     |         +|   0|  0|  16|           9|           1|
+    |add_ln202_fu_115_p2     |         +|   0|  0|  25|          18|          18|
+    |and_ln202_1_fu_217_p2   |       and|   0|  0|   2|           1|           1|
+    |and_ln202_fu_211_p2     |       and|   0|  0|   2|           1|           1|
+    |icmp_ln200_fu_105_p2    |      icmp|   0|  0|  11|           9|           8|
+    |icmp_ln202_1_fu_181_p2  |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln202_2_fu_193_p2  |      icmp|   0|  0|  11|           8|           2|
+    |icmp_ln202_3_fu_199_p2  |      icmp|   0|  0|  16|          23|           1|
+    |icmp_ln202_fu_175_p2    |      icmp|   0|  0|  11|           8|           2|
+    |or_ln202_1_fu_205_p2    |        or|   0|  0|   2|           1|           1|
+    |or_ln202_fu_187_p2      |        or|   0|  0|   2|           1|           1|
+    |mx_3_fu_223_p3          |    select|   0|  0|  32|           1|          32|
+    |ap_enable_pp0           |       xor|   0|  0|   2|           1|           2|
+    +------------------------+----------+----+---+----+------------+------------+
+    |Total                   |          |   0|  0| 148|         104|          71|
+    +------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  14|          3|    1|          3|
+    |ap_done_int                       |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter0           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1           |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter2           |   9|          2|    1|          2|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i                |   9|          2|    9|         18|
+    |ap_sig_allocacmp_mx_1_load_1      |   9|          2|   32|         64|
+    |i_4_fu_52                         |   9|          2|    9|         18|
+    |mx_1_fu_48                        |   9|          2|   32|         64|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  95|         21|   88|        177|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |   2|   0|    2|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0_reg       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |i_4_fu_52                         |   9|   0|    9|          0|
+    |icmp_ln200_reg_252                |   1|   0|    1|          0|
+    |mx_1_fu_48                        |  32|   0|   32|          0|
+    |mx_1_load_1_reg_268               |  32|   0|   32|          0|
+    |mx_2_reg_261                      |  32|   0|   32|          0|
+    |mx_3_reg_275                      |  32|   0|   32|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 145|   0|  145|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+----------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++---------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|grp_fu_768_p_din0    |  out|   32|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|grp_fu_768_p_din1    |  out|   32|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|grp_fu_768_p_opcode  |  out|    5|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|grp_fu_768_p_dout0   |   in|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|grp_fu_768_p_ce      |  out|    1|  ap_ctrl_hs|  mhsa_Pipeline_SM_MAX|  return value|
+|mx                   |   in|   32|     ap_none|                    mx|        scalar|
+|phi_mul              |   in|   18|     ap_none|               phi_mul|        scalar|
+|mx_1_out             |  out|   32|      ap_vld|              mx_1_out|       pointer|
+|mx_1_out_ap_vld      |  out|    1|      ap_vld|              mx_1_out|       pointer|
+|a_buf_address0       |  out|   18|   ap_memory|                 a_buf|         array|
+|a_buf_ce0            |  out|    1|   ap_memory|                 a_buf|         array|
+|a_buf_q0             |   in|   32|   ap_memory|                 a_buf|         array|
++---------------------+-----+-----+------------+----------------------+--------------+
+

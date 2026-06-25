@@ -1,0 +1,399 @@
+
+
+================================================================
+== Synthesis Summary Report of 'fpn_p4p5_top'
+================================================================
++ General Information: 
+    * Date:           Mon Jun  1 16:00:39 2026
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        fpn_192
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynquplus
+    * Target device:  xczu9eg-ffvb1156-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------------------+--------+-------+-----------+-----------+----------+-----------+-------+----------+-----------+----------+------------+------------+-----+
+    |                       Modules                       |  Issue |       |  Latency  |  Latency  | Iteration|           |  Trip |          |           |          |            |            |     |
+    |                       & Loops                       |  Type  | Slack |  (cycles) |    (ns)   |  Latency |  Interval | Count | Pipelined|   BRAM    |    DSP   |     FF     |     LUT    | URAM|
+    +-----------------------------------------------------+--------+-------+-----------+-----------+----------+-----------+-------+----------+-----------+----------+------------+------------+-----+
+    |+ fpn_p4p5_top                                       |  Timing|  -0.17|  942765922|  4.714e+09|         -|  942765923|      -|        no|  328 (17%)|  16 (~0%)|   7477 (1%)|   9962 (3%)|    -|
+    | + fpn_p4p5_top_Pipeline_UP_C_UP_H_UP_W              |       -|   0.03|      38425|  1.921e+05|         -|      38425|      -|        no|          -|   5 (~0%)|  3678 (~0%)|   3318 (1%)|    -|
+    |  o UP_C_UP_H_UP_W                                   |      II|   3.65|      38423|  1.921e+05|        26|          2|  19200|       yes|          -|         -|           -|           -|    -|
+    | + fpn_p4p5_top_Pipeline_EAI                         |       -|   0.20|      76811|  3.841e+05|         -|      76811|      -|        no|          -|   2 (~0%)|   563 (~0%)|   472 (~0%)|    -|
+    |  o EAI                                              |       -|   3.65|      76809|  3.840e+05|        11|          1|  76800|       yes|          -|         -|           -|           -|    -|
+    | + fpn_conv3x3                                       |  Timing|  -0.17|  166425601|  8.321e+08|         -|  166425601|      -|        no|          -|   1 (~0%)|   630 (~0%)|  1436 (~0%)|    -|
+    |  o FPN3_OC_FPN3_OH_FPN3_OW                          |       -|   3.65|  166425600|  8.321e+08|      8668|          -|  19200|        no|          -|         -|           -|           -|    -|
+    |   + fpn_conv3x3_Pipeline_FPN3_IC_FPN3_KH_FPN3_KW    |  Timing|  -0.17|       8656|  4.328e+04|         -|       8656|      -|        no|          -|   1 (~0%)|   405 (~0%)|   780 (~0%)|    -|
+    |    o FPN3_IC_FPN3_KH_FPN3_KW                        |      II|   3.65|       8654|  4.327e+04|        20|          5|   1728|       yes|          -|         -|           -|           -|    -|
+    | + fpn_conv3x3_1                                     |  Timing|  -0.17|  665702401|  3.329e+09|         -|  665702401|      -|        no|          -|   1 (~0%)|   653 (~0%)|  1518 (~0%)|    -|
+    |  o FPN3_OC_FPN3_OH_FPN3_OW                          |       -|   3.65|  665702400|  3.329e+09|      8668|          -|  76800|        no|          -|         -|           -|           -|    -|
+    |   + fpn_conv3x3_1_Pipeline_FPN3_IC_FPN3_KH_FPN3_KW  |  Timing|  -0.17|       8656|  4.328e+04|         -|       8656|      -|        no|          -|   1 (~0%)|   414 (~0%)|   795 (~0%)|    -|
+    |    o FPN3_IC_FPN3_KH_FPN3_KW                        |      II|   3.65|       8654|  4.327e+04|        20|          5|   1728|       yes|          -|         -|           -|           -|    -|
+    | + fpn_p4p5_top_Pipeline_MP_C_MP_H_MP_W              |       -|   0.05|       4803|  2.402e+04|         -|       4803|      -|        no|          -|         -|   110 (~0%)|   625 (~0%)|    -|
+    |  o MP_C_MP_H_MP_W                                   |       -|   3.65|       4801|  2.400e+04|         3|          1|   4800|       yes|          -|         -|           -|           -|    -|
+    | o C1P_OC                                            |       -|   3.65|   61443840|  3.072e+08|    320020|          -|    192|        no|          -|         -|           -|           -|    -|
+    |  + fpn_p4p5_top_Pipeline_C1P_HW_C1P_IC              |       -|   0.25|     320017|  1.600e+06|         -|     320017|      -|        no|          -|   1 (~0%)|   498 (~0%)|   493 (~0%)|    -|
+    |   o C1P_HW_C1P_IC                                   |      II|   3.65|     320015|  1.600e+06|        21|          5|  64000|       yes|          -|         -|           -|           -|    -|
+    | o C1P_OC                                            |       -|   3.65|   49155648|  2.458e+08|    256019|          -|    192|        no|          -|         -|           -|           -|    -|
+    |  + fpn_p4p5_top_Pipeline_C1P_HW_C1P_IC1             |       -|   0.25|     256016|  1.280e+06|         -|     256016|      -|        no|          -|   1 (~0%)|   417 (~0%)|   406 (~0%)|    -|
+    |   o C1P_HW_C1P_IC                                   |      II|   3.65|     256014|  1.280e+06|        20|          5|  51200|       yes|          -|         -|           -|           -|    -|
+    +-----------------------------------------------------+--------+-------+-----------+-----------+----------+-----------+-------+----------+-----------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* BRAM
++--------------+------------+---------------+
+| Interface    | Data Width | Address Width |
++--------------+------------+---------------+
+| c3_PORTA     | 32         | 32            |
+| c4_PORTA     | 32         | 32            |
+| p4_PORTA     | 32         | 32            |
+| p5_PORTA     | 32         | 32            |
+| p6_PORTA     | 32         | 32            |
+| w_conv_PORTA | 8          | 32            |
+| w_meta_PORTA | 32         | 32            |
++--------------+------------+---------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+---------------------+
+| Argument | Direction | Datatype            |
++----------+-----------+---------------------+
+| c4       | in        | float const *       |
+| c3       | in        | float const *       |
+| w_conv   | in        | signed char const * |
+| w_meta   | in        | float const *       |
+| p5       | inout     | float*              |
+| p4       | out       | float*              |
+| p6       | out       | float*              |
++----------+-----------+---------------------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+
+| Argument | HW Interface | HW Type   |
++----------+--------------+-----------+
+| c4       | c4_PORTA     | interface |
+| c3       | c3_PORTA     | interface |
+| w_conv   | w_conv_PORTA | interface |
+| w_meta   | w_meta_PORTA | interface |
+| p5       | p5_PORTA     | interface |
+| p4       | p4_PORTA     | interface |
+| p6       | p6_PORTA     | interface |
++----------+--------------+-----------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------------------------------------+-----+--------+-------------+------+---------+---------+
+| Name                                               | DSP | Pragma | Variable    | Op   | Impl    | Latency |
++----------------------------------------------------+-----+--------+-------------+------+---------+---------+
+| + fpn_p4p5_top                                     | 16  |        |             |      |         |         |
+|   add_ln394_2_fu_246_p2                            | -   |        | add_ln394_2 | add  | fabric  | 0       |
+|   add_ln394_fu_258_p2                              | -   |        | add_ln394   | add  | fabric  | 0       |
+|   add_ln394_3_fu_316_p2                            | -   |        | add_ln394_3 | add  | fabric  | 0       |
+|   add_ln394_1_fu_328_p2                            | -   |        | add_ln394_1 | add  | fabric  | 0       |
+|   empty_28_fu_346_p2                               | -   |        | empty_28    | add  | fabric  | 0       |
+|  + fpn_p4p5_top_Pipeline_C1P_HW_C1P_IC             | 1   |        |             |      |         |         |
+|    add_ln395_fu_191_p2                             | -   |        | add_ln395   | add  | fabric  | 0       |
+|    add_ln395_2_fu_267_p2                           | -   |        | add_ln395_2 | add  | fabric  | 0       |
+|    mac_muladd_10ns_7ns_7ns_16_4_1_U4               | 1   |        | mul_ln399   | mul  | dsp48   | 3       |
+|    mac_muladd_10ns_7ns_7ns_16_4_1_U4               | 1   |        | add_ln399   | add  | dsp48   | 3       |
+|    add_ln399_2_fu_222_p2                           | -   |        | add_ln399_2 | add  | fabric  | 0       |
+|    add_ln399_1_fu_232_p2                           | -   |        | add_ln399_1 | add  | fabric  | 0       |
+|    add_ln397_fu_238_p2                             | -   |        | add_ln397   | add  | fabric  | 0       |
+|    add_ln401_fu_319_p2                             | -   |        | add_ln401   | add  | fabric  | 0       |
+|  + fpn_p4p5_top_Pipeline_UP_C_UP_H_UP_W            | 5   |        |             |      |         |         |
+|    mul_8ns_10ns_17_1_1_U20                         | -   |        | empty       | mul  | auto    | 0       |
+|    empty_21_fu_399_p2                              | -   |        | empty_21    | add  | fabric  | 0       |
+|    empty_22_fu_543_p2                              | -   |        | empty_22    | add  | fabric  | 0       |
+|    tmp3_fu_548_p2                                  | -   |        | tmp3        | add  | fabric  | 0       |
+|    empty_23_fu_557_p2                              | -   |        | empty_23    | add  | fabric  | 0       |
+|    add_ln530_1_fu_405_p2                           | -   |        | add_ln530_1 | add  | fabric  | 0       |
+|    add_ln526_fu_305_p2                             | -   |        | add_ln526   | add  | fabric  | 0       |
+|    add_ln526_1_fu_317_p2                           | -   |        | add_ln526_1 | add  | fabric  | 0       |
+|    mac_muladd_8ns_7ns_4ns_15_4_1_U26               | 1   |        | mul_ln526   | mul  | dsp48   | 3       |
+|    mul_8ns_10ns_17_1_1_U21                         | -   |        | p_mid137    | mul  | auto    | 0       |
+|    p_mid165_fu_568_p2                              | -   |        | p_mid165    | add  | fabric  | 0       |
+|    add_ln527_fu_453_p2                             | -   |        | add_ln527   | add  | fabric  | 0       |
+|    p_mid1_fu_504_p2                                | -   |        | p_mid1      | add  | fabric  | 0       |
+|    p_mid119_fu_583_p2                              | -   |        | p_mid119    | add  | fabric  | 0       |
+|    tmp3_mid1_fu_595_p2                             | -   |        | tmp3_mid1   | add  | fabric  | 0       |
+|    p_mid121_fu_604_p2                              | -   |        | p_mid121    | add  | fabric  | 0       |
+|    add_ln530_3_fu_510_p2                           | -   |        | add_ln530_3 | add  | fabric  | 0       |
+|    mac_muladd_8ns_7ns_4ns_15_4_1_U26               | 1   |        | add_ln530_2 | add  | dsp48   | 3       |
+|    add_ln530_fu_692_p2                             | -   |        | add_ln530   | add  | fabric  | 0       |
+|    grp_fu_636_p0                                   | -   |        | add_ln531   | add  | fabric  | 0       |
+|    mul_mul_17ns_18ns_35_4_1_U27                    | 1   |        | mul_ln531   | mul  | dsp48   | 3       |
+|    grp_fu_658_p0                                   | -   |        | add_ln532   | add  | fabric  | 0       |
+|    mul_mul_17ns_18ns_35_4_1_U28                    | 1   |        | mul_ln532   | mul  | dsp48   | 3       |
+|    add_ln533_fu_664_p2                             | -   |        | add_ln533   | add  | fabric  | 0       |
+|    mul_mul_17ns_18ns_35_4_1_U29                    | 1   |        | mul_ln533   | mul  | dsp48   | 3       |
+|    add_ln534_fu_670_p2                             | -   |        | add_ln534   | add  | fabric  | 0       |
+|    mul_mul_17ns_18ns_35_4_1_U30                    | 1   |        | mul_ln534   | mul  | dsp48   | 3       |
+|    add_ln528_fu_524_p2                             | -   |        | add_ln528   | add  | fabric  | 0       |
+|    add_ln527_1_fu_335_p2                           | -   |        | add_ln527_1 | add  | fabric  | 0       |
+|  + fpn_p4p5_top_Pipeline_C1P_HW_C1P_IC1            | 1   |        |             |      |         |         |
+|    add_ln395_fu_191_p2                             | -   |        | add_ln395   | add  | fabric  | 0       |
+|    add_ln395_1_fu_270_p2                           | -   |        | add_ln395_1 | add  | fabric  | 0       |
+|    mac_muladd_8ns_9ns_9ns_16_4_1_U14               | 1   |        | mul_ln399   | mul  | dsp48   | 3       |
+|    mac_muladd_8ns_9ns_9ns_16_4_1_U14               | 1   |        | add_ln399   | add  | dsp48   | 3       |
+|    add_ln399_1_fu_234_p2                           | -   |        | add_ln399_1 | add  | fabric  | 0       |
+|    add_ln397_fu_245_p2                             | -   |        | add_ln397   | add  | fabric  | 0       |
+|    add_ln401_fu_322_p2                             | -   |        | add_ln401   | add  | fabric  | 0       |
+|  + fpn_p4p5_top_Pipeline_EAI                       | 2   |        |             |      |         |         |
+|    add_ln517_fu_150_p2                             | -   |        | add_ln517   | add  | fabric  | 0       |
+|    add_ln517_1_fu_200_p2                           | -   |        | add_ln517_1 | add  | fabric  | 0       |
+|    add_ln519_fu_164_p2                             | -   |        | add_ln519   | add  | fabric  | 0       |
+|    fadd_32ns_32ns_32_8_full_dsp_1_U39              | 2   |        | add_i       | fadd | fulldsp | 7       |
+|  + fpn_conv3x3                                     | 1   |        |             |      |         |         |
+|    empty_fu_233_p2                                 | -   |        | empty       | sub  | fabric  | 0       |
+|    empty_40_fu_251_p2                              | -   |        | empty_40    | add  | fabric  | 0       |
+|    mul_8ns_8ns_15_1_1_U61                          | -   |        | empty_41    | mul  | auto    | 0       |
+|    add_ln424_fu_315_p2                             | -   |        | add_ln424   | add  | fabric  | 0       |
+|    add_ln424_2_fu_341_p2                           | -   |        | add_ln424_2 | add  | fabric  | 0       |
+|    p_mid185_fu_415_p2                              | -   |        | p_mid185    | sub  | fabric  | 0       |
+|    p_mid189_fu_439_p2                              | -   |        | p_mid189    | add  | fabric  | 0       |
+|    mul_8ns_8ns_15_1_1_U62                          | -   |        | p_mid191    | mul  | auto    | 0       |
+|    add_ln425_fu_494_p2                             | -   |        | add_ln425   | add  | fabric  | 0       |
+|    p_mid131_fu_568_p2                              | -   |        | p_mid131    | add  | fabric  | 0       |
+|    add_ln435_fu_608_p2                             | -   |        | add_ln435   | add  | fabric  | 0       |
+|    add_ln441_fu_619_p2                             | -   |        | add_ln441   | add  | fabric  | 0       |
+|    add_ln426_fu_625_p2                             | -   |        | add_ln426   | add  | fabric  | 0       |
+|    add_ln425_2_fu_361_p2                           | -   |        | add_ln425_2 | add  | fabric  | 0       |
+|   + fpn_conv3x3_Pipeline_FPN3_IC_FPN3_KH_FPN3_KW   | 1   |        |             |      |         |         |
+|     empty_fu_265_p2                                | -   |        | empty       | add  | fabric  | 0       |
+|     add_ln436_fu_451_p2                            | -   |        | add_ln436   | add  | fabric  | 0       |
+|     empty_29_fu_550_p2                             | -   |        | empty_29    | add  | fabric  | 0       |
+|     empty_30_fu_559_p2                             | -   |        | empty_30    | add  | fabric  | 0       |
+|     empty_31_fu_287_p2                             | -   |        | empty_31    | sub  | fabric  | 0       |
+|     add_ln435_1_fu_687_p2                          | -   |        | add_ln435_1 | add  | fabric  | 0       |
+|     add_ln428_fu_299_p2                            | -   |        | add_ln428   | add  | fabric  | 0       |
+|     add_ln428_1_fu_325_p2                          | -   |        | add_ln428_1 | add  | fabric  | 0       |
+|     mac_muladd_8ns_7ns_5s_15_4_1_U50               | 1   |        | mul_ln428   | mul  | dsp48   | 3       |
+|     p_mid121_fu_347_p2                             | -   |        | p_mid121    | add  | fabric  | 0       |
+|     add_ln436_1_fu_467_p2                          | -   |        | add_ln436_1 | add  | fabric  | 0       |
+|     add_ln429_fu_371_p2                            | -   |        | add_ln429   | add  | fabric  | 0       |
+|     p_mid1_fu_592_p2                               | -   |        | p_mid1      | add  | fabric  | 0       |
+|     p_mid14_fu_601_p2                              | -   |        | p_mid14     | add  | fabric  | 0       |
+|     p_mid16_fu_393_p2                              | -   |        | p_mid16     | sub  | fabric  | 0       |
+|     add_ln435_2_fu_717_p2                          | -   |        | add_ln435_2 | add  | fabric  | 0       |
+|     add_ln433_fu_633_p2                            | -   |        | add_ln433   | add  | fabric  | 0       |
+|     add_ln433_1_fu_642_p2                          | -   |        | add_ln433_1 | add  | fabric  | 0       |
+|     mac_muladd_8ns_7ns_5s_15_4_1_U50               | 1   |        | add_ln435_3 | add  | dsp48   | 3       |
+|     add_ln435_fu_734_p2                            | -   |        | add_ln435   | add  | fabric  | 0       |
+|     add_ln436_3_fu_515_p2                          | -   |        | add_ln436_3 | add  | fabric  | 0       |
+|     add_ln436_2_fu_525_p2                          | -   |        | add_ln436_2 | add  | fabric  | 0       |
+|     add_ln430_fu_536_p2                            | -   |        | add_ln430   | add  | fabric  | 0       |
+|     add_ln429_1_fu_407_p2                          | -   |        | add_ln429_1 | add  | fabric  | 0       |
+|  + fpn_conv3x3_1                                   | 1   |        |             |      |         |         |
+|    empty_fu_235_p2                                 | -   |        | empty       | sub  | fabric  | 0       |
+|    empty_37_fu_253_p2                              | -   |        | empty_37    | add  | fabric  | 0       |
+|    mul_8ns_10ns_17_1_1_U82                         | -   |        | empty_38    | mul  | auto    | 0       |
+|    add_ln424_fu_317_p2                             | -   |        | add_ln424   | add  | fabric  | 0       |
+|    add_ln424_1_fu_343_p2                           | -   |        | add_ln424_1 | add  | fabric  | 0       |
+|    p_mid185_fu_377_p2                              | -   |        | p_mid185    | sub  | fabric  | 0       |
+|    p_mid189_fu_403_p2                              | -   |        | p_mid189    | add  | fabric  | 0       |
+|    mul_8ns_10ns_17_1_1_U83                         | -   |        | p_mid191    | mul  | auto    | 0       |
+|    add_ln425_fu_500_p2                             | -   |        | add_ln425   | add  | fabric  | 0       |
+|    p_mid131_fu_574_p2                              | -   |        | p_mid131    | add  | fabric  | 0       |
+|    add_ln435_3_fu_614_p2                           | -   |        | add_ln435_3 | add  | fabric  | 0       |
+|    add_ln441_fu_625_p2                             | -   |        | add_ln441   | add  | fabric  | 0       |
+|    add_ln426_fu_631_p2                             | -   |        | add_ln426   | add  | fabric  | 0       |
+|    add_ln425_1_fu_447_p2                           | -   |        | add_ln425_1 | add  | fabric  | 0       |
+|   + fpn_conv3x3_1_Pipeline_FPN3_IC_FPN3_KH_FPN3_KW | 1   |        |             |      |         |         |
+|     empty_fu_263_p2                                | -   |        | empty       | add  | fabric  | 0       |
+|     add_ln436_fu_461_p2                            | -   |        | add_ln436   | add  | fabric  | 0       |
+|     empty_33_fu_273_p2                             | -   |        | empty_33    | add  | fabric  | 0       |
+|     empty_34_fu_564_p2                             | -   |        | empty_34    | add  | fabric  | 0       |
+|     empty_35_fu_291_p2                             | -   |        | empty_35    | sub  | fabric  | 0       |
+|     add_ln435_1_fu_681_p2                          | -   |        | add_ln435_1 | add  | fabric  | 0       |
+|     add_ln428_1_fu_303_p2                          | -   |        | add_ln428_1 | add  | fabric  | 0       |
+|     add_ln428_fu_329_p2                            | -   |        | add_ln428   | add  | fabric  | 0       |
+|     mac_muladd_8ns_9ns_6s_17_4_1_U71               | 1   |        | mul_ln428   | mul  | dsp48   | 3       |
+|     p_mid121_fu_351_p2                             | -   |        | p_mid121    | add  | fabric  | 0       |
+|     add_ln436_3_fu_477_p2                          | -   |        | add_ln436_3 | add  | fabric  | 0       |
+|     add_ln429_fu_375_p2                            | -   |        | add_ln429   | add  | fabric  | 0       |
+|     p_mid1_fu_385_p2                               | -   |        | p_mid1      | add  | fabric  | 0       |
+|     p_mid14_fu_596_p2                              | -   |        | p_mid14     | add  | fabric  | 0       |
+|     p_mid16_fu_403_p2                              | -   |        | p_mid16     | sub  | fabric  | 0       |
+|     add_ln435_4_fu_711_p2                          | -   |        | add_ln435_4 | add  | fabric  | 0       |
+|     add_ln433_fu_627_p2                            | -   |        | add_ln433   | add  | fabric  | 0       |
+|     add_ln433_1_fu_636_p2                          | -   |        | add_ln433_1 | add  | fabric  | 0       |
+|     mac_muladd_8ns_9ns_6s_17_4_1_U71               | 1   |        | add_ln435_2 | add  | dsp48   | 3       |
+|     add_ln435_fu_728_p2                            | -   |        | add_ln435   | add  | fabric  | 0       |
+|     add_ln436_2_fu_525_p2                          | -   |        | add_ln436_2 | add  | fabric  | 0       |
+|     add_ln436_1_fu_539_p2                          | -   |        | add_ln436_1 | add  | fabric  | 0       |
+|     add_ln430_fu_550_p2                            | -   |        | add_ln430   | add  | fabric  | 0       |
+|     add_ln429_1_fu_417_p2                          | -   |        | add_ln429_1 | add  | fabric  | 0       |
+|  + fpn_p4p5_top_Pipeline_MP_C_MP_H_MP_W            | 0   |        |             |      |         |         |
+|    mul_8ns_8ns_15_1_1_U88                          | -   |        | empty       | mul  | auto    | 0       |
+|    mul_8ns_6ns_13_1_1_U90                          | -   |        | empty_25    | mul  | auto    | 0       |
+|    add_ln546_fu_169_p2                             | -   |        | add_ln546   | add  | fabric  | 0       |
+|    add_ln546_1_fu_195_p2                           | -   |        | add_ln546_1 | add  | fabric  | 0       |
+|    mul_8ns_8ns_15_1_1_U89                          | -   |        | p_mid192    | mul  | auto    | 0       |
+|    mul_8ns_6ns_13_1_1_U91                          | -   |        | p_mid194    | mul  | auto    | 0       |
+|    add_ln547_fu_237_p2                             | -   |        | add_ln547   | add  | fabric  | 0       |
+|    add_ln550_fu_486_p2                             | -   |        | add_ln550   | add  | fabric  | 0       |
+|    add_ln550_1_fu_497_p2                           | -   |        | add_ln550_1 | add  | fabric  | 0       |
+|    add_ln548_fu_265_p2                             | -   |        | add_ln548   | add  | fabric  | 0       |
+|    add_ln547_1_fu_271_p2                           | -   |        | add_ln547_1 | add  | fabric  | 0       |
++----------------------------------------------------+-----+--------+-------------+------+---------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++--------------------------------------------------------------------------------+------+------+--------+----------------------------------------------------------------------------+---------+------+---------+
+| Name                                                                           | BRAM | URAM | Pragma | Variable                                                                   | Storage | Impl | Latency |
++--------------------------------------------------------------------------------+------+------+--------+----------------------------------------------------------------------------+---------+------+---------+
+| + fpn_p4p5_top                                                                 | 328  | 0    |        |                                                                            |         |      |         |
+|   lat4_U                                                                       | 38   | -    | pragma | lat4                                                                       | ram_t2p | bram | 1       |
+|   fpn_p4p5_top_float_const_float_const_signed_char_const_float_const_float_2_U | 50   | -    | pragma | fpn_p4p5_top_float_const_float_const_signed_char_const_float_const_float_2 | ram_t2p | bram | 1       |
+|   fpn_p4p5_top_float_const_float_const_signed_char_const_float_const_float_1_U | 50   | -    | pragma | fpn_p4p5_top_float_const_float_const_signed_char_const_float_const_float_1 | ram_t2p | bram | 1       |
+|   fpn_p4p5_top_float_const_float_const_signed_char_const_float_const_float_U   | 50   | -    | pragma | fpn_p4p5_top_float_const_float_const_signed_char_const_float_const_float   | ram_t2p | bram | 1       |
+|   lat3_U                                                                       | 140  | -    | pragma | lat3                                                                       | ram_t2p | bram | 1       |
++--------------------------------------------------------------------------------+------+------+--------+----------------------------------------------------------------------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+--------------------------------------+-------------------------------------------------------+
+| Type            | Options                              | Location                                              |
++-----------------+--------------------------------------+-------------------------------------------------------+
+| inline          |                                      | fpn_192/fpga_utils.h:27 in relu                       |
+| inline          |                                      | fpn_192/fpga_utils.h:32 in silu                       |
+| inline          |                                      | fpn_192/fpga_utils.h:44 in sigmoid                    |
+| inline          |                                      | fpn_192/fpga_utils.h:58 in fused_bn                   |
+| inline          |                                      | fpn_192/fpga_utils.h:67 in layer_norm_seq             |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:73 in layer_norm_seq             |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:79 in layer_norm_seq             |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:84 in layer_norm_seq             |
+| inline          |                                      | fpn_192/fpga_utils.h:91 in softmax_row                |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:94 in softmax_row                |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:99 in softmax_row                |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:103 in softmax_row               |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:115 in linear_layer              |
+| unroll          | factor=16                            | fpn_192/fpga_utils.h:118 in linear_layer              |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:138 in conv3x3_bn_silu           |
+| unroll          | factor=16                            | fpn_192/fpga_utils.h:141 in conv3x3_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:143 in conv3x3_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:145 in conv3x3_bn_silu           |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:166 in conv3x3_bn                |
+| unroll          | factor=16                            | fpn_192/fpga_utils.h:169 in conv3x3_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:171 in conv3x3_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:173 in conv3x3_bn                |
+| inline          |                                      | fpn_192/fpga_utils.h:198 in conv1x1_bn_silu           |
+| array_partition | variable=partial0 complete dim=1     | fpn_192/fpga_utils.h:204 in conv1x1_bn_silu, partial0 |
+| array_partition | variable=partial1 complete dim=1     | fpn_192/fpga_utils.h:205 in conv1x1_bn_silu, partial1 |
+| array_partition | variable=partial2 complete dim=1     | fpn_192/fpga_utils.h:206 in conv1x1_bn_silu, partial2 |
+| array_partition | variable=partial3 complete dim=1     | fpn_192/fpga_utils.h:207 in conv1x1_bn_silu, partial3 |
+| array_partition | variable=l0_0 complete dim=1         | fpn_192/fpga_utils.h:213 in conv1x1_bn_silu, l0_0     |
+| array_partition | variable=l0_1 complete dim=1         | fpn_192/fpga_utils.h:214 in conv1x1_bn_silu, l0_1     |
+| array_partition | variable=l0_2 complete dim=1         | fpn_192/fpga_utils.h:215 in conv1x1_bn_silu, l0_2     |
+| array_partition | variable=l0_3 complete dim=1         | fpn_192/fpga_utils.h:216 in conv1x1_bn_silu, l0_3     |
+| array_partition | variable=l1_0 complete dim=1         | fpn_192/fpga_utils.h:217 in conv1x1_bn_silu, l1_0     |
+| array_partition | variable=l1_1 complete dim=1         | fpn_192/fpga_utils.h:218 in conv1x1_bn_silu, l1_1     |
+| array_partition | variable=l1_2 complete dim=1         | fpn_192/fpga_utils.h:219 in conv1x1_bn_silu, l1_2     |
+| array_partition | variable=l1_3 complete dim=1         | fpn_192/fpga_utils.h:220 in conv1x1_bn_silu, l1_3     |
+| array_partition | variable=l2_0 complete dim=1         | fpn_192/fpga_utils.h:221 in conv1x1_bn_silu, l2_0     |
+| array_partition | variable=l2_1 complete dim=1         | fpn_192/fpga_utils.h:222 in conv1x1_bn_silu, l2_1     |
+| array_partition | variable=l2_2 complete dim=1         | fpn_192/fpga_utils.h:223 in conv1x1_bn_silu, l2_2     |
+| array_partition | variable=l2_3 complete dim=1         | fpn_192/fpga_utils.h:224 in conv1x1_bn_silu, l2_3     |
+| array_partition | variable=l3_0 complete dim=1         | fpn_192/fpga_utils.h:225 in conv1x1_bn_silu, l3_0     |
+| array_partition | variable=l3_1 complete dim=1         | fpn_192/fpga_utils.h:226 in conv1x1_bn_silu, l3_1     |
+| array_partition | variable=l3_2 complete dim=1         | fpn_192/fpga_utils.h:227 in conv1x1_bn_silu, l3_2     |
+| array_partition | variable=l3_3 complete dim=1         | fpn_192/fpga_utils.h:228 in conv1x1_bn_silu, l3_3     |
+| unroll          |                                      | fpn_192/fpga_utils.h:231 in conv1x1_bn_silu           |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:237 in conv1x1_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:240 in conv1x1_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:252 in conv1x1_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:257 in conv1x1_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:262 in conv1x1_bn_silu           |
+| unroll          |                                      | fpn_192/fpga_utils.h:267 in conv1x1_bn_silu           |
+| inline          |                                      | fpn_192/fpga_utils.h:293 in conv1x1_bn                |
+| array_partition | variable=partial0 complete dim=1     | fpn_192/fpga_utils.h:299 in conv1x1_bn, partial0      |
+| array_partition | variable=partial1 complete dim=1     | fpn_192/fpga_utils.h:300 in conv1x1_bn, partial1      |
+| array_partition | variable=partial2 complete dim=1     | fpn_192/fpga_utils.h:301 in conv1x1_bn, partial2      |
+| array_partition | variable=partial3 complete dim=1     | fpn_192/fpga_utils.h:302 in conv1x1_bn, partial3      |
+| array_partition | variable=l0_0 complete dim=1         | fpn_192/fpga_utils.h:308 in conv1x1_bn, l0_0          |
+| array_partition | variable=l0_1 complete dim=1         | fpn_192/fpga_utils.h:309 in conv1x1_bn, l0_1          |
+| array_partition | variable=l0_2 complete dim=1         | fpn_192/fpga_utils.h:310 in conv1x1_bn, l0_2          |
+| array_partition | variable=l0_3 complete dim=1         | fpn_192/fpga_utils.h:311 in conv1x1_bn, l0_3          |
+| array_partition | variable=l1_0 complete dim=1         | fpn_192/fpga_utils.h:312 in conv1x1_bn, l1_0          |
+| array_partition | variable=l1_1 complete dim=1         | fpn_192/fpga_utils.h:313 in conv1x1_bn, l1_1          |
+| array_partition | variable=l1_2 complete dim=1         | fpn_192/fpga_utils.h:314 in conv1x1_bn, l1_2          |
+| array_partition | variable=l1_3 complete dim=1         | fpn_192/fpga_utils.h:315 in conv1x1_bn, l1_3          |
+| array_partition | variable=l2_0 complete dim=1         | fpn_192/fpga_utils.h:316 in conv1x1_bn, l2_0          |
+| array_partition | variable=l2_1 complete dim=1         | fpn_192/fpga_utils.h:317 in conv1x1_bn, l2_1          |
+| array_partition | variable=l2_2 complete dim=1         | fpn_192/fpga_utils.h:318 in conv1x1_bn, l2_2          |
+| array_partition | variable=l2_3 complete dim=1         | fpn_192/fpga_utils.h:319 in conv1x1_bn, l2_3          |
+| array_partition | variable=l3_0 complete dim=1         | fpn_192/fpga_utils.h:320 in conv1x1_bn, l3_0          |
+| array_partition | variable=l3_1 complete dim=1         | fpn_192/fpga_utils.h:321 in conv1x1_bn, l3_1          |
+| array_partition | variable=l3_2 complete dim=1         | fpn_192/fpga_utils.h:322 in conv1x1_bn, l3_2          |
+| array_partition | variable=l3_3 complete dim=1         | fpn_192/fpga_utils.h:323 in conv1x1_bn, l3_3          |
+| unroll          |                                      | fpn_192/fpga_utils.h:326 in conv1x1_bn                |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:332 in conv1x1_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:335 in conv1x1_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:347 in conv1x1_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:352 in conv1x1_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:357 in conv1x1_bn                |
+| unroll          |                                      | fpn_192/fpga_utils.h:362 in conv1x1_bn                |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:398 in conv1x1_plain             |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:431 in fpn_conv3x3               |
+| inline          |                                      | fpn_192/fpga_utils.h:458 in dw_conv3x3_bn_silu        |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:463 in dw_conv3x3_bn_silu        |
+| unroll          |                                      | fpn_192/fpga_utils.h:466 in dw_conv3x3_bn_silu        |
+| unroll          |                                      | fpn_192/fpga_utils.h:468 in dw_conv3x3_bn_silu        |
+| inline          |                                      | fpn_192/fpga_utils.h:489 in dw_conv3x3_bn             |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:494 in dw_conv3x3_bn             |
+| unroll          |                                      | fpn_192/fpga_utils.h:497 in dw_conv3x3_bn             |
+| unroll          |                                      | fpn_192/fpga_utils.h:499 in dw_conv3x3_bn             |
+| inline          |                                      | fpn_192/fpga_utils.h:516 in elem_add_inplace          |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:518 in elem_add_inplace          |
+| inline          |                                      | fpn_192/fpga_utils.h:525 in upsample_2x               |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:529 in upsample_2x               |
+| inline          |                                      | fpn_192/fpga_utils.h:544 in maxpool2x2                |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:549 in maxpool2x2                |
+| inline          |                                      | fpn_192/fpga_utils.h:557 in buf_copy                  |
+| pipeline        | II=1                                 | fpn_192/fpga_utils.h:559 in buf_copy                  |
+| interface       | bram port=c4                         | fpn_192/fpn_p4p5_top.cpp:50 in fpn_p4p5_top, c4       |
+| interface       | bram port=c3                         | fpn_192/fpn_p4p5_top.cpp:51 in fpn_p4p5_top, c3       |
+| interface       | bram port=w_conv                     | fpn_192/fpn_p4p5_top.cpp:52 in fpn_p4p5_top, w_conv   |
+| interface       | bram port=w_meta                     | fpn_192/fpn_p4p5_top.cpp:53 in fpn_p4p5_top, w_meta   |
+| interface       | bram port=p5                         | fpn_192/fpn_p4p5_top.cpp:54 in fpn_p4p5_top, p5       |
+| interface       | bram port=p4                         | fpn_192/fpn_p4p5_top.cpp:55 in fpn_p4p5_top, p4       |
+| interface       | bram port=p6                         | fpn_192/fpn_p4p5_top.cpp:56 in fpn_p4p5_top, p6       |
+| interface       | ap_ctrl_hs port=return               | fpn_192/fpn_p4p5_top.cpp:57 in fpn_p4p5_top, return   |
+| bind_storage    | variable=lat4 type=RAM_T2P impl=BRAM | fpn_192/fpn_p4p5_top.cpp:61 in fpn_p4p5_top, lat4     |
+| bind_storage    | variable=lat3 type=RAM_T2P impl=BRAM | fpn_192/fpn_p4p5_top.cpp:65 in fpn_p4p5_top, lat3     |
+| bind_storage    | variable=up4 type=RAM_T2P impl=BRAM  | fpn_192/fpn_p4p5_top.cpp:69 in fpn_p4p5_top, up4      |
+| interface       | bram port=c4                         | fpn_192/fpn_p5_top.cpp:33 in fpn_p5_top, c4           |
+| interface       | bram port=w_conv                     | fpn_192/fpn_p5_top.cpp:34 in fpn_p5_top, w_conv       |
+| interface       | bram port=w_meta                     | fpn_192/fpn_p5_top.cpp:35 in fpn_p5_top, w_meta       |
+| interface       | bram port=p5                         | fpn_192/fpn_p5_top.cpp:36 in fpn_p5_top, p5           |
+| interface       | bram port=p6                         | fpn_192/fpn_p5_top.cpp:37 in fpn_p5_top, p6           |
+| interface       | ap_ctrl_hs port=return               | fpn_192/fpn_p5_top.cpp:38 in fpn_p5_top, return       |
+| bind_storage    | variable=lat4 type=RAM_T2P impl=BRAM | fpn_192/fpn_p5_top.cpp:44 in fpn_p5_top, lat4         |
++-----------------+--------------------------------------+-------------------------------------------------------+
+
+

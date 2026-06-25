@@ -1,0 +1,158 @@
+
+
+================================================================
+== Vitis HLS Report for 'transformer_blk_s2_top_Pipeline_COPY_IN'
+================================================================
+* Date:           Sun May 31 19:28:30 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        s2_transformer_block
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu28dr-ffvg1517-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  2.474 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    57602|    57602|  0.288 ms|  0.288 ms|  57602|  57602|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------+---------+---------+----------+-----------+-----------+-------+----------+
+        |           |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        | Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +-----------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- COPY_IN  |    57600|    57600|         2|          1|          1|  57600|       yes|
+        +-----------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|      38|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       -|       -|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       -|      36|    -|
+|Register         |        -|     -|      35|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|      35|      74|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2160|  4272|  850560|  425280|   80|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln145_fu_135_p2   |         +|   0|  0|  23|          16|           1|
+    |icmp_ln145_fu_129_p2  |      icmp|   0|  0|  13|          16|          14|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  38|          33|          17|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_4     |   9|          2|   16|         32|
+    |i_fu_52                  |   9|          2|   16|         32|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   34|         68|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |i_fu_52                  |  16|   0|   16|          0|
+    |lshr_ln_reg_195          |  14|   0|   14|          0|
+    |trunc_ln147_reg_200      |   2|   0|    2|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  35|   0|   35|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------------------------------------------+-----+-----+------------+--------------------------------------------------------------+--------------+
+|                               RTL Ports                               | Dir | Bits|  Protocol  |                         Source Object                        |    C Type    |
++-----------------------------------------------------------------------+-----+-----+------------+--------------------------------------------------------------+--------------+
+|ap_clk                                                                 |   in|    1|  ap_ctrl_hs|                       transformer_blk_s2_top_Pipeline_COPY_IN|  return value|
+|ap_rst                                                                 |   in|    1|  ap_ctrl_hs|                       transformer_blk_s2_top_Pipeline_COPY_IN|  return value|
+|ap_start                                                               |   in|    1|  ap_ctrl_hs|                       transformer_blk_s2_top_Pipeline_COPY_IN|  return value|
+|ap_done                                                                |  out|    1|  ap_ctrl_hs|                       transformer_blk_s2_top_Pipeline_COPY_IN|  return value|
+|ap_idle                                                                |  out|    1|  ap_ctrl_hs|                       transformer_blk_s2_top_Pipeline_COPY_IN|  return value|
+|ap_ready                                                               |  out|    1|  ap_ctrl_hs|                       transformer_blk_s2_top_Pipeline_COPY_IN|  return value|
+|in_r_Addr_A                                                            |  out|   32|        bram|                                                          in_r|         array|
+|in_r_EN_A                                                              |  out|    1|        bram|                                                          in_r|         array|
+|in_r_WEN_A                                                             |  out|    4|        bram|                                                          in_r|         array|
+|in_r_Din_A                                                             |  out|   32|        bram|                                                          in_r|         array|
+|in_r_Dout_A                                                            |   in|   32|        bram|                                                          in_r|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_address0    |  out|   14|   ap_memory|    transformer_blk_s2_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_ce0         |  out|    1|   ap_memory|    transformer_blk_s2_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_we0         |  out|    1|   ap_memory|    transformer_blk_s2_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_d0          |  out|   32|   ap_memory|    transformer_blk_s2_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_5_address0  |  out|   14|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_5_ce0       |  out|    1|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_5_we0       |  out|    1|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_5_d0        |  out|   32|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_6_address0  |  out|   14|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_6_ce0       |  out|    1|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_6_we0       |  out|    1|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_6_d0        |  out|   32|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_7_address0  |  out|   14|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_7_ce0       |  out|    1|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_7_we0       |  out|    1|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s2_top_float_const_float_float_const_x_buf_7_d0        |  out|   32|   ap_memory|  transformer_blk_s2_top_float_const_float_float_const_x_buf_7|         array|
++-----------------------------------------------------------------------+-----+-----+------------+--------------------------------------------------------------+--------------+
+

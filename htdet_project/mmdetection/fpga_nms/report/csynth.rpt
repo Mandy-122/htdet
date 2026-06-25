@@ -1,0 +1,304 @@
+
+
+================================================================
+== Synthesis Summary Report of 'nms_top'
+================================================================
++ General Information: 
+    * Date:           Wed Jun  3 14:56:53 2026
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        nms
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynquplus
+    * Target device:  xczu9eg-ffvb1156-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+----------+------------+------------+-----+
+    |               Modules              |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |          |          |            |            |     |
+    |               & Loops              |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|   BRAM   |    DSP   |     FF     |     LUT    | URAM|
+    +------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+----------+------------+------------+-----+
+    |+ nms_top                           |  Timing|  -5.40|        -|          -|         -|        -|     -|        no|  17 (~0%)|  17 (~0%)|   7416 (1%)|  17630 (6%)|    -|
+    | + score_filter                     |  Timing|  -2.53|   115301|  7.124e+05|         -|   115301|     -|        no|         -|  15 (~0%)|  5058 (~0%)|   7083 (2%)|    -|
+    |  o SF_H                            |       -|   3.65|   115300|  7.124e+05|     11530|        -|    10|        no|         -|         -|           -|           -|    -|
+    |   o SF_W                           |       -|   3.65|    11510|  7.112e+04|      1151|        -|    10|        no|         -|         -|           -|           -|    -|
+    |    o SF_RI                         |       -|   3.65|     1131|  6.988e+03|       377|        -|     3|        no|         -|         -|           -|           -|    -|
+    |     o SF_SI                        |       -|   3.65|      375|  2.317e+03|       125|        -|     3|        no|         -|         -|           -|           -|    -|
+    |      + score_filter_Pipeline_SF_C  |  Timing|  -2.53|       92|    568.468|         -|       92|     -|        no|         -|   9 (~0%)|  2745 (~0%)|   5362 (1%)|    -|
+    |       o SF_C                       |      II|   3.65|       90|    556.110|        58|       11|     4|       yes|         -|         -|           -|           -|    -|
+    | + nms_top_Pipeline_SORT_INIT       |       -|   1.98|        -|          -|         -|        -|     -|        no|         -|         -|    14 (~0%)|    66 (~0%)|    -|
+    |  o SORT_INIT                       |       -|   3.65|        -|          -|         1|        1|     -|       yes|         -|         -|           -|           -|    -|
+    | + nms_greedy                       |  Timing|  -5.40|   362704|  3.283e+06|         -|   362704|     -|        no|         -|   2 (~0%)|   630 (~0%)|  1202 (~0%)|    -|
+    |  + nms_greedy_Pipeline_SUPP_INIT   |       -|   1.98|      302|  1.510e+03|         -|      302|     -|        no|         -|         -|    11 (~0%)|    63 (~0%)|    -|
+    |   o SUPP_INIT                      |       -|   3.65|      300|  1.500e+03|         1|        1|   300|       yes|         -|         -|           -|           -|    -|
+    |  o NMS_I                           |       -|   3.65|   362400|  3.281e+06|      1208|        -|   300|        no|         -|         -|           -|           -|    -|
+    |   + nms_greedy_Pipeline_NMS_J      |  Timing|  -5.40|     1202|  1.088e+04|         -|     1202|     -|        no|         -|   2 (~0%)|   125 (~0%)|   521 (~0%)|    -|
+    |    o NMS_J                         |      II|   3.65|     1200|  1.086e+04|         5|        4|   300|       yes|         -|         -|           -|           -|    -|
+    | + nms_top_Pipeline_OUT             |       -|   0.10|        -|          -|         -|        -|     -|        no|         -|         -|   979 (~0%)|   3733 (1%)|    -|
+    |  o OUT                             |       -|   3.65|        -|          -|         5|        1|     -|       yes|         -|         -|           -|           -|    -|
+    | o SORT_I                           |       -|   3.65|   363600|  3.291e+06|      1212|        -|   300|        no|         -|         -|           -|           -|    -|
+    |  + nms_top_Pipeline_SORT_J         |       -|   0.15|     1206|  6.030e+03|         -|     1206|     -|        no|         -|         -|   220 (~0%)|   321 (~0%)|    -|
+    |   o SORT_J                         |      II|   3.65|     1203|  6.015e+03|         5|        4|   300|       yes|         -|         -|           -|           -|    -|
+    +------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+----------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* BRAM
++--------------------+------------+---------------+
+| Interface          | Data Width | Address Width |
++--------------------+------------+---------------+
+| cls_logits_0_PORTA | 32         | 32            |
+| cls_logits_1_PORTA | 32         | 32            |
+| cls_logits_2_PORTA | 32         | 32            |
+| cls_logits_3_PORTA | 32         | 32            |
+| detections_PORTA   | 256        | 32            |
+| reg_deltas_0_PORTA | 32         | 32            |
+| reg_deltas_0_PORTB | 32         | 32            |
+| reg_deltas_1_PORTA | 32         | 32            |
+| reg_deltas_1_PORTB | 32         | 32            |
+| reg_deltas_2_PORTA | 32         | 32            |
+| reg_deltas_2_PORTB | 32         | 32            |
+| reg_deltas_3_PORTA | 32         | 32            |
+| reg_deltas_3_PORTB | 32         | 32            |
++--------------------+------------+---------------+
+
+* Other Ports
++-----------+--------+----------+
+| Interface | Mode   | Bitwidth |
++-----------+--------+----------+
+| num_dets  | ap_vld | 32       |
++-----------+--------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++------------+-----------+---------------+
+| Argument   | Direction | Datatype      |
++------------+-----------+---------------+
+| cls_logits | in        | float const * |
+| reg_deltas | in        | float const * |
+| detections | inout     | pointer       |
+| num_dets   | out       | int*          |
++------------+-----------+---------------+
+
+* SW-to-HW Mapping
++------------+--------------------+-----------+
+| Argument   | HW Interface       | HW Type   |
++------------+--------------------+-----------+
+| cls_logits | cls_logits_0_PORTA | interface |
+| cls_logits | cls_logits_1_PORTA | interface |
+| cls_logits | cls_logits_2_PORTA | interface |
+| cls_logits | cls_logits_3_PORTA | interface |
+| reg_deltas | reg_deltas_0_PORTA | interface |
+| reg_deltas | reg_deltas_0_PORTB | interface |
+| reg_deltas | reg_deltas_1_PORTA | interface |
+| reg_deltas | reg_deltas_1_PORTB | interface |
+| reg_deltas | reg_deltas_2_PORTA | interface |
+| reg_deltas | reg_deltas_2_PORTB | interface |
+| reg_deltas | reg_deltas_3_PORTA | interface |
+| reg_deltas | reg_deltas_3_PORTB | interface |
+| detections | detections_PORTA   | interface |
+| num_dets   | num_dets           | port      |
+| num_dets   | num_dets_ap_vld    | port      |
++------------+--------------------+-----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------+-----+--------+--------------+-------+---------+---------+
+| Name                                            | DSP | Pragma | Variable     | Op    | Impl    | Latency |
++-------------------------------------------------+-----+--------+--------------+-------+---------+---------+
+| + nms_top                                       | 17  |        |              |       |         |         |
+|   add_ln231_fu_321_p2                           | -   |        | add_ln231    | add   | fabric  | 0       |
+|   add_ln231_2_fu_358_p2                         | -   |        | add_ln231_2  | add   | fabric  | 0       |
+|   add_ln237_fu_387_p2                           | -   |        | add_ln237    | add   | fabric  | 0       |
+|   add_ln243_fu_431_p2                           | -   |        | add_ln243    | add   | fabric  | 0       |
+|   add_ln231_1_fu_442_p2                         | -   |        | add_ln231_1  | add   | fabric  | 0       |
+|  + score_filter                                 | 15  |        |              |       |         |         |
+|    add_ln146_fu_448_p2                          | -   |        | add_ln146    | add   | fabric  | 0       |
+|    faddfsub_32ns_32ns_32_8_full_dsp_1_U55       | 2   |        | add1         | fadd  | fulldsp | 7       |
+|    fmul_32ns_32ns_32_5_max_dsp_1_U56            | 3   |        | cy           | fmul  | maxdsp  | 4       |
+|    add_ln148_fu_504_p2                          | -   |        | add_ln148    | add   | fabric  | 0       |
+|    faddfsub_32ns_32ns_32_8_full_dsp_1_U55       | 2   |        | add          | fadd  | fulldsp | 7       |
+|    fmul_32ns_32ns_32_5_max_dsp_1_U56            | 3   |        | cx           | fmul  | maxdsp  | 4       |
+|    tmp47_fu_519_p2                              | -   |        | tmp47        | add   | fabric  | 0       |
+|    empty_38_fu_541_p2                           | -   |        | empty_38     | add   | fabric  | 0       |
+|    add_ln169_1_fu_532_p2                        | -   |        | add_ln169_1  | add   | fabric  | 0       |
+|    add_ln153_fu_557_p2                          | -   |        | add_ln153    | add   | fabric  | 0       |
+|    sub_ln157_fu_579_p2                          | -   |        | sub_ln157    | sub   | fabric  | 0       |
+|    add_ln155_fu_613_p2                          | -   |        | add_ln155    | add   | fabric  | 0       |
+|    fmul_32ns_32ns_32_5_max_dsp_1_U56            | 3   |        | anc_scale    | fmul  | maxdsp  | 4       |
+|    fsqrt_32ns_32ns_32_16_no_dsp_1_U59           | -   |        | tmp          | fsqrt | fabric  | 15      |
+|    fdiv_32ns_32ns_32_16_no_dsp_1_U57            | -   |        | aw           | fdiv  | fabric  | 15      |
+|    fmul_32ns_32ns_32_5_max_dsp_1_U56            | 3   |        | ah           | fmul  | maxdsp  | 4       |
+|    empty_41_fu_627_p2                           | -   |        | empty_41     | add   | fabric  | 0       |
+|    mul_mul_12s_9ns_12_4_1_U62                   | 1   |        | mul52        | mul   | dsp48   | 3       |
+|    add53_fu_643_p2                              | -   |        | add53        | add   | fabric  | 0       |
+|   + score_filter_Pipeline_SF_C                  | 9   |        |              |       |         |         |
+|     add_ln163_fu_624_p2                         | -   |        | add_ln163    | add   | fabric  | 0       |
+|     ama_addmuladd_12ns_12ns_7ns_12ns_12_1_1_U12 | 1   |        | add_ln167    | add   | dsp48   | 0       |
+|     ama_addmuladd_12ns_12ns_7ns_12ns_12_1_1_U12 | 1   |        | mul_ln169    | mul   | dsp48   | 0       |
+|     grp_fu_2345_p3                              | -   |        | add_ln169_2  | add   | fabric  | 0       |
+|     ama_addmuladd_12ns_12ns_7ns_12ns_12_1_1_U12 | 1   |        | add_ln169    | add   | dsp48   | 0       |
+|     fadd_32ns_32ns_32_6_no_dsp_1_U1             | -   |        | add_i        | fadd  | fabric  | 5       |
+|     fexp_32ns_32ns_32_13_full_dsp_1_U6          | 7   |        | tmp_6        | fexp  | fulldsp | 12      |
+|     fexp_32ns_32ns_32_13_full_dsp_1_U6          | 7   |        | tmp_7        | fexp  | fulldsp | 12      |
+|     man_V_1_fu_1273_p2                          | -   |        | man_V_1      | sub   | fabric  | 0       |
+|     F2_fu_1285_p2                               | -   |        | F2           | sub   | fabric  | 0       |
+|     add_ln570_fu_1307_p2                        | -   |        | add_ln570    | add   | fabric  | 0       |
+|     sub_ln570_fu_1313_p2                        | -   |        | sub_ln570    | sub   | fabric  | 0       |
+|     man_V_4_fu_1569_p2                          | -   |        | man_V_4      | sub   | fabric  | 0       |
+|     F2_1_fu_1581_p2                             | -   |        | F2_1         | sub   | fabric  | 0       |
+|     add_ln570_1_fu_1603_p2                      | -   |        | add_ln570_1  | add   | fabric  | 0       |
+|     sub_ln570_1_fu_1609_p2                      | -   |        | sub_ln570_1  | sub   | fabric  | 0       |
+|     man_V_7_fu_1869_p2                          | -   |        | man_V_7      | sub   | fabric  | 0       |
+|     F2_2_fu_1881_p2                             | -   |        | F2_2         | sub   | fabric  | 0       |
+|     add_ln570_2_fu_1903_p2                      | -   |        | add_ln570_2  | add   | fabric  | 0       |
+|     sub_ln570_2_fu_1909_p2                      | -   |        | sub_ln570_2  | sub   | fabric  | 0       |
+|     man_V_10_fu_2106_p2                         | -   |        | man_V_10     | sub   | fabric  | 0       |
+|     F2_3_fu_2118_p2                             | -   |        | F2_3         | sub   | fabric  | 0       |
+|     add_ln570_3_fu_2140_p2                      | -   |        | add_ln570_3  | add   | fabric  | 0       |
+|     sub_ln570_3_fu_2146_p2                      | -   |        | sub_ln570_3  | sub   | fabric  | 0       |
+|     ret_V_fu_2303_p2                            | -   |        | ret_V        | sub   | fabric  | 0       |
+|     ret_V_1_fu_2316_p2                          | -   |        | ret_V_1      | sub   | fabric  | 0       |
+|     mul_mul_19s_19s_33_4_1_U13                  | 1   |        | mul_ln1270   | mul   | dsp48   | 0       |
+|     num_cand_2_fu_840_p2                        | -   |        | num_cand_2   | add   | fabric  | 0       |
+|  + nms_top_Pipeline_SORT_INIT                   | 0   |        |              |       |         |         |
+|    add_ln226_fu_78_p2                           | -   |        | add_ln226    | add   | fabric  | 0       |
+|  + nms_greedy                                   | 2   |        |              |       |         |         |
+|    add_ln274_fu_277_p2                          | -   |        | add_ln274    | add   | fabric  | 0       |
+|    num_keep_2_fu_296_p2                         | -   |        | num_keep_2   | add   | fabric  | 0       |
+|    grp_fu_229_p2                                | -   |        | add_ln289    | add   | fabric  | 0       |
+|    grp_fu_229_p2                                | -   |        | add_ln274_1  | add   | fabric  | 0       |
+|   + nms_greedy_Pipeline_SUPP_INIT               | 0   |        |              |       |         |         |
+|     add_ln267_fu_84_p2                          | -   |        | add_ln267    | add   | fabric  | 0       |
+|   + nms_greedy_Pipeline_NMS_J                   | 2   |        |              |       |         |         |
+|     iw_V_fu_353_p2                              | -   |        | iw_V         | sub   | fabric  | 0       |
+|     ih_V_fu_359_p2                              | -   |        | ih_V         | sub   | fabric  | 0       |
+|     bw_V_fu_365_p2                              | -   |        | bw_V         | sub   | fabric  | 0       |
+|     bh_V_fu_371_p2                              | -   |        | bh_V         | sub   | fabric  | 0       |
+|     mul_mul_18ns_18ns_33_1_1_U92                | 1   |        | mul_ln1270   | mul   | dsp48   | 0       |
+|     mul_mul_18ns_18ns_33_1_1_U93                | 1   |        | mul_ln1270_1 | mul   | dsp48   | 0       |
+|     inter3_V_fu_418_p2                          | -   |        | inter3_V     | add   | fabric  | 0       |
+|     area_sum_V_fu_437_p2                        | -   |        | area_sum_V   | add   | fabric  | 0       |
+|     add_ln289_fu_254_p2                         | -   |        | add_ln289    | add   | fabric  | 0       |
+|  + nms_top_Pipeline_SORT_J                      | 0   |        |              |       |         |         |
+|    k_2_fu_248_p2                                | -   |        | k_2          | add   | fabric  | 0       |
+|    add_ln240_fu_374_p2                          | -   |        | add_ln240    | add   | fabric  | 0       |
+|    add_ln241_fu_360_p2                          | -   |        | add_ln241    | add   | fabric  | 0       |
+|  + nms_top_Pipeline_OUT                         | 0   |        |              |       |         |         |
+|    add_ln368_fu_246_p2                          | -   |        | add_ln368    | add   | fabric  | 0       |
+|    sub_ln1099_fu_300_p2                         | -   |        | sub_ln1099   | sub   | fabric  | 0       |
+|    lsb_index_fu_310_p2                          | -   |        | lsb_index    | add   | fabric  | 0       |
+|    sub_ln1102_fu_536_p2                         | -   |        | sub_ln1102   | sub   | fabric  | 0       |
+|    add_ln1104_fu_581_p2                         | -   |        | add_ln1104   | add   | fabric  | 0       |
+|    add_ln1113_fu_621_p2                         | -   |        | add_ln1113   | add   | fabric  | 0       |
+|    sub_ln1114_fu_636_p2                         | -   |        | sub_ln1114   | sub   | fabric  | 0       |
+|    m_5_fu_663_p2                                | -   |        | m_5          | add   | fabric  | 0       |
+|    sub_ln1099_1_fu_364_p2                       | -   |        | sub_ln1099_1 | sub   | fabric  | 0       |
+|    lsb_index_1_fu_374_p2                        | -   |        | lsb_index_1  | add   | fabric  | 0       |
+|    sub_ln1102_1_fu_697_p2                       | -   |        | sub_ln1102_1 | sub   | fabric  | 0       |
+|    add_ln1104_1_fu_742_p2                       | -   |        | add_ln1104_1 | add   | fabric  | 0       |
+|    add_ln1113_1_fu_782_p2                       | -   |        | add_ln1113_1 | add   | fabric  | 0       |
+|    sub_ln1114_1_fu_797_p2                       | -   |        | sub_ln1114_1 | sub   | fabric  | 0       |
+|    m_8_fu_824_p2                                | -   |        | m_8          | add   | fabric  | 0       |
+|    sub_ln1099_2_fu_428_p2                       | -   |        | sub_ln1099_2 | sub   | fabric  | 0       |
+|    lsb_index_2_fu_438_p2                        | -   |        | lsb_index_2  | add   | fabric  | 0       |
+|    sub_ln1102_2_fu_858_p2                       | -   |        | sub_ln1102_2 | sub   | fabric  | 0       |
+|    add_ln1104_2_fu_903_p2                       | -   |        | add_ln1104_2 | add   | fabric  | 0       |
+|    add_ln1113_2_fu_943_p2                       | -   |        | add_ln1113_2 | add   | fabric  | 0       |
+|    sub_ln1114_2_fu_958_p2                       | -   |        | sub_ln1114_2 | sub   | fabric  | 0       |
+|    m_13_fu_985_p2                               | -   |        | m_13         | add   | fabric  | 0       |
+|    sub_ln1099_3_fu_492_p2                       | -   |        | sub_ln1099_3 | sub   | fabric  | 0       |
+|    lsb_index_3_fu_502_p2                        | -   |        | lsb_index_3  | add   | fabric  | 0       |
+|    sub_ln1102_3_fu_1019_p2                      | -   |        | sub_ln1102_3 | sub   | fabric  | 0       |
+|    add_ln1104_3_fu_1064_p2                      | -   |        | add_ln1104_3 | add   | fabric  | 0       |
+|    add_ln1113_3_fu_1104_p2                      | -   |        | add_ln1113_3 | add   | fabric  | 0       |
+|    sub_ln1114_3_fu_1119_p2                      | -   |        | sub_ln1114_3 | sub   | fabric  | 0       |
+|    m_17_fu_1146_p2                              | -   |        | m_17         | add   | fabric  | 0       |
++-------------------------------------------------+-----+--------+--------------+-------+---------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++----------------------------------------------------------------+------+------+--------+------------------------------------------------------------+---------+--------+---------+
+| Name                                                           | BRAM | URAM | Pragma | Variable                                                   | Storage | Impl   | Latency |
++----------------------------------------------------------------+------+------+--------+------------------------------------------------------------+---------+--------+---------+
+| + nms_top                                                      | 17   | 0    |        |                                                            |         |        |         |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_U   | 4    | -    |        | nms_top_float_const_float_const_Detection_int_cand_boxes   | ram_1p  | auto   | 1       |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_1_U | 4    | -    |        | nms_top_float_const_float_const_Detection_int_cand_boxes_1 | ram_1p  | auto   | 1       |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_2_U | 4    | -    |        | nms_top_float_const_float_const_Detection_int_cand_boxes_2 | ram_1p  | auto   | 1       |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_3_U | 4    | -    |        | nms_top_float_const_float_const_Detection_int_cand_boxes_3 | ram_1p  | auto   | 1       |
+|   cand_scores_U                                                | -    | -    | pragma | cand_scores                                                | ram_2p  | lutram | 1       |
+|   cand_cls_V_U                                                 | -    | -    | pragma | cand_cls_V                                                 | ram_2p  | lutram | 1       |
+|   cand_areas_V_U                                               | -    | -    | pragma | cand_areas_V                                               | ram_2p  | lutram | 1       |
+|   cand_order_U                                                 | -    | -    | pragma | cand_order                                                 | ram_2p  | lutram | 1       |
+|   keep_idx_U                                                   | 1    | -    | pragma | keep_idx                                                   | ram_t2p | bram   | 1       |
+|  + nms_greedy                                                  | 0    | 0    |        |                                                            |         |        |         |
+|    suppressed_U                                                | -    | -    | pragma | suppressed                                                 | ram_2p  | lutram | 1       |
++----------------------------------------------------------------+------+------+--------+------------------------------------------------------------+---------+--------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+----------------------------------------------+-----------------------------------------------+
+| Type            | Options                                      | Location                                      |
++-----------------+----------------------------------------------+-----------------------------------------------+
+| inline          |                                              | nms/fpga_utils.h:14 in sigmoid                |
+| inline          |                                              | nms/nms_top.cpp:96 in iou_exceeds             |
+| loop_tripcount  | min=0 max=10 avg=10                          | nms/nms_top.cpp:147 in score_filter           |
+| loop_tripcount  | min=0 max=10 avg=10                          | nms/nms_top.cpp:149 in score_filter           |
+| loop_tripcount  | min=0 max=3 avg=3                            | nms/nms_top.cpp:154 in score_filter           |
+| loop_tripcount  | min=0 max=3 avg=3                            | nms/nms_top.cpp:156 in score_filter           |
+| pipeline        | II=1                                         | nms/nms_top.cpp:164 in score_filter           |
+| loop_tripcount  | min=4 max=4 avg=4                            | nms/nms_top.cpp:165 in score_filter           |
+| pipeline        | II=1                                         | nms/nms_top.cpp:227 in sort_scores            |
+| loop_tripcount  | min=0 max=300 avg=150                        | nms/nms_top.cpp:232 in sort_scores            |
+| loop_tripcount  | min=0 max=300 avg=75                         | nms/nms_top.cpp:238 in sort_scores            |
+| bind_storage    | variable=suppressed type=RAM_2P impl=LUTRAM  | nms/nms_top.cpp:265 in nms_greedy, suppressed |
+| pipeline        | II=1                                         | nms/nms_top.cpp:268 in nms_greedy             |
+| loop_tripcount  | min=0 max=300 avg=100                        | nms/nms_top.cpp:275 in nms_greedy             |
+| loop_tripcount  | min=0 max=300 avg=75                         | nms/nms_top.cpp:290 in nms_greedy             |
+| pipeline        | II=1                                         | nms/nms_top.cpp:291 in nms_greedy             |
+| interface       | bram port=cls_logits                         | nms/nms_top.cpp:317 in nms_top, cls_logits    |
+| interface       | bram port=reg_deltas                         | nms/nms_top.cpp:318 in nms_top, reg_deltas    |
+| interface       | bram port=detections                         | nms/nms_top.cpp:319 in nms_top, detections    |
+| interface       | ap_vld port=num_dets                         | nms/nms_top.cpp:320 in nms_top, num_dets      |
+| interface       | ap_ctrl_hs port=return                       | nms/nms_top.cpp:321 in nms_top, return        |
+| array_partition | variable=cls_logits cyclic factor=4 dim=1    | nms/nms_top.cpp:324 in nms_top, cls_logits    |
+| array_partition | variable=reg_deltas cyclic factor=4 dim=1    | nms/nms_top.cpp:325 in nms_top, reg_deltas    |
+| array_partition | variable=cand_boxes cyclic factor=4 dim=1    | nms/nms_top.cpp:338 in nms_top, cand_boxes    |
+| bind_storage    | variable=cand_scores type=RAM_2P impl=LUTRAM | nms/nms_top.cpp:341 in nms_top, cand_scores   |
+| bind_storage    | variable=cand_order type=RAM_2P impl=LUTRAM  | nms/nms_top.cpp:342 in nms_top, cand_order    |
+| bind_storage    | variable=cand_areas type=RAM_2P impl=LUTRAM  | nms/nms_top.cpp:345 in nms_top, cand_areas    |
+| bind_storage    | variable=cand_cls type=RAM_2P impl=LUTRAM    | nms/nms_top.cpp:348 in nms_top, cand_cls      |
+| bind_storage    | variable=keep_idx type=RAM_T2P impl=BRAM     | nms/nms_top.cpp:351 in nms_top, keep_idx      |
+| pipeline        | II=1                                         | nms/nms_top.cpp:369 in nms_top                |
++-----------------+----------------------------------------------+-----------------------------------------------+
+
+

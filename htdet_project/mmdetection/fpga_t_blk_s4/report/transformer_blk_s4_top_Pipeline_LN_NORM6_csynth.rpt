@@ -1,0 +1,282 @@
+
+
+================================================================
+== Vitis HLS Report for 'transformer_blk_s4_top_Pipeline_LN_NORM6'
+================================================================
+* Date:           Mon Jun  1 14:26:43 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        s4_transformer_block
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu9eg-ffvb1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.454 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      269|      269|  1.345 us|  1.345 us|  269|  269|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |           |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- LN_NORM  |      267|      267|        29|          1|          1|   240|       yes|
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     148|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       0|      20|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       -|      36|    -|
+|Register         |        -|     -|     819|     224|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|     819|     428|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     1824|  2520|  548160|  274080|    0|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------+---------------+---------+----+---+----+-----+
+    |      Instance      |     Module    | BRAM_18K| DSP| FF| LUT| URAM|
+    +--------------------+---------------+---------+----+---+----+-----+
+    |mux_42_32_1_1_U952  |mux_42_32_1_1  |        0|   0|  0|  20|    0|
+    +--------------------+---------------+---------+----+---+----+-----+
+    |Total               |               |        0|   0|  0|  20|    0|
+    +--------------------+---------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name     | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |add_ln131_fu_267_p2    |         +|   0|  0|  15|           8|           1|
+    |add_ln133_fu_287_p2    |         +|   0|  0|  18|          11|          11|
+    |add_ln134_1_fu_344_p2  |         +|   0|  0|  28|          21|          21|
+    |add_ln134_2_fu_358_p2  |         +|   0|  0|  23|          16|          16|
+    |add_ln134_3_fu_371_p2  |         +|   0|  0|  28|          21|          21|
+    |add_ln134_fu_330_p2    |         +|   0|  0|  23|          16|          16|
+    |icmp_ln131_fu_261_p2   |      icmp|   0|  0|  11|           8|           6|
+    |ap_enable_pp0          |       xor|   0|  0|   2|           1|           2|
+    +-----------------------+----------+----+---+----+------------+------------+
+    |Total                  |          |   0|  0| 148|         102|          94|
+    +-----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_3     |   9|          2|    8|         16|
+    |i_fu_80                  |   9|          2|    8|         16|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   18|         36|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                     Name                                    | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |add85_i147_i_reg_517                                                         |  32|   0|   32|          0|
+    |ap_CS_fsm                                                                    |   1|   0|    1|          0|
+    |ap_done_reg                                                                  |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter10                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter11                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter12                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter13                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter14                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter15                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter16                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter17                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter18                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter19                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter20                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter21                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter22                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter23                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter24                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter25                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter26                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter27                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter28                                                     |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter5                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter6                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter7                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter8                                                      |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter9                                                      |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter10_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter11_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter12_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter13_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter14_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter15_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter16_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter17_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter18_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter19_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter20_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter21_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter22_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter23_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter24_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter25_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter26_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter27_reg                                            |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter4_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter5_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter6_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter7_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter8_reg                                             |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter9_reg                                             |   1|   0|    1|          0|
+    |i_3_reg_408                                                                  |   8|   0|    8|          0|
+    |i_fu_80                                                                      |   8|   0|    8|          0|
+    |mul82_i144_i_reg_502                                                         |  32|   0|   32|          0|
+    |n_reg_482                                                                    |  32|   0|   32|          0|
+    |sub78_i140_i_reg_467                                                         |  32|   0|   32|          0|
+    |tmp_34_reg_462                                                               |  32|   0|   32|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_10_addr_reg_453  |  11|   0|   11|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_8_addr_reg_443   |  11|   0|   11|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_9_addr_reg_448   |  11|   0|   11|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_addr_reg_438     |  11|   0|   11|          0|
+    |trunc_ln133_reg_458                                                          |   2|   0|    2|          0|
+    |w_load_1_reg_507                                                             |  32|   0|   32|          0|
+    |w_load_reg_487                                                               |  32|   0|   32|          0|
+    |zext_ln134_reg_472                                                           |   8|   0|   16|          8|
+    |zext_ln84_cast_reg_402                                                       |  20|   0|   21|          1|
+    |i_3_reg_408                                                                  |  64|  32|    8|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_10_addr_reg_453  |  64|  32|   11|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_8_addr_reg_443   |  64|  32|   11|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_9_addr_reg_448   |  64|  32|   11|          0|
+    |transformer_blk_s4_top_float_const_float_float_const_ln_buf_addr_reg_438     |  64|  32|   11|          0|
+    |trunc_ln133_reg_458                                                          |  64|  32|    2|          0|
+    |zext_ln134_reg_472                                                           |  64|  32|   16|          8|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                        | 819| 224|  450|         17|
+    +-----------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------------------+--------------+
+|                                RTL Ports                                | Dir | Bits|  Protocol  |                          Source Object                         |    C Type    |
++-------------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------------------+--------------+
+|ap_clk                                                                   |   in|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|ap_rst                                                                   |   in|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|ap_start                                                                 |   in|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|ap_done                                                                  |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|ap_idle                                                                  |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|ap_ready                                                                 |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_2762_p_din0                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_2762_p_din1                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_2762_p_opcode                                                     |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_2762_p_dout0                                                      |   in|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_2762_p_ce                                                         |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6279_p_din0                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6279_p_din1                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6279_p_opcode                                                     |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6279_p_dout0                                                      |   in|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6279_p_ce                                                         |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6307_p_din0                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6307_p_din1                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6307_p_dout0                                                      |   in|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6307_p_ce                                                         |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6311_p_din0                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6311_p_din1                                                       |  out|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6311_p_dout0                                                      |   in|   32|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|grp_fu_6311_p_ce                                                         |  out|    1|  ap_ctrl_hs|                        transformer_blk_s4_top_Pipeline_LN_NORM6|  return value|
+|indvars_iv8950                                                           |   in|   11|     ap_none|                                                  indvars_iv8950|        scalar|
+|mean_1                                                                   |   in|   32|     ap_none|                                                          mean_1|        scalar|
+|inv_std_1                                                                |   in|   32|     ap_none|                                                       inv_std_1|        scalar|
+|zext_ln84                                                                |   in|   20|     ap_none|                                                       zext_ln84|        scalar|
+|w_Addr_A                                                                 |  out|   32|        bram|                                                               w|         array|
+|w_EN_A                                                                   |  out|    1|        bram|                                                               w|         array|
+|w_WEN_A                                                                  |  out|    4|        bram|                                                               w|         array|
+|w_Din_A                                                                  |  out|   32|        bram|                                                               w|         array|
+|w_Dout_A                                                                 |   in|   32|        bram|                                                               w|         array|
+|w_Addr_B                                                                 |  out|   32|        bram|                                                               w|         array|
+|w_EN_B                                                                   |  out|    1|        bram|                                                               w|         array|
+|w_WEN_B                                                                  |  out|    4|        bram|                                                               w|         array|
+|w_Din_B                                                                  |  out|   32|        bram|                                                               w|         array|
+|w_Dout_B                                                                 |   in|   32|        bram|                                                               w|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_address0     |  out|   11|   ap_memory|     transformer_blk_s4_top_float_const_float_float_const_ln_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_ce0          |  out|    1|   ap_memory|     transformer_blk_s4_top_float_const_float_float_const_ln_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_we0          |  out|    1|   ap_memory|     transformer_blk_s4_top_float_const_float_float_const_ln_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_d0           |  out|   32|   ap_memory|     transformer_blk_s4_top_float_const_float_float_const_ln_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_address0      |  out|   11|   ap_memory|      transformer_blk_s4_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_ce0           |  out|    1|   ap_memory|      transformer_blk_s4_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_q0            |   in|   32|   ap_memory|      transformer_blk_s4_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_5_address0    |  out|   11|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_5_ce0         |  out|    1|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_5_q0          |   in|   32|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_6_address0    |  out|   11|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_6_ce0         |  out|    1|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_6_q0          |   in|   32|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_7_address0    |  out|   11|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_7_ce0         |  out|    1|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_7_q0          |   in|   32|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_8_address0   |  out|   11|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_8|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_8_ce0        |  out|    1|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_8|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_8_we0        |  out|    1|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_8|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_8_d0         |  out|   32|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_8|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_9_address0   |  out|   11|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_9|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_9_ce0        |  out|    1|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_9|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_9_we0        |  out|    1|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_9|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_9_d0         |  out|   32|   ap_memory|   transformer_blk_s4_top_float_const_float_float_const_ln_buf_9|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_10_address0  |  out|   11|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_ln_buf_10|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_10_ce0       |  out|    1|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_ln_buf_10|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_10_we0       |  out|    1|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_ln_buf_10|         array|
+|transformer_blk_s4_top_float_const_float_float_const_ln_buf_10_d0        |  out|   32|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_ln_buf_10|         array|
++-------------------------------------------------------------------------+-----+-----+------------+----------------------------------------------------------------+--------------+
+

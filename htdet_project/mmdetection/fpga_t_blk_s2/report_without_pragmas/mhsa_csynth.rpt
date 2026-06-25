@@ -1,0 +1,312 @@
+
+
+================================================================
+== Vitis HLS Report for 'mhsa'
+================================================================
+* Date:           Wed Jun  3 12:05:15 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        s2_transformer_block
+* Solution:       without_pragmas (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu28dr-ffvg1517-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.966 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +-----------+-----------+-----------+-----------+-----------+-----------+---------+
+    |    Latency (cycles)   |   Latency (absolute)  |        Interval       | Pipeline|
+    |    min    |    max    |    min    |    max    |    min    |    max    |   Type  |
+    +-----------+-----------+-----------+-----------+-----------+-----------+---------+
+    |  344858775|  344858775|  1.724 sec|  1.724 sec|  344858775|  344858775|       no|
+    +-----------+-----------+-----------+-----------+-----------+-----------+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------+-------------------------------+----------+----------+-----------+-----------+----------+----------+---------+
+        |                                          |                               |   Latency (cycles)  |   Latency (absolute)  |       Interval      | Pipeline|
+        |                 Instance                 |             Module            |    min   |    max   |    min    |    max    |    min   |    max   |   Type  |
+        +------------------------------------------+-------------------------------+----------+----------+-----------+-----------+----------+----------+---------+
+        |grp_linear_f_fu_286                       |linear_f                       |  67161601|  67161601|  0.336 sec|  0.336 sec|  67161601|  67161601|       no|
+        |grp_mhsa_Pipeline_MHSA_QI_MHSA_KI_fu_308  |mhsa_Pipeline_MHSA_QI_MHSA_KI  |   2880286|   2880286|  14.401 ms|  14.401 ms|   2880286|   2880286|       no|
+        |grp_mhsa_Pipeline_MHSA_CPY_fu_319         |mhsa_Pipeline_MHSA_CPY         |     57602|     57602|   0.288 ms|   0.288 ms|     57602|     57602|       no|
+        |grp_mhsa_Pipeline_SM_MAX_fu_327           |mhsa_Pipeline_SM_MAX           |       802|       802|   4.010 us|   4.010 us|       802|       802|       no|
+        |grp_mhsa_Pipeline_SM_EXP_fu_337           |mhsa_Pipeline_SM_EXP           |       424|       424|   2.120 us|   2.120 us|       424|       424|       no|
+        |grp_mhsa_Pipeline_SM_SUM_T_fu_347         |mhsa_Pipeline_SM_SUM_T         |       135|       135|   0.675 us|   0.675 us|       135|       135|       no|
+        |grp_mhsa_Pipeline_SM_SUM_R_fu_353         |mhsa_Pipeline_SM_SUM_R         |       804|       804|   4.020 us|   4.020 us|       804|       804|       no|
+        |grp_mhsa_Pipeline_SM_NORM_fu_359          |mhsa_Pipeline_SM_NORM          |       419|       419|   2.095 us|   2.095 us|       419|       419|       no|
+        |grp_mhsa_Pipeline_MHSA_OK_T_fu_369        |mhsa_Pipeline_MHSA_OK_T        |       240|       240|   1.200 us|   1.200 us|       240|       240|       no|
+        |grp_mhsa_Pipeline_MHSA_OK_R_fu_381        |mhsa_Pipeline_MHSA_OK_R        |       804|       804|   4.020 us|   4.020 us|       804|       804|       no|
+        +------------------------------------------+-------------------------------+----------+----------+-----------+-----------+----------+----------+---------+
+
+        * Loop: 
+        +--------------------+----------+----------+----------+-----------+-----------+-------+----------+
+        |                    |   Latency (cycles)  | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name     |    min   |    max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +--------------------+----------+----------+----------+-----------+-----------+-------+----------+
+        |- MHSA_H            |  76154760|  76154760|  19038690|          -|          -|      4|        no|
+        | + MHSA_SM          |   1038400|   1038400|      2596|          -|          -|    400|        no|
+        | + MHSA_OQ_MHSA_OD  |  15120000|  15120000|      1050|          -|          -|  14400|        no|
+        +--------------------+----------+----------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     258|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|    22|    9811|    8904|    -|
+|Memory           |      620|     -|       0|       0|    0|
+|Multiplexer      |        -|     -|       -|    1094|    -|
+|Register         |        -|     -|     239|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |      620|    22|   10050|   10256|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2160|  4272|  850560|  425280|   80|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |       28|    ~0|       1|       2|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------+--------------------------------+---------+----+------+------+-----+
+    |                 Instance                 |             Module             | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +------------------------------------------+--------------------------------+---------+----+------+------+-----+
+    |fadd_32ns_32ns_32_8_full_dsp_1_U125       |fadd_32ns_32ns_32_8_full_dsp_1  |        0|   2|   296|   239|    0|
+    |grp_linear_f_fu_286                       |linear_f                        |        0|   5|   844|   937|    0|
+    |grp_mhsa_Pipeline_MHSA_CPY_fu_319         |mhsa_Pipeline_MHSA_CPY          |        0|   0|    35|    74|    0|
+    |grp_mhsa_Pipeline_MHSA_OK_R_fu_381        |mhsa_Pipeline_MHSA_OK_R         |        0|   0|   115|   147|    0|
+    |grp_mhsa_Pipeline_MHSA_OK_T_fu_369        |mhsa_Pipeline_MHSA_OK_T         |        0|   0|   905|   895|    0|
+    |grp_mhsa_Pipeline_MHSA_QI_MHSA_KI_fu_308  |mhsa_Pipeline_MHSA_QI_MHSA_KI   |        0|   4|  5380|  4282|    0|
+    |grp_mhsa_Pipeline_SM_EXP_fu_337           |mhsa_Pipeline_SM_EXP            |        0|   7|   606|  1061|    0|
+    |grp_mhsa_Pipeline_SM_MAX_fu_327           |mhsa_Pipeline_SM_MAX            |        0|   0|   145|   243|    0|
+    |grp_mhsa_Pipeline_SM_NORM_fu_359          |mhsa_Pipeline_SM_NORM           |        0|   0|   183|   122|    0|
+    |grp_mhsa_Pipeline_SM_SUM_R_fu_353         |mhsa_Pipeline_SM_SUM_R          |        0|   0|   115|   147|    0|
+    |grp_mhsa_Pipeline_SM_SUM_T_fu_347         |mhsa_Pipeline_SM_SUM_T          |        0|   4|  1187|   695|    0|
+    |mul_9ns_10ns_18_1_1_U123                  |mul_9ns_10ns_18_1_1             |        0|   0|     0|    62|    0|
+    +------------------------------------------+--------------------------------+---------+----+------+------+-----+
+    |Total                                     |                                |        0|  22|  9811|  8904|    0|
+    +------------------------------------------+--------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +---------+----------------------------+---------+---+----+-----+--------+-----+------+-------------+
+    |  Memory |           Module           | BRAM_18K| FF| LUT| URAM|  Words | Bits| Banks| W*Bits*Banks|
+    +---------+----------------------------+---------+---+----+-----+--------+-----+------+-------------+
+    |a_buf_U  |mhsa_a_buf_RAM_AUTO_1R1W    |      288|  0|   0|    0|  160000|   32|     1|      5120000|
+    |ex_U     |mhsa_ex_RAM_1WNR_AUTO_1R1W  |        6|  0|   0|    0|     400|   32|     1|        12800|
+    |q_buf_U  |mhsa_q_buf_RAM_AUTO_1R1W    |      108|  0|   0|    0|   57600|   32|     1|      1843200|
+    |k_buf_U  |mhsa_q_buf_RAM_AUTO_1R1W    |      108|  0|   0|    0|   57600|   32|     1|      1843200|
+    |v_buf_U  |mhsa_q_buf_RAM_AUTO_1R1W    |      108|  0|   0|    0|   57600|   32|     1|      1843200|
+    |sp_U     |mhsa_sp_RAM_AUTO_1R1W       |        1|  0|   0|    0|     100|   32|     1|         3200|
+    |op_U     |mhsa_sp_RAM_AUTO_1R1W       |        1|  0|   0|    0|     100|   32|     1|         3200|
+    +---------+----------------------------+---------+---+----+-----+--------+-----+------+-------------+
+    |Total    |                            |      620|  0|   0|    0|  333400|  224|     7|     10668800|
+    +---------+----------------------------+---------+---+----+-----+--------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |add_ln262_fu_401_p2       |         +|   0|  0|  10|           3|           1|
+    |add_ln288_1_fu_427_p2     |         +|   0|  0|  25|          18|           9|
+    |add_ln288_fu_439_p2       |         +|   0|  0|  16|           9|           1|
+    |add_ln300_1_fu_510_p2     |         +|   0|  0|  16|           9|           1|
+    |add_ln300_fu_490_p2       |         +|   0|  0|  21|          14|           1|
+    |add_ln301_fu_587_p2       |         +|   0|  0|  13|           6|           1|
+    |add_ln311_fu_572_p2       |         +|   0|  0|  15|           8|           8|
+    |add_ln320_1_fu_478_p2     |         +|   0|  0|  23|          16|          16|
+    |add_ln320_2_fu_554_p2     |         +|   0|  0|  23|          16|          16|
+    |add_ln320_fu_581_p2       |         +|   0|  0|  23|          16|          16|
+    |icmp_ln262_fu_395_p2      |      icmp|   0|  0|   9|           3|           4|
+    |icmp_ln288_fu_433_p2      |      icmp|   0|  0|  11|           9|           8|
+    |icmp_ln300_fu_484_p2      |      icmp|   0|  0|  12|          14|          12|
+    |icmp_ln301_fu_496_p2      |      icmp|   0|  0|  10|           6|           6|
+    |select_ln300_1_fu_516_p3  |    select|   0|  0|   9|           1|           9|
+    |select_ln300_2_fu_560_p3  |    select|   0|  0|  16|           1|          16|
+    |select_ln300_fu_502_p3    |    select|   0|  0|   6|           1|           1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0| 258|         150|         126|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+-----+-----------+-----+-----------+
+    |             Name            | LUT | Input Size| Bits| Total Bits|
+    +-----------------------------+-----+-----------+-----+-----------+
+    |a_buf_address0               |   37|          7|   18|        126|
+    |a_buf_ce0                    |   37|          7|    1|          7|
+    |a_buf_ce1                    |    9|          2|    1|          2|
+    |a_buf_d0                     |   14|          3|   32|         96|
+    |a_buf_we0                    |   14|          3|    1|          3|
+    |ap_NS_fsm                    |  145|         30|    1|         30|
+    |attn_out_address0            |   20|          4|   16|         64|
+    |attn_out_ce0                 |   20|          4|    1|          4|
+    |attn_out_d0                  |   14|          3|   32|         96|
+    |attn_out_we0                 |   14|          3|    1|          3|
+    |d_reg_275                    |    9|          2|    6|         12|
+    |ex_address0                  |   20|          4|    9|         36|
+    |ex_ce0                       |   20|          4|    1|          4|
+    |ex_ce1                       |    9|          2|    1|          2|
+    |ex_ce2                       |    9|          2|    1|          2|
+    |ex_ce3                       |    9|          2|    1|          2|
+    |ex_we0                       |    9|          2|    1|          2|
+    |grp_fu_752_ce                |   37|          7|    1|          7|
+    |grp_fu_752_opcode            |   37|          7|    2|         14|
+    |grp_fu_752_p0                |   37|          7|   32|        224|
+    |grp_fu_752_p1                |   37|          7|   32|        224|
+    |grp_fu_756_ce                |   20|          4|    1|          4|
+    |grp_fu_756_p0                |   20|          4|   32|        128|
+    |grp_fu_756_p1                |   20|          4|   32|        128|
+    |grp_fu_760_ce                |   14|          3|    1|          3|
+    |grp_fu_760_p0                |   14|          3|   32|         96|
+    |grp_fu_760_p1                |   14|          3|   32|         96|
+    |grp_fu_764_ce                |   14|          3|    1|          3|
+    |grp_fu_764_p0                |   14|          3|   32|         96|
+    |grp_fu_764_p1                |   14|          3|   32|         96|
+    |grp_fu_768_ce                |    9|          2|    1|          2|
+    |grp_linear_f_fu_286_bias     |   26|          5|   20|        100|
+    |grp_linear_f_fu_286_in_r_q0  |   14|          3|   32|         96|
+    |grp_linear_f_fu_286_w1       |   26|          5|   20|        100|
+    |h_fu_128                     |    9|          2|    3|          6|
+    |indvar_flatten54_reg_253     |    9|          2|   14|         28|
+    |k_buf_address0               |   14|          3|   16|         48|
+    |k_buf_ce0                    |   14|          3|    1|          3|
+    |k_buf_ce1                    |    9|          2|    1|          2|
+    |k_buf_we0                    |    9|          2|    1|          2|
+    |ln_buf_ce0                   |    9|          2|    1|          2|
+    |op_address0                  |   14|          3|    7|         21|
+    |op_ce0                       |   14|          3|    1|          3|
+    |op_we0                       |    9|          2|    1|          2|
+    |phi_mul_reg_241              |    9|          2|   18|         36|
+    |q_buf_address0               |   26|          5|   16|         80|
+    |q_buf_ce0                    |   26|          5|    1|          5|
+    |q_buf_ce1                    |    9|          2|    1|          2|
+    |q_buf_d0                     |   14|          3|   32|         96|
+    |q_buf_we0                    |   14|          3|    1|          3|
+    |qi_1_reg_230                 |    9|          2|    9|         18|
+    |qi_reg_264                   |    9|          2|    9|         18|
+    |sp_address0                  |   14|          3|    7|         21|
+    |sp_ce0                       |   14|          3|    1|          3|
+    |sp_we0                       |    9|          2|    1|          2|
+    |v_buf_address0               |   14|          3|   16|         48|
+    |v_buf_ce0                    |   14|          3|    1|          3|
+    |v_buf_ce1                    |    9|          2|    1|          2|
+    |v_buf_we0                    |    9|          2|    1|          2|
+    |w_ce0                        |    9|          2|    1|          2|
+    +-----------------------------+-----+-----------+-----+-----------+
+    |Total                        | 1094|        225|  621|       2366|
+    +-----------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------------+----+----+-----+-----------+
+    |                          Name                         | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------------+----+----+-----+-----------+
+    |add_ln262_reg_673                                      |   3|   0|    3|          0|
+    |add_ln288_1_reg_689                                    |  18|   0|   18|          0|
+    |add_ln288_reg_697                                      |   9|   0|    9|          0|
+    |add_ln300_reg_721                                      |  14|   0|   14|          0|
+    |add_ln301_reg_747                                      |   6|   0|    6|          0|
+    |add_ln311_reg_736                                      |   8|   0|    8|          0|
+    |add_ln320_reg_742                                      |  16|   0|   16|          0|
+    |ap_CS_fsm                                              |  29|   0|   29|          0|
+    |d_reg_275                                              |   6|   0|    6|          0|
+    |grp_linear_f_fu_286_ap_start_reg                       |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_MHSA_CPY_fu_319_ap_start_reg         |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_MHSA_OK_R_fu_381_ap_start_reg        |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_MHSA_OK_T_fu_369_ap_start_reg        |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_MHSA_QI_MHSA_KI_fu_308_ap_start_reg  |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_SM_EXP_fu_337_ap_start_reg           |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_SM_MAX_fu_327_ap_start_reg           |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_SM_NORM_fu_359_ap_start_reg          |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_SM_SUM_R_fu_353_ap_start_reg         |   1|   0|    1|          0|
+    |grp_mhsa_Pipeline_SM_SUM_T_fu_347_ap_start_reg         |   1|   0|    1|          0|
+    |h_fu_128                                               |   3|   0|    3|          0|
+    |indvar_flatten54_reg_253                               |  14|   0|   14|          0|
+    |mul_ln300_reg_731                                      |  18|   0|   18|          0|
+    |mx_reg_707                                             |  32|   0|   32|          0|
+    |phi_mul_reg_241                                        |  18|   0|   18|          0|
+    |qi_1_reg_230                                           |   9|   0|    9|          0|
+    |qi_reg_264                                             |   9|   0|    9|          0|
+    |select_ln300_1_reg_726                                 |   9|   0|    9|          0|
+    |tmp_6_reg_678                                          |   4|   0|    7|          3|
+    |zext_ln265_reg_684                                     |   4|   0|    8|          4|
+    +-------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                  | 239|   0|  246|          7|
+    +-------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+--------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  | Source Object|    C Type    |
++----------------------+-----+-----+------------+--------------+--------------+
+|ap_clk                |   in|    1|  ap_ctrl_hs|          mhsa|  return value|
+|ap_rst                |   in|    1|  ap_ctrl_hs|          mhsa|  return value|
+|ap_start              |   in|    1|  ap_ctrl_hs|          mhsa|  return value|
+|ap_done               |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|ap_idle               |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|ap_ready              |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1000_p_din0    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1000_p_din1    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1000_p_opcode  |  out|    2|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1000_p_dout0   |   in|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1000_p_ce      |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1004_p_din0    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1004_p_din1    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1004_p_dout0   |   in|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1004_p_ce      |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1008_p_din0    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1008_p_din1    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1008_p_dout0   |   in|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1008_p_ce      |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1012_p_din0    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1012_p_din1    |  out|   32|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1012_p_opcode  |  out|    5|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1012_p_dout0   |   in|    1|  ap_ctrl_hs|          mhsa|  return value|
+|grp_fu_1012_p_ce      |  out|    1|  ap_ctrl_hs|          mhsa|  return value|
+|w_address0            |  out|   19|   ap_memory|             w|         array|
+|w_ce0                 |  out|    1|   ap_memory|             w|         array|
+|w_q0                  |   in|   32|   ap_memory|             w|         array|
+|q_w                   |   in|   20|     ap_none|           q_w|        scalar|
+|q_b                   |   in|   20|     ap_none|           q_b|        scalar|
+|k_w                   |   in|   20|     ap_none|           k_w|        scalar|
+|k_b                   |   in|   20|     ap_none|           k_b|        scalar|
+|v_w                   |   in|   20|     ap_none|           v_w|        scalar|
+|v_b                   |   in|   20|     ap_none|           v_b|        scalar|
+|o_w                   |   in|   20|     ap_none|           o_w|        scalar|
+|o_b                   |   in|   20|     ap_none|           o_b|        scalar|
+|ln_buf_address0       |  out|   16|   ap_memory|        ln_buf|         array|
+|ln_buf_ce0            |  out|    1|   ap_memory|        ln_buf|         array|
+|ln_buf_q0             |   in|   32|   ap_memory|        ln_buf|         array|
+|attn_out_address0     |  out|   16|   ap_memory|      attn_out|         array|
+|attn_out_ce0          |  out|    1|   ap_memory|      attn_out|         array|
+|attn_out_we0          |  out|    1|   ap_memory|      attn_out|         array|
+|attn_out_d0           |  out|   32|   ap_memory|      attn_out|         array|
+|attn_out_q0           |   in|   32|   ap_memory|      attn_out|         array|
++----------------------+-----+-----+------------+--------------+--------------+
+

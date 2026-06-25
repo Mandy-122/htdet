@@ -1,0 +1,213 @@
+
+
+================================================================
+== Vitis HLS Report for 'conv1x1_plain_3'
+================================================================
+* Date:           Mon Jun  1 17:31:50 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        fpn_192
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu9eg-ffvb1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.397 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +----------+----------+-----------+-----------+----------+----------+---------+
+    |   Latency (cycles)  |   Latency (absolute)  |       Interval      | Pipeline|
+    |    min   |    max   |    min    |    max    |    min   |    max   |   Type  |
+    +----------+----------+-----------+-----------+----------+----------+---------+
+    |  98305201|  98305201|  0.492 sec|  0.492 sec|  98305201|  98305201|       no|
+    +----------+----------+-----------+-----------+----------+----------+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------------------------------------+----------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+        |                                                   |                                        |  Latency (cycles) |   Latency (absolute)  |      Interval     | Pipeline|
+        |                      Instance                     |                 Module                 |   min   |   max   |    min    |    max    |   min   |   max   |   Type  |
+        +---------------------------------------------------+----------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+        |grp_conv1x1_plain_3_Pipeline_C1P_HW_C1P_IC_fu_119  |conv1x1_plain_3_Pipeline_C1P_HW_C1P_IC  |  2048019|  2048019|  10.240 ms|  10.240 ms|  2048019|  2048019|       no|
+        +---------------------------------------------------+----------------------------------------+---------+---------+-----------+-----------+---------+---------+---------+
+
+        * Loop: 
+        +----------+----------+----------+----------+-----------+-----------+------+----------+
+        |          |   Latency (cycles)  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|    min   |    max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+----------+----------+----------+-----------+-----------+------+----------+
+        |- C1P_OC  |  98305200|  98305200|   2048025|          -|          -|    48|        no|
+        +----------+----------+----------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     1|       -|       -|    -|
+|Expression       |        -|     -|       0|     150|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     1|     881|    1044|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       -|     107|    -|
+|Register         |        -|     -|     275|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     2|    1156|    1301|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     1824|  2520|  548160|  274080|    0|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|    ~0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+------+-----+
+    |                      Instance                     |                 Module                 | BRAM_18K| DSP|  FF |  LUT | URAM|
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+------+-----+
+    |grp_conv1x1_plain_3_Pipeline_C1P_HW_C1P_IC_fu_119  |conv1x1_plain_3_Pipeline_C1P_HW_C1P_IC  |        0|   1|  881|  1044|    0|
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+------+-----+
+    |Total                                              |                                        |        0|   1|  881|  1044|    0|
+    +---------------------------------------------------+----------------------------------------+---------+----+-----+------+-----+
+
+    * DSP: 
+    +-----------------------------+-------------------------+-----------+
+    |           Instance          |          Module         | Expression|
+    +-----------------------------+-------------------------+-----------+
+    |mul_mul_8ns_13ns_21_4_1_U72  |mul_mul_8ns_13ns_21_4_1  |    i0 * i1|
+    +-----------------------------+-------------------------+-----------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln395_fu_155_p2   |         +|   0|  0|  15|           8|           3|
+    |empty_101_fu_193_p2   |         +|   0|  0|  19|          12|          12|
+    |empty_102_fu_199_p2   |         +|   0|  0|  19|          12|          12|
+    |empty_104_fu_254_p2   |         +|   0|  0|  19|          12|          12|
+    |empty_99_fu_177_p2    |         +|   0|  0|  19|          12|          12|
+    |icmp_ln395_fu_145_p2  |      icmp|   0|  0|  11|           8|           8|
+    |empty_100_fu_183_p2   |        or|   0|  0|  10|          10|           3|
+    |empty_103_fu_245_p2   |        or|   0|  0|  10|          10|           4|
+    |empty_105_fu_287_p2   |        or|   0|  0|  14|          14|           7|
+    |empty_106_fu_294_p2   |        or|   0|  0|  14|          14|           8|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0| 150|         112|          81|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------+----+-----------+-----+-----------+
+    |        Name        | LUT| Input Size| Bits| Total Bits|
+    +--------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm           |  43|          8|    1|          8|
+    |grp_fu_426_ce       |   9|          2|    1|          2|
+    |grp_fu_430_ce       |   9|          2|    1|          2|
+    |grp_fu_434_ce       |   9|          2|    1|          2|
+    |oc_fu_74            |   9|          2|    8|         16|
+    |w_meta_Addr_A_orig  |  14|          3|   32|         96|
+    |w_meta_Addr_B_orig  |  14|          3|   32|         96|
+    +--------------------+----+-----------+-----+-----------+
+    |Total               | 107|         22|   76|        222|
+    +--------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |                              Name                              | FF | LUT| Bits| Const Bits|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |acc0_reg_406                                                    |  32|   0|   32|          0|
+    |acc1_reg_411                                                    |  32|   0|   32|          0|
+    |acc2_reg_416                                                    |  32|   0|   32|          0|
+    |acc3_reg_421                                                    |  32|   0|   32|          0|
+    |ap_CS_fsm                                                       |   7|   0|    7|          0|
+    |empty_105_reg_396                                               |   7|   0|   14|          7|
+    |empty_106_reg_401                                               |   6|   0|   14|          8|
+    |empty_107_reg_366                                               |  21|   0|   21|          0|
+    |grp_conv1x1_plain_3_Pipeline_C1P_HW_C1P_IC_fu_119_ap_start_reg  |   1|   0|    1|          0|
+    |oc_5_reg_332                                                    |   8|   0|    8|          0|
+    |oc_fu_74                                                        |   8|   0|    8|          0|
+    |tmp_32_reg_361                                                  |   9|   0|   10|          1|
+    |tmp_reg_346                                                     |   8|   0|   10|          2|
+    |tmp_s_reg_391                                                   |   8|   0|   14|          6|
+    |w_meta_load_13_reg_376                                          |  32|   0|   32|          0|
+    |w_meta_load_reg_371                                             |  32|   0|   32|          0|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                           | 275|   0|  299|         24|
+    +----------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+-----------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |  Source Object  |    C Type    |
++---------------------+-----+-----+------------+-----------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_208_p_din0    |  out|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_208_p_din1    |  out|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_208_p_opcode  |  out|    2|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_208_p_dout0   |   in|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_208_p_ce      |  out|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_212_p_din0    |  out|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_212_p_din1    |  out|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_212_p_dout0   |   in|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_212_p_ce      |  out|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_216_p_din0    |  out|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_216_p_dout0   |   in|   32|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|grp_fu_216_p_ce      |  out|    1|  ap_ctrl_hs|  conv1x1_plain.3|  return value|
+|c1_Addr_A            |  out|   32|        bram|               c1|         array|
+|c1_EN_A              |  out|    1|        bram|               c1|         array|
+|c1_WEN_A             |  out|    4|        bram|               c1|         array|
+|c1_Din_A             |  out|   32|        bram|               c1|         array|
+|c1_Dout_A            |   in|   32|        bram|               c1|         array|
+|w_conv_Addr_A        |  out|   32|        bram|           w_conv|         array|
+|w_conv_EN_A          |  out|    1|        bram|           w_conv|         array|
+|w_conv_WEN_A         |  out|    1|        bram|           w_conv|         array|
+|w_conv_Din_A         |  out|    8|        bram|           w_conv|         array|
+|w_conv_Dout_A        |   in|    8|        bram|           w_conv|         array|
+|w_conv_Addr_B        |  out|   32|        bram|           w_conv|         array|
+|w_conv_EN_B          |  out|    1|        bram|           w_conv|         array|
+|w_conv_WEN_B         |  out|    1|        bram|           w_conv|         array|
+|w_conv_Din_B         |  out|    8|        bram|           w_conv|         array|
+|w_conv_Dout_B        |   in|    8|        bram|           w_conv|         array|
+|w_meta_Addr_A        |  out|   32|        bram|           w_meta|         array|
+|w_meta_EN_A          |  out|    1|        bram|           w_meta|         array|
+|w_meta_WEN_A         |  out|    4|        bram|           w_meta|         array|
+|w_meta_Din_A         |  out|   32|        bram|           w_meta|         array|
+|w_meta_Dout_A        |   in|   32|        bram|           w_meta|         array|
+|w_meta_Addr_B        |  out|   32|        bram|           w_meta|         array|
+|w_meta_EN_B          |  out|    1|        bram|           w_meta|         array|
+|w_meta_WEN_B         |  out|    4|        bram|           w_meta|         array|
+|w_meta_Din_B         |  out|   32|        bram|           w_meta|         array|
+|w_meta_Dout_B        |   in|   32|        bram|           w_meta|         array|
+|lat1_address0        |  out|   21|   ap_memory|             lat1|         array|
+|lat1_ce0             |  out|    1|   ap_memory|             lat1|         array|
+|lat1_we0             |  out|    1|   ap_memory|             lat1|         array|
+|lat1_d0              |  out|   32|   ap_memory|             lat1|         array|
++---------------------+-----+-----+------------+-----------------+--------------+
+

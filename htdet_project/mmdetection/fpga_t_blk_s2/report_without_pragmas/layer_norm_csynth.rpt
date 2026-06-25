@@ -1,0 +1,217 @@
+
+
+================================================================
+== Vitis HLS Report for 'layer_norm'
+================================================================
+* Date:           Wed Jun  3 12:05:13 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        s2_transformer_block
+* Solution:       without_pragmas (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu28dr-ffvg1517-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.454 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+--------+--------+---------+
+    |  Latency (cycles) |  Latency (absolute) |     Interval    | Pipeline|
+    |   min   |   max   |    min   |    max   |   min  |   max  |   Type  |
+    +---------+---------+----------+----------+--------+--------+---------+
+    |   426401|   426401|  2.132 ms|  2.132 ms|  426401|  426401|       no|
+    +---------+---------+----------+----------+--------+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------------------+-----------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                        |                             |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                Instance                |            Module           |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +----------------------------------------+-----------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |grp_layer_norm_Pipeline_LN_MEAN_fu_98   |layer_norm_Pipeline_LN_MEAN  |      107|      107|  0.535 us|  0.535 us|  107|  107|       no|
+        |grp_layer_norm_Pipeline_LN_MRED_fu_106  |layer_norm_Pipeline_LN_MRED  |      292|      292|  1.460 us|  1.460 us|  292|  292|       no|
+        |grp_layer_norm_Pipeline_LN_VAR_fu_112   |layer_norm_Pipeline_LN_VAR   |      120|      120|  0.600 us|  0.600 us|  120|  120|       no|
+        |grp_layer_norm_Pipeline_LN_VRED_fu_121  |layer_norm_Pipeline_LN_VRED  |      292|      292|  1.460 us|  1.460 us|  292|  292|       no|
+        |grp_layer_norm_Pipeline_LN_NORM_fu_127  |layer_norm_Pipeline_LN_NORM  |      173|      173|  0.865 us|  0.865 us|  173|  173|       no|
+        +----------------------------------------+-----------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_84_1  |   426400|   426400|      1066|          -|          -|   400|        no|
+        +-------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|      50|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|    14|    3599|    2777|    -|
+|Memory           |        2|     -|       0|       0|    0|
+|Multiplexer      |        -|     -|       -|     932|    -|
+|Register         |        -|     -|     237|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        2|    14|    3836|    3759|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     2160|  4272|  850560|  425280|   80|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |       ~0|    ~0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------------------+------------------------------------+---------+----+------+------+-----+
+    |                Instance                |               Module               | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +----------------------------------------+------------------------------------+---------+----+------+------+-----+
+    |faddfsub_32ns_32ns_32_8_full_dsp_1_U37  |faddfsub_32ns_32ns_32_8_full_dsp_1  |        0|   2|   296|   239|    0|
+    |faddfsub_32ns_32ns_32_8_full_dsp_1_U40  |faddfsub_32ns_32ns_32_8_full_dsp_1  |        0|   2|   296|   239|    0|
+    |fdiv_32ns_32ns_32_16_no_dsp_1_U38       |fdiv_32ns_32ns_32_16_no_dsp_1       |        0|   0|     0|     0|    0|
+    |fmul_32ns_32ns_32_5_max_dsp_1_U41       |fmul_32ns_32ns_32_5_max_dsp_1       |        0|   3|   151|   145|    0|
+    |fmul_32ns_32ns_32_5_max_dsp_1_U42       |fmul_32ns_32ns_32_5_max_dsp_1       |        0|   3|   151|   145|    0|
+    |fsqrt_32ns_32ns_32_16_no_dsp_1_U39      |fsqrt_32ns_32ns_32_16_no_dsp_1      |        0|   0|     0|     0|    0|
+    |grp_layer_norm_Pipeline_LN_MEAN_fu_98   |layer_norm_Pipeline_LN_MEAN         |        0|   0|   450|   303|    0|
+    |grp_layer_norm_Pipeline_LN_MRED_fu_106  |layer_norm_Pipeline_LN_MRED         |        0|   0|   114|   146|    0|
+    |grp_layer_norm_Pipeline_LN_NORM_fu_127  |layer_norm_Pipeline_LN_NORM         |        0|   0|   523|   237|    0|
+    |grp_layer_norm_Pipeline_LN_VAR_fu_112   |layer_norm_Pipeline_LN_VAR          |        0|   4|  1504|  1177|    0|
+    |grp_layer_norm_Pipeline_LN_VRED_fu_121  |layer_norm_Pipeline_LN_VRED         |        0|   0|   114|   146|    0|
+    +----------------------------------------+------------------------------------+---------+----+------+------+-----+
+    |Total                                   |                                    |        0|  14|  3599|  2777|    0|
+    +----------------------------------------+------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-------+-----------------------------+---------+---+----+-----+------+-----+------+-------------+
+    | Memory|            Module           | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-------+-----------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |mp_U   |layer_norm_mp_RAM_AUTO_1R1W  |        1|  0|   0|    0|    36|   32|     1|         1152|
+    |vp_U   |layer_norm_mp_RAM_AUTO_1R1W  |        1|  0|   0|    0|    36|   32|     1|         1152|
+    +-------+-----------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total  |                             |        2|  0|   0|    0|    72|   64|     2|         2304|
+    +-------+-----------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+----+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+----+---+----+------------+------------+
+    |add_ln84_fu_178_p2   |         +|   0|  0|  16|           9|           1|
+    |add_ln85_fu_204_p2   |         +|   0|  0|  23|          16|          16|
+    |icmp_ln84_fu_172_p2  |      icmp|   0|  0|  11|           9|           8|
+    +---------------------+----------+----+---+----+------------+------------+
+    |Total                |          |   0|  0|  50|          34|          25|
+    +---------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------+-----+-----------+-----+-----------+
+    |        Name       | LUT | Input Size| Bits| Total Bits|
+    +-------------------+-----+-----------+-----+-----------+
+    |ap_NS_fsm          |  441|         84|    1|         84|
+    |grp_fu_142_ce      |   31|          6|    1|          6|
+    |grp_fu_142_opcode  |   37|          7|    2|         14|
+    |grp_fu_142_p0      |   37|          7|   32|        224|
+    |grp_fu_142_p1      |   37|          7|   32|        224|
+    |grp_fu_147_p0      |   20|          4|   32|        128|
+    |grp_fu_147_p1      |   14|          3|   32|         96|
+    |grp_fu_285_ce      |   20|          4|    1|          4|
+    |grp_fu_285_opcode  |   20|          4|    2|          8|
+    |grp_fu_285_p0      |   20|          4|   32|        128|
+    |grp_fu_285_p1      |   20|          4|   32|        128|
+    |grp_fu_289_ce      |   14|          3|    1|          3|
+    |grp_fu_289_p0      |   14|          3|   32|         96|
+    |grp_fu_289_p1      |   14|          3|   32|         96|
+    |grp_fu_293_ce      |   14|          3|    1|          3|
+    |grp_fu_293_p0      |   14|          3|   32|         96|
+    |grp_fu_293_p1      |   14|          3|   32|         96|
+    |mp_address0        |   14|          3|    6|         18|
+    |mp_ce0             |   14|          3|    1|          3|
+    |mp_we0             |    9|          2|    1|          2|
+    |s_fu_66            |    9|          2|    9|         18|
+    |vp_address0        |   14|          3|    6|         18|
+    |vp_ce0             |   14|          3|    1|          3|
+    |vp_we0             |    9|          2|    1|          2|
+    |x_buf_address0     |   20|          4|   16|         64|
+    |x_buf_address1     |   14|          3|   16|         48|
+    |x_buf_ce0          |   20|          4|    1|          4|
+    |x_buf_ce1          |   14|          3|    1|          3|
+    +-------------------+-----+-----------+-----+-----------+
+    |Total              |  932|        184|  388|       1617|
+    +-------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------------------------------------+----+----+-----+-----------+
+    |                         Name                        | FF | LUT| Bits| Const Bits|
+    +-----------------------------------------------------+----+----+-----+-----------+
+    |add_ln85_reg_256                                     |  12|   0|   16|          4|
+    |add_reg_275                                          |  32|   0|   32|          0|
+    |ap_CS_fsm                                            |  83|   0|   83|          0|
+    |grp_layer_norm_Pipeline_LN_MEAN_fu_98_ap_start_reg   |   1|   0|    1|          0|
+    |grp_layer_norm_Pipeline_LN_MRED_fu_106_ap_start_reg  |   1|   0|    1|          0|
+    |grp_layer_norm_Pipeline_LN_NORM_fu_127_ap_start_reg  |   1|   0|    1|          0|
+    |grp_layer_norm_Pipeline_LN_VAR_fu_112_ap_start_reg   |   1|   0|    1|          0|
+    |grp_layer_norm_Pipeline_LN_VRED_fu_121_ap_start_reg  |   1|   0|    1|          0|
+    |mean_reg_266                                         |  32|   0|   32|          0|
+    |reg_158                                              |  32|   0|   32|          0|
+    |s_fu_66                                              |   9|   0|    9|          0|
+    |tmp_reg_280                                          |  32|   0|   32|          0|
+    +-----------------------------------------------------+----+----+-----+-----------+
+    |Total                                                | 237|   0|  241|          4|
+    +-----------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+------------+--------------+--------------+
+|    RTL Ports    | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------+-----+-----+------------+--------------+--------------+
+|ap_clk           |   in|    1|  ap_ctrl_hs|    layer_norm|  return value|
+|ap_rst           |   in|    1|  ap_ctrl_hs|    layer_norm|  return value|
+|ap_start         |   in|    1|  ap_ctrl_hs|    layer_norm|  return value|
+|ap_done          |  out|    1|  ap_ctrl_hs|    layer_norm|  return value|
+|ap_idle          |  out|    1|  ap_ctrl_hs|    layer_norm|  return value|
+|ap_ready         |  out|    1|  ap_ctrl_hs|    layer_norm|  return value|
+|w_address0       |  out|   19|   ap_memory|             w|         array|
+|w_ce0            |  out|    1|   ap_memory|             w|         array|
+|w_q0             |   in|   32|   ap_memory|             w|         array|
+|w_address1       |  out|   19|   ap_memory|             w|         array|
+|w_ce1            |  out|    1|   ap_memory|             w|         array|
+|w_q1             |   in|   32|   ap_memory|             w|         array|
+|w1               |   in|   20|     ap_none|            w1|        scalar|
+|b                |   in|   20|     ap_none|             b|        scalar|
+|x_buf_address0   |  out|   16|   ap_memory|         x_buf|         array|
+|x_buf_ce0        |  out|    1|   ap_memory|         x_buf|         array|
+|x_buf_q0         |   in|   32|   ap_memory|         x_buf|         array|
+|x_buf_address1   |  out|   16|   ap_memory|         x_buf|         array|
+|x_buf_ce1        |  out|    1|   ap_memory|         x_buf|         array|
+|x_buf_q1         |   in|   32|   ap_memory|         x_buf|         array|
+|ln_buf_address0  |  out|   16|   ap_memory|        ln_buf|         array|
+|ln_buf_ce0       |  out|    1|   ap_memory|        ln_buf|         array|
+|ln_buf_we0       |  out|    1|   ap_memory|        ln_buf|         array|
+|ln_buf_d0        |  out|   32|   ap_memory|        ln_buf|         array|
++-----------------+-----+-----+------------+--------------+--------------+
+

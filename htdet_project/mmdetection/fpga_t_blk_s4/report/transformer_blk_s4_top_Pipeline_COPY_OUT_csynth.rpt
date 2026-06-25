@@ -1,0 +1,160 @@
+
+
+================================================================
+== Vitis HLS Report for 'transformer_blk_s4_top_Pipeline_COPY_OUT'
+================================================================
+* Date:           Mon Jun  1 14:27:08 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        s4_transformer_block
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu9eg-ffvb1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  2.999 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     6002|     6002|  30.010 us|  30.010 us|  6002|  6002|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |            |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- COPY_OUT  |     6000|     6000|         2|          1|          1|  6000|       yes|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|      34|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     -|       0|      20|    -|
+|Memory           |        -|     -|       -|       -|    -|
+|Multiplexer      |        -|     -|       -|      45|    -|
+|Register         |        -|     -|      29|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     0|      29|      99|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     1824|  2520|  548160|  274080|    0|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|     0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +--------------------+---------------+---------+----+---+----+-----+
+    |      Instance      |     Module    | BRAM_18K| DSP| FF| LUT| URAM|
+    +--------------------+---------------+---------+----+---+----+-----+
+    |mux_42_32_1_1_U997  |mux_42_32_1_1  |        0|   0|  0|  20|    0|
+    +--------------------+---------------+---------+----+---+----+-----+
+    |Total               |               |        0|   0|  0|  20|    0|
+    +--------------------+---------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln161_fu_131_p2   |         +|   0|  0|  20|          13|           1|
+    |icmp_ln161_fu_125_p2  |      icmp|   0|  0|  12|          13|          13|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  34|          27|          16|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i       |   9|          2|   13|         26|
+    |i_1_fu_48                |   9|          2|   13|         26|
+    |out_r_WEN_A              |   9|          2|    4|          8|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  45|         10|   32|         64|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |i_1_fu_48                |  13|   0|   13|          0|
+    |i_reg_193                |  13|   0|   13|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  29|   0|   29|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------------------------------------------+-----+-----+------------+--------------------------------------------------------------+--------------+
+|                               RTL Ports                               | Dir | Bits|  Protocol  |                         Source Object                        |    C Type    |
++-----------------------------------------------------------------------+-----+-----+------------+--------------------------------------------------------------+--------------+
+|ap_clk                                                                 |   in|    1|  ap_ctrl_hs|                      transformer_blk_s4_top_Pipeline_COPY_OUT|  return value|
+|ap_rst                                                                 |   in|    1|  ap_ctrl_hs|                      transformer_blk_s4_top_Pipeline_COPY_OUT|  return value|
+|ap_start                                                               |   in|    1|  ap_ctrl_hs|                      transformer_blk_s4_top_Pipeline_COPY_OUT|  return value|
+|ap_done                                                                |  out|    1|  ap_ctrl_hs|                      transformer_blk_s4_top_Pipeline_COPY_OUT|  return value|
+|ap_idle                                                                |  out|    1|  ap_ctrl_hs|                      transformer_blk_s4_top_Pipeline_COPY_OUT|  return value|
+|ap_ready                                                               |  out|    1|  ap_ctrl_hs|                      transformer_blk_s4_top_Pipeline_COPY_OUT|  return value|
+|out_r_Addr_A                                                           |  out|   32|        bram|                                                         out_r|         array|
+|out_r_EN_A                                                             |  out|    1|        bram|                                                         out_r|         array|
+|out_r_WEN_A                                                            |  out|    4|        bram|                                                         out_r|         array|
+|out_r_Din_A                                                            |  out|   32|        bram|                                                         out_r|         array|
+|out_r_Dout_A                                                           |   in|   32|        bram|                                                         out_r|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_address0    |  out|   11|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_ce0         |  out|    1|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_q0          |   in|   32|   ap_memory|    transformer_blk_s4_top_float_const_float_float_const_x_buf|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_5_address0  |  out|   11|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_5_ce0       |  out|    1|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_5_q0        |   in|   32|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_5|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_6_address0  |  out|   11|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_6_ce0       |  out|    1|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_6_q0        |   in|   32|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_6|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_7_address0  |  out|   11|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_7_ce0       |  out|    1|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_7|         array|
+|transformer_blk_s4_top_float_const_float_float_const_x_buf_7_q0        |   in|   32|   ap_memory|  transformer_blk_s4_top_float_const_float_float_const_x_buf_7|         array|
++-----------------------------------------------------------------------+-----+-----+------------+--------------------------------------------------------------+--------------+
+

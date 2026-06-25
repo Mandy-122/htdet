@@ -1,0 +1,237 @@
+
+
+================================================================
+== Synthesis Summary Report of 'nms_top'
+================================================================
++ General Information: 
+    * Date:           Tue Jun  2 14:12:43 2026
+    * Version:        2022.2 (Build 3670227 on Oct 13 2022)
+    * Project:        nms
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynquplus
+    * Target device:  xczu9eg-ffvb1156-2-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+------------+------------+-----+
+    |               Modules              |  Issue |       | Latency  |  Latency  | Iteration|          | Trip |          |         |          |            |            |     |
+    |               & Loops              |  Type  | Slack | (cycles) |    (ns)   |  Latency | Interval | Count| Pipelined|  BRAM   |    DSP   |     FF     |     LUT    | URAM|
+    +------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+------------+------------+-----+
+    |+ nms_top                           |  Timing|  -2.53|         -|          -|         -|         -|     -|        no|  53 (2%)|  16 (~0%)|   6807 (1%)|   8913 (3%)|    -|
+    | + score_filter                     |  Timing|  -2.53|         -|          -|         -|         -|     -|        no|        -|   9 (~0%)|  3513 (~0%)|   3926 (1%)|    -|
+    |  o SF_H                            |       -|   3.65|         -|          -|         -|         -|     -|        no|        -|         -|           -|           -|    -|
+    |   o SF_W                           |       -|   3.65|         -|          -|         -|         -|     -|        no|        -|         -|           -|           -|    -|
+    |    o SF_RI                         |       -|   3.65|         -|          -|         -|         -|     -|        no|        -|         -|           -|           -|    -|
+    |     o SF_SI                        |       -|   3.65|         -|          -|       120|         -|     -|        no|        -|         -|           -|           -|    -|
+    |      + score_filter_Pipeline_SF_C  |  Timing|  -2.53|        87|    537.573|         -|        87|     -|        no|        -|   8 (~0%)|  1647 (~0%)|  2580 (~0%)|    -|
+    |       o SF_C                       |      II|   3.65|        85|    525.215|        53|        11|     4|       yes|        -|         -|           -|           -|    -|
+    | + nms_top_Pipeline_SORT_INIT       |       -|   1.42|         -|          -|         -|         -|     -|        no|        -|         -|    14 (~0%)|    66 (~0%)|    -|
+    |  o SORT_INIT                       |       -|   3.65|         -|          -|         1|         1|     -|       yes|        -|         -|           -|           -|    -|
+    | + nms_greedy                       |  Timing|  -2.47|  54022004|  3.308e+08|         -|  54022004|     -|        no|  1 (~0%)|   2 (~0%)|  1912 (~0%)|  2566 (~0%)|    -|
+    |  + nms_greedy_Pipeline_SUPP_INIT   |       -|   1.42|      1002|  5.010e+03|         -|      1002|     -|        no|        -|         -|    12 (~0%)|    64 (~0%)|    -|
+    |   o SUPP_INIT                      |       -|   3.65|      1000|  5.000e+03|         1|         1|  1000|       yes|        -|         -|           -|           -|    -|
+    |  o NMS_I                           |       -|   3.65|  54021000|  3.308e+08|     54021|         -|  1000|        no|        -|         -|           -|           -|    -|
+    |   + nms_greedy_Pipeline_NMS_J      |  Timing|  -2.47|     54002|  3.307e+05|         -|     54002|     -|        no|        -|         -|   795 (~0%)|  1467 (~0%)|    -|
+    |    o NMS_J                         |      II|   3.65|     54000|  3.307e+05|        55|        54|  1000|       yes|        -|         -|           -|           -|    -|
+    | + nms_top_Pipeline_OUT             |       -|   1.18|         -|          -|         -|         -|     -|        no|        -|         -|    26 (~0%)|    81 (~0%)|    -|
+    |  o OUT                             |       -|   3.65|         -|          -|         3|         1|     -|       yes|        -|         -|           -|           -|    -|
+    | o SORT_I                           |       -|   3.65|   5013000|  3.098e+07|      5013|         -|  1000|        no|        -|         -|           -|           -|    -|
+    |  + nms_top_Pipeline_SORT_J         |       -|   0.15|      5007|  2.504e+04|         -|      5007|     -|        no|        -|         -|   253 (~0%)|   326 (~0%)|    -|
+    |   o SORT_J                         |      II|   3.65|      5004|  2.502e+04|         6|         5|  1000|       yes|        -|         -|           -|           -|    -|
+    +------------------------------------+--------+-------+----------+-----------+----------+----------+------+----------+---------+----------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* BRAM
++--------------------+------------+---------------+
+| Interface          | Data Width | Address Width |
++--------------------+------------+---------------+
+| cls_logits_0_PORTA | 32         | 32            |
+| cls_logits_1_PORTA | 32         | 32            |
+| cls_logits_2_PORTA | 32         | 32            |
+| cls_logits_3_PORTA | 32         | 32            |
+| detections_PORTA   | 256        | 32            |
+| reg_deltas_0_PORTA | 32         | 32            |
+| reg_deltas_0_PORTB | 32         | 32            |
+| reg_deltas_1_PORTA | 32         | 32            |
+| reg_deltas_1_PORTB | 32         | 32            |
+| reg_deltas_2_PORTA | 32         | 32            |
+| reg_deltas_2_PORTB | 32         | 32            |
+| reg_deltas_3_PORTA | 32         | 32            |
+| reg_deltas_3_PORTB | 32         | 32            |
++--------------------+------------+---------------+
+
+* Other Ports
++-----------+--------+----------+
+| Interface | Mode   | Bitwidth |
++-----------+--------+----------+
+| num_dets  | ap_vld | 32       |
++-----------+--------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++------------+-----------+---------------+
+| Argument   | Direction | Datatype      |
++------------+-----------+---------------+
+| cls_logits | in        | float const * |
+| reg_deltas | in        | float const * |
+| detections | out       | pointer       |
+| num_dets   | out       | int*          |
++------------+-----------+---------------+
+
+* SW-to-HW Mapping
++------------+--------------------+-----------+
+| Argument   | HW Interface       | HW Type   |
++------------+--------------------+-----------+
+| cls_logits | cls_logits_0_PORTA | interface |
+| cls_logits | cls_logits_1_PORTA | interface |
+| cls_logits | cls_logits_2_PORTA | interface |
+| cls_logits | cls_logits_3_PORTA | interface |
+| reg_deltas | reg_deltas_0_PORTA | interface |
+| reg_deltas | reg_deltas_0_PORTB | interface |
+| reg_deltas | reg_deltas_1_PORTA | interface |
+| reg_deltas | reg_deltas_1_PORTB | interface |
+| reg_deltas | reg_deltas_2_PORTA | interface |
+| reg_deltas | reg_deltas_2_PORTB | interface |
+| reg_deltas | reg_deltas_3_PORTA | interface |
+| reg_deltas | reg_deltas_3_PORTB | interface |
+| detections | detections_PORTA   | interface |
+| num_dets   | num_dets           | port      |
+| num_dets   | num_dets_ap_vld    | port      |
++------------+--------------------+-----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------+-----+--------+-------------+-------+---------+---------+
+| Name                                            | DSP | Pragma | Variable    | Op    | Impl    | Latency |
++-------------------------------------------------+-----+--------+-------------+-------+---------+---------+
+| + nms_top                                       | 16  |        |             |       |         |         |
+|   add_ln134_fu_309_p2                           | -   |        | add_ln134   | add   | fabric  | 0       |
+|   add_ln134_2_fu_346_p2                         | -   |        | add_ln134_2 | add   | fabric  | 0       |
+|   add_ln142_fu_374_p2                           | -   |        | add_ln142   | add   | fabric  | 0       |
+|   add_ln148_fu_418_p2                           | -   |        | add_ln148   | add   | fabric  | 0       |
+|   add_ln134_1_fu_429_p2                         | -   |        | add_ln134_1 | add   | fabric  | 0       |
+|  + score_filter                                 | 9   |        |             |       |         |         |
+|    add_ln59_fu_442_p2                           | -   |        | add_ln59    | add   | fabric  | 0       |
+|    add_ln60_fu_498_p2                           | -   |        | add_ln60    | add   | fabric  | 0       |
+|    tmp11_fu_513_p2                              | -   |        | tmp11       | add   | fabric  | 0       |
+|    empty_30_fu_535_p2                           | -   |        | empty_30    | add   | fabric  | 0       |
+|    add_ln78_1_fu_526_p2                         | -   |        | add_ln78_1  | add   | fabric  | 0       |
+|    add_ln64_fu_551_p2                           | -   |        | add_ln64    | add   | fabric  | 0       |
+|    sub_ln66_fu_573_p2                           | -   |        | sub_ln66    | sub   | fabric  | 0       |
+|    add_ln65_fu_607_p2                           | -   |        | add_ln65    | add   | fabric  | 0       |
+|    fsqrt_32ns_32ns_32_16_no_dsp_1_U53           | -   |        | tmp         | fsqrt | fabric  | 15      |
+|    empty_33_fu_621_p2                           | -   |        | empty_33    | add   | fabric  | 0       |
+|    mul_mul_12s_9ns_12_4_1_U56                   | 1   |        | mul52       | mul   | dsp48   | 3       |
+|    add53_fu_637_p2                              | -   |        | add53       | add   | fabric  | 0       |
+|   + score_filter_Pipeline_SF_C                  | 8   |        |             |       |         |         |
+|     add_ln72_fu_556_p2                          | -   |        | add_ln72    | add   | fabric  | 0       |
+|     ama_addmuladd_12ns_12ns_7ns_12ns_12_1_1_U11 | 1   |        | add_ln76    | add   | dsp48   | 0       |
+|     ama_addmuladd_12ns_12ns_7ns_12ns_12_1_1_U11 | 1   |        | mul_ln78    | mul   | dsp48   | 0       |
+|     grp_fu_1286_p3                              | -   |        | add_ln78_2  | add   | fabric  | 0       |
+|     ama_addmuladd_12ns_12ns_7ns_12ns_12_1_1_U11 | 1   |        | add_ln78    | add   | dsp48   | 0       |
+|     fexp_32ns_32ns_32_13_full_dsp_1_U5          | 7   |        | tmp_6       | fexp  | fulldsp | 12      |
+|     fexp_32ns_32ns_32_13_full_dsp_1_U5          | 7   |        | tmp_7       | fexp  | fulldsp | 12      |
+|     num_cand_2_fu_772_p2                        | -   |        | num_cand_2  | add   | fabric  | 0       |
+|  + nms_top_Pipeline_SORT_INIT                   | 0   |        |             |       |         |         |
+|    add_ln129_fu_74_p2                           | -   |        | add_ln129   | add   | fabric  | 0       |
+|  + nms_top_Pipeline_SORT_J                      | 0   |        |             |       |         |         |
+|    k_2_fu_247_p2                                | -   |        | k_2         | add   | fabric  | 0       |
+|    add_ln145_fu_372_p2                          | -   |        | add_ln145   | add   | fabric  | 0       |
+|    add_ln146_fu_358_p2                          | -   |        | add_ln146   | add   | fabric  | 0       |
+|  + nms_greedy                                   | 2   |        |             |       |         |         |
+|    add_ln184_fu_286_p2                          | -   |        | add_ln184   | add   | fabric  | 0       |
+|    num_keep_2_fu_297_p2                         | -   |        | num_keep_2  | add   | fabric  | 0       |
+|    grp_fu_234_p2                                | -   |        | add_ln190   | add   | fabric  | 0       |
+|    fsub_32ns_32ns_32_8_full_dsp_1_U115          | 2   |        | sub41_i     | fsub  | fulldsp | 7       |
+|    grp_fu_234_p2                                | -   |        | add_ln184_1 | add   | fabric  | 0       |
+|   + nms_greedy_Pipeline_SUPP_INIT               | 0   |        |             |       |         |         |
+|     add_ln177_fu_80_p2                          | -   |        | add_ln177   | add   | fabric  | 0       |
+|   + nms_greedy_Pipeline_NMS_J                   | 0   |        |             |       |         |         |
+|     fsub_32ns_32ns_32_6_no_dsp_1_U84            | -   |        | sub48_i     | fsub  | fabric  | 5       |
+|     add_ln190_fu_443_p2                         | -   |        | add_ln190   | add   | fabric  | 0       |
+|  + nms_top_Pipeline_OUT                         | 0   |        |             |       |         |         |
+|    add_ln252_fu_186_p2                          | -   |        | add_ln252   | add   | fabric  | 0       |
++-------------------------------------------------+-----+--------+-------------+-------+---------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++----------------------------------------------------------------+------+------+--------+------------------------------------------------------------+---------+------+---------+
+| Name                                                           | BRAM | URAM | Pragma | Variable                                                   | Storage | Impl | Latency |
++----------------------------------------------------------------+------+------+--------+------------------------------------------------------------+---------+------+---------+
+| + nms_top                                                      | 53   | 0    |        |                                                            |         |      |         |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_U   | 8    | -    | pragma | nms_top_float_const_float_const_Detection_int_cand_boxes   | ram_t2p | bram | 1       |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_1_U | 8    | -    | pragma | nms_top_float_const_float_const_Detection_int_cand_boxes_1 | ram_t2p | bram | 1       |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_2_U | 8    | -    | pragma | nms_top_float_const_float_const_Detection_int_cand_boxes_2 | ram_t2p | bram | 1       |
+|   nms_top_float_const_float_const_Detection_int_cand_boxes_3_U | 8    | -    | pragma | nms_top_float_const_float_const_Detection_int_cand_boxes_3 | ram_t2p | bram | 1       |
+|   cand_scores_U                                                | 8    | -    | pragma | cand_scores                                                | ram_t2p | bram | 1       |
+|   cand_cls_U                                                   | 8    | -    | pragma | cand_cls                                                   | ram_t2p | bram | 1       |
+|   cand_order_U                                                 | 3    | -    | pragma | cand_order                                                 | ram_t2p | bram | 1       |
+|   keep_idx_U                                                   | 1    | -    | pragma | keep_idx                                                   | ram_t2p | bram | 1       |
+|  + nms_greedy                                                  | 1    | 0    |        |                                                            |         |      |         |
+|    suppressed_U                                                | 1    | -    | pragma | suppressed                                                 | ram_t2p | bram | 1       |
++----------------------------------------------------------------+------+------+--------+------------------------------------------------------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+---------------------------------------------+-----------------------------------------------+
+| Type            | Options                                     | Location                                      |
++-----------------+---------------------------------------------+-----------------------------------------------+
+| inline          |                                             | nms/fpga_utils.h:14 in sigmoid                |
+| inline          |                                             | nms/nms_top.cpp:26 in iou_f                   |
+| pipeline        | II=1                                        | nms/nms_top.cpp:73 in score_filter            |
+| loop_tripcount  | min=4 max=4 avg=4                           | nms/nms_top.cpp:74 in score_filter            |
+| pipeline        | II=1                                        | nms/nms_top.cpp:130 in sort_scores            |
+| loop_tripcount  | min=0 max=1000 avg=500                      | nms/nms_top.cpp:135 in sort_scores            |
+| loop_tripcount  | min=0 max=1000 avg=250                      | nms/nms_top.cpp:143 in sort_scores            |
+| bind_storage    | variable=suppressed type=RAM_T2P impl=BRAM  | nms/nms_top.cpp:175 in nms_greedy, suppressed |
+| pipeline        | II=1                                        | nms/nms_top.cpp:178 in nms_greedy             |
+| loop_tripcount  | min=0 max=1000 avg=100                      | nms/nms_top.cpp:185 in nms_greedy             |
+| loop_tripcount  | min=0 max=1000 avg=100                      | nms/nms_top.cpp:191 in nms_greedy             |
+| pipeline        | II=1                                        | nms/nms_top.cpp:192 in nms_greedy             |
+| interface       | bram port=cls_logits                        | nms/nms_top.cpp:213 in nms_top, cls_logits    |
+| interface       | bram port=reg_deltas                        | nms/nms_top.cpp:214 in nms_top, reg_deltas    |
+| interface       | bram port=detections                        | nms/nms_top.cpp:215 in nms_top, detections    |
+| interface       | ap_vld port=num_dets                        | nms/nms_top.cpp:216 in nms_top, num_dets      |
+| interface       | ap_ctrl_hs port=return                      | nms/nms_top.cpp:217 in nms_top, return        |
+| array_partition | variable=cls_logits cyclic factor=4 dim=1   | nms/nms_top.cpp:222 in nms_top, cls_logits    |
+| array_partition | variable=reg_deltas cyclic factor=4 dim=1   | nms/nms_top.cpp:223 in nms_top, reg_deltas    |
+| bind_storage    | variable=cand_boxes type=RAM_T2P impl=BRAM  | nms/nms_top.cpp:231 in nms_top, cand_boxes    |
+| bind_storage    | variable=cand_scores type=RAM_T2P impl=BRAM | nms/nms_top.cpp:232 in nms_top, cand_scores   |
+| bind_storage    | variable=cand_cls type=RAM_T2P impl=BRAM    | nms/nms_top.cpp:233 in nms_top, cand_cls      |
+| bind_storage    | variable=cand_order type=RAM_T2P impl=BRAM  | nms/nms_top.cpp:234 in nms_top, cand_order    |
+| bind_storage    | variable=keep_idx type=RAM_T2P impl=BRAM    | nms/nms_top.cpp:235 in nms_top, keep_idx      |
+| pipeline        | II=1                                        | nms/nms_top.cpp:253 in nms_top                |
++-----------------+---------------------------------------------+-----------------------------------------------+
+
+

@@ -1,0 +1,224 @@
+
+
+================================================================
+== Vitis HLS Report for 'nms_greedy'
+================================================================
+* Date:           Wed Jun  3 14:56:52 2026
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        nms
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynquplus
+* Target device:  xczu9eg-ffvb1156-2-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  9.052 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+--------+---------+
+    |  Latency (cycles) |  Latency (absolute)  |   Interval   | Pipeline|
+    |   min   |   max   |    min    |    max   | min |   max  |   Type  |
+    +---------+---------+-----------+----------+-----+--------+---------+
+    |        4|   362704|  36.209 ns|  3.283 ms|    4|  362704|       no|
+    +---------+---------+-----------+----------+-----+--------+---------+
+
+    + Detail: 
+        * Instance: 
+        +------------------------------------------+-------------------------------+---------+---------+-----------+-----------+-----+------+---------+
+        |                                          |                               |  Latency (cycles) |   Latency (absolute)  |  Interval  | Pipeline|
+        |                 Instance                 |             Module            |   min   |   max   |    min    |    max    | min |  max |   Type  |
+        +------------------------------------------+-------------------------------+---------+---------+-----------+-----------+-----+------+---------+
+        |grp_nms_greedy_Pipeline_SUPP_INIT_fu_191  |nms_greedy_Pipeline_SUPP_INIT  |        2|      302|  10.000 ns|   1.510 us|    2|   302|       no|
+        |grp_nms_greedy_Pipeline_NMS_J_fu_199      |nms_greedy_Pipeline_NMS_J      |        2|     1202|  18.105 ns|  10.881 us|    2|  1202|       no|
+        +------------------------------------------+-------------------------------+---------+---------+-----------+-----------+-----+------+---------+
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+---------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  |   Trip  |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  |  Count  | Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+---------+----------+
+        |- NMS_I   |        0|   362400|  4 ~ 1208|          -|          -|  0 ~ 300|        no|
+        +----------+---------+---------+----------+-----------+-----------+---------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+------+--------+--------+-----+
+|       Name      | BRAM_18K|  DSP |   FF   |   LUT  | URAM|
++-----------------+---------+------+--------+--------+-----+
+|DSP              |        -|     -|       -|       -|    -|
+|Expression       |        -|     -|       0|     285|    -|
+|FIFO             |        -|     -|       -|       -|    -|
+|Instance         |        -|     2|     136|     584|    -|
+|Memory           |        -|     -|       2|       5|    -|
+|Multiplexer      |        -|     -|       -|     328|    -|
+|Register         |        -|     -|     492|       -|    -|
++-----------------+---------+------+--------+--------+-----+
+|Total            |        0|     2|     630|    1202|    0|
++-----------------+---------+------+--------+--------+-----+
+|Available        |     1824|  2520|  548160|  274080|    0|
++-----------------+---------+------+--------+--------+-----+
+|Utilization (%)  |        0|    ~0|      ~0|      ~0|    0|
++-----------------+---------+------+--------+--------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------------+-------------------------------+---------+----+-----+-----+-----+
+    |                 Instance                 |             Module            | BRAM_18K| DSP|  FF | LUT | URAM|
+    +------------------------------------------+-------------------------------+---------+----+-----+-----+-----+
+    |grp_nms_greedy_Pipeline_NMS_J_fu_199      |nms_greedy_Pipeline_NMS_J      |        0|   2|  125|  521|    0|
+    |grp_nms_greedy_Pipeline_SUPP_INIT_fu_191  |nms_greedy_Pipeline_SUPP_INIT  |        0|   0|   11|   63|    0|
+    +------------------------------------------+-------------------------------+---------+----+-----+-----+-----+
+    |Total                                     |                               |        0|   2|  136|  584|    0|
+    +------------------------------------------+-------------------------------+---------+----+-----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +--------------+------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |    Memory    |                  Module                  | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------------+------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |suppressed_U  |nms_greedy_suppressed_RAM_2P_LUTRAM_1R1W  |        0|  2|   5|    0|   300|    1|     1|          300|
+    +--------------+------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total         |                                          |        0|  2|   5|    0|   300|    1|     1|          300|
+    +--------------+------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |          Variable Name          | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |add_ln274_fu_277_p2              |         +|   0|  0|  71|          64|           1|
+    |grp_fu_229_p2                    |         +|   0|  0|  39|          32|           1|
+    |num_keep_2_fu_296_p2             |         +|   0|  0|  39|          32|           1|
+    |and_ln274_fu_271_p2              |       and|   0|  0|   2|           1|           1|
+    |ap_block_state8_on_subcall_done  |       and|   0|  0|   2|           1|           1|
+    |ap_predicate_op72_call_state8    |       and|   0|  0|   2|           1|           1|
+    |icmp_ln274_1_fu_265_p2           |      icmp|   0|  0|  20|          32|           7|
+    |icmp_ln274_fu_260_p2             |      icmp|   0|  0|  29|          64|          64|
+    |icmp_ln289_1_fu_301_p2           |      icmp|   0|  0|  20|          32|          32|
+    |icmp_ln289_fu_292_p2             |      icmp|   0|  0|  29|          64|          64|
+    |select_ln289_fu_306_p3           |    select|   0|  0|  32|           1|          32|
+    +---------------------------------+----------+----+---+----+------------+------------+
+    |Total                            |          |   0|  0| 285|         324|         205|
+    +---------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------------------------------------------------+----+-----------+-----+-----------+
+    |                                 Name                                | LUT| Input Size| Bits| Total Bits|
+    +---------------------------------------------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                                                            |  49|          9|    1|          9|
+    |cand_cls_V_address0                                                  |  14|          3|   12|         36|
+    |cand_cls_V_ce0                                                       |  14|          3|    1|          3|
+    |cand_order_address0                                                  |  14|          3|   12|         36|
+    |cand_order_ce0                                                       |  14|          3|    1|          3|
+    |i_2_fu_60                                                            |   9|          2|   64|        128|
+    |indvars_iv_fu_56                                                     |   9|          2|   32|         64|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_1_address0  |  14|          3|   12|         36|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_1_ce0       |  14|          3|    1|          3|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_2_address0  |  14|          3|   12|         36|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_2_ce0       |  14|          3|    1|          3|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_3_address0  |  14|          3|   12|         36|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_3_ce0       |  14|          3|    1|          3|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_address0    |  14|          3|   12|         36|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_ce0         |  14|          3|    1|          3|
+    |num_keep_fu_64                                                       |   9|          2|   32|         64|
+    |suppressed_address0                                                  |  14|          3|    9|         27|
+    |suppressed_address1                                                  |  14|          3|    9|         27|
+    |suppressed_ce0                                                       |  14|          3|    1|          3|
+    |suppressed_ce1                                                       |  14|          3|    1|          3|
+    |suppressed_d1                                                        |  14|          3|    1|          3|
+    |suppressed_we1                                                       |  14|          3|    1|          3|
+    +---------------------------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                                                | 328|         69|  229|        565|
+    +---------------------------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                   Name                                  | FF | LUT| Bits| Const Bits|
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+    |add_ln274_reg_368                                                        |  64|   0|   64|          0|
+    |ap_CS_fsm                                                                |   8|   0|    8|          0|
+    |cand_areas_V_load_reg_462                                                |  30|   0|   30|          0|
+    |cls_i_V_reg_467                                                          |   2|   0|    2|          0|
+    |grp_nms_greedy_Pipeline_NMS_J_fu_199_ap_start_reg                        |   1|   0|    1|          0|
+    |grp_nms_greedy_Pipeline_SUPP_INIT_fu_191_ap_start_reg                    |   1|   0|    1|          0|
+    |i_2_fu_60                                                                |  64|   0|   64|          0|
+    |icmp_ln289_reg_433                                                       |   1|   0|    1|          0|
+    |ii_reg_379                                                               |  12|   0|   12|          0|
+    |indvars_iv_fu_56                                                         |  32|   0|   32|          0|
+    |indvars_iv_load_1_reg_472                                                |  32|   0|   32|          0|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_1_load_reg_447  |  18|   0|   18|          0|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_2_load_reg_452  |  18|   0|   18|          0|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_3_load_reg_457  |  18|   0|   18|          0|
+    |nms_top_float_const_float_const_Detection_int_cand_boxes_load_reg_442    |  18|   0|   18|          0|
+    |num_keep_2_reg_437                                                       |  32|   0|   32|          0|
+    |num_keep_fu_64                                                           |  32|   0|   32|          0|
+    |select_ln289_reg_477                                                     |  32|   0|   32|          0|
+    |sext_ln267_reg_356                                                       |  64|   0|   64|          0|
+    |suppressed_load_reg_399                                                  |   1|   0|    1|          0|
+    |zext_ln277_reg_384                                                       |  12|   0|   64|         52|
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                    | 492|   0|  544|         52|
+    +-------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------------------------------------------+-----+-----+------------+------------------------------------------------------------+--------------+
+|                              RTL Ports                              | Dir | Bits|  Protocol  |                        Source Object                       |    C Type    |
++---------------------------------------------------------------------+-----+-----+------------+------------------------------------------------------------+--------------+
+|ap_clk                                                               |   in|    1|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|ap_rst                                                               |   in|    1|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|ap_start                                                             |   in|    1|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|ap_done                                                              |  out|    1|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|ap_idle                                                              |  out|    1|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|ap_ready                                                             |  out|    1|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|ap_return                                                            |  out|   32|  ap_ctrl_hs|                                                  nms_greedy|  return value|
+|N                                                                    |   in|   32|     ap_none|                                                           N|        scalar|
+|cand_order_address0                                                  |  out|   12|   ap_memory|                                                  cand_order|         array|
+|cand_order_ce0                                                       |  out|    1|   ap_memory|                                                  cand_order|         array|
+|cand_order_q0                                                        |   in|   12|   ap_memory|                                                  cand_order|         array|
+|keep_idx_address0                                                    |  out|    7|   ap_memory|                                                    keep_idx|         array|
+|keep_idx_ce0                                                         |  out|    1|   ap_memory|                                                    keep_idx|         array|
+|keep_idx_we0                                                         |  out|    1|   ap_memory|                                                    keep_idx|         array|
+|keep_idx_d0                                                          |  out|   12|   ap_memory|                                                    keep_idx|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_address0    |  out|   12|   ap_memory|    nms_top_float_const_float_const_Detection_int_cand_boxes|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_ce0         |  out|    1|   ap_memory|    nms_top_float_const_float_const_Detection_int_cand_boxes|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_q0          |   in|   18|   ap_memory|    nms_top_float_const_float_const_Detection_int_cand_boxes|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_1_address0  |  out|   12|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_1|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_1_ce0       |  out|    1|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_1|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_1_q0        |   in|   18|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_1|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_2_address0  |  out|   12|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_2|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_2_ce0       |  out|    1|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_2|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_2_q0        |   in|   18|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_2|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_3_address0  |  out|   12|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_3|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_3_ce0       |  out|    1|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_3|         array|
+|nms_top_float_const_float_const_Detection_int_cand_boxes_3_q0        |   in|   18|   ap_memory|  nms_top_float_const_float_const_Detection_int_cand_boxes_3|         array|
+|cand_areas_V_address0                                                |  out|   12|   ap_memory|                                                cand_areas_V|         array|
+|cand_areas_V_ce0                                                     |  out|    1|   ap_memory|                                                cand_areas_V|         array|
+|cand_areas_V_q0                                                      |   in|   30|   ap_memory|                                                cand_areas_V|         array|
+|cand_cls_V_address0                                                  |  out|   12|   ap_memory|                                                  cand_cls_V|         array|
+|cand_cls_V_ce0                                                       |  out|    1|   ap_memory|                                                  cand_cls_V|         array|
+|cand_cls_V_q0                                                        |   in|    2|   ap_memory|                                                  cand_cls_V|         array|
++---------------------------------------------------------------------+-----+-----+------------+------------------------------------------------------------+--------------+
+
